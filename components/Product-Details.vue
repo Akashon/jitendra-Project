@@ -35,7 +35,7 @@
                 <!-- IMAGE SECTION END -->
 
                 <div class="product__header">
-                    <h1 class="product__title" style="font-size: 30px;">SS Cabinet</h1>
+                    <h1 class="product__title" style="font-size: 30px;">{{ name }}</h1>
                     <div class="product__subtitle">
                         <h6 style="background-color: #E2F2DA; font-weight: lighter; font-size: 14px; border-radius: 12px; align-items: center; font-weight: 400;"
                             class="px-2 py-1 mt-1"><i class="fa fa-check pr-1"></i>Drow No. AEG2013
@@ -319,6 +319,14 @@ export default {
             ],
             activeTab: 'description' // Default active tab
         };
+    },
+    props: {
+        id: {
+      default: "",
+    },
+    name: {
+      default: "",
+    },
     },
     methods: {
         changeImage(index) {

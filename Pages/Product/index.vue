@@ -18,7 +18,8 @@
         <div class="block-split ">
             <div class="container">
                 <div class="block-split__row row no-gutters">
-                    <ProductDetails />
+                    <!-- <ProductDetails :id="p_id" :name="p_name" /> -->
+                    <ProductDetails/>
                 </div>
             </div>
         </div>
@@ -28,9 +29,14 @@
 </template>
 
 <script>
+import axios from "axios";
+import { Url } from "~/config/url";
 export default {
     data() {
         return {
+            product: null,
+
+
             breakpoints: {
                 375: { itemsToShow: 1, snapAlign: "center" },
                 // 700px and up
@@ -70,6 +76,30 @@ export default {
         };
     },
     methods: {
+
+        // async getDetails() {
+        //     // console.log(this.$route.params);
+        //     var id = this.$route.params.id;
+        //     const response = await axios.get(
+        //         `${Url.fetchProductDetails}?product_id=${id}`,
+        //         {
+        //             headers: {
+        //                 Authorization: "Bearer " + localStorage.getItem("authToken"),
+        //             },
+        //         }
+        //     );
+        //     // console.log("single-product", response);
+        //     this.product = response.data.product;
+        // },
+
+
+
+
+
+
+
+
+
         changeImage(index) {
             // Update the active image when a thumbnail is clicked
             this.activeIndex = index;

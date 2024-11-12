@@ -1,9 +1,9 @@
 <template>
 	<div class="site lg-mt-5 lg-mb-0 mb-0 mt-0">
 		<div class="site__body">
-			<div class="block-space block-space--layout--divider-xs"></div>
+			<!-- <div class="block-space block-space--layout--divider-xs"></div> -->
 			<!-- HERO SECTION SLIDE SHOW IMAGE START -->
-			<div class="block block-slideshow" style="position: relative">
+			<!-- <div class="block block-slideshow" style="position: relative">
 				<div class="container ">
 					<carousel :autoplay="3000" :wrapAround="true" :loop="false" :itemsToShow="1" :transition="500"
 						class="block-slideshow__carousel">
@@ -15,84 +15,122 @@
 						</slide>
 					</carousel>
 				</div>
-				<!-- <div class="container">
-					<Carousel :autoplay="3000" :wrapAround="true" :loop="false" :itemsToShow="1" :transition="300"
-						class="block-slideshow__carousel">
-						<slide v-for="(slide, index) in slides" :key="index">
-							<div class="row no-gutters align-items-center my-card">
-								<div class="col-md-6">
-									Left Side Content
-									<div class="card-body">
-										<h1 class="card-title" style="font-size: 40px; font-weight: bold">
-											{{ slide.title }}
-										</h1>
-										<p class="card-text">
-											{{ slide.details }}
-										</p>
-										<a href="#" class="btn btn-primary">Shop Now</a>
-									</div>
-								</div>
-								<div class="col-md-6">
-									Right Side Image
-									<img :src="slide.image" class="img-fluid" alt="Card image">
-								</div>
-							</div>
-						</slide>
-					</Carousel>
-				</div> -->
-			</div>
+			</div> -->
 			<!-- HERO SECTION SLIDE SHOW IMAGE END  -->
-			<div class="block-space block-space--layout--divider-nl"></div>
 
-			<!-- NEW CATEGORY ICON SHOW START -->
-			<div class="block block-brands">
-				<div class="container lpx-0 px-4">
-					<ul class="block-brands__list row justify-content-start " style="border: none;">
-						<li class="card col-6 col-md-4 col-lg-2" v-for="(category, index) in categories"
-							:key="(category, index)">
-							<HomeCategory :id="category.cat_id" :name="category.cat_name" :image="category.cat_image" />
+			<!-- NEW HERO SECTION WITH OUT SLIDER START -->
+			<div class="block-finder block">
+				<div class="decor block-finder__decor decor--type--bottom">
+					<div class="decor__body">
+						<div class="decor__start"></div>
+						<div class="decor__end"></div>
+						<div class="decor__center"></div>
+					</div>
+				</div>
+
+				<div class="block-finder__image"
+					style="background-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8');">
+					<carousel :autoplay="3000" :wrapAround="true" :loop="false" :itemsToShow="1" :transition="500"
+						class="block-slideshow__carousel">
+						<slide v-for="(slide, index) in slides" :key="index" :style="{
+							backgroundImage: 'url(' + slide.image + ')',
+							backgroundSize: 'cover',
+							backgroundPosition: 'center',
+						}" class="block-slideshow__item">
+						</slide>
+					</carousel>
+				</div>
+				<div class="block-finder__body container container--max--xl">
+					<div class="block-finder__title">Find Parts For Your Vehicle</div>
+					<div class="block-finder__subtitle">Over hundreds of brands and tens of thousands of parts</div>
+				</div>
+			</div>
+			<!-- NEW HERO SECTION WITH OUT SLIDER START -->
+
+
+			<div class="block-features block block-features--layout--top-strip">
+				<div class="container">
+					<ul class="block-features__list">
+						<li class="block-features__item">
+							<div class="block-features__item-icon"><img width="70"
+									src="https://png.pngtree.com/png-clipart/20230120/ourmid/pngtree-free-delivery-truck-icon-png-image_6565580.png"
+									alt=""></div>
+							<div class="block-features__item-info">
+								<div class="block-features__item-title">Free Shipping</div>
+								<div class="block-features__item-subtitle">For orders from 50</div>
+							</div>
+						</li>
+						<li class="block-features__item">
+							<div class="block-features__item-icon"><img width="70"
+									src="https://static.vecteezy.com/system/resources/previews/016/314/360/non_2x/transparent-24-hour-service-free-png.png"
+									alt=""></div>
+							<div class="block-features__item-info">
+								<div class="block-features__item-title">Support 24/7</div>
+								<div class="block-features__item-subtitle">Call us anytime</div>
+							</div>
+						</li>
+						<li class="block-features__item">
+							<div class="block-features__item-icon">
+								<img width="60"
+									src="https://png.pngtree.com/png-vector/20221009/ourmid/pngtree-original-guaranteed-stamp-and-badget-design-red-grunge-png-image_6293839.png"
+									alt="">
+							</div>
+							<div class="block-features__item-info">
+								<div class="block-features__item-title">100% Safety</div>
+								<div class="block-features__item-subtitle">Only secure payments</div>
+							</div>
+						</li>
+						<li class="block-features__item">
+							<div class="block-features__item-icon">
+								<img width="70"
+									src="https://png.pngtree.com/png-vector/20240417/ourmid/pngtree-fire-icon-vector-design-png-image_12288010.png"
+									alt="">
+							</div>
+							<div class="block-features__item-info">
+								<div class="block-features__item-title">Hot Offers</div>
+								<div class="block-features__item-subtitle">Discounts up to 90%</div>
+							</div>
 						</li>
 					</ul>
 				</div>
 			</div>
-			<!-- NEW CATEGORY ICON SHOW END -->
+			<div class="block-space block-space--layout--divider-nl my-lg-2 my-0"></div>
 
-
-			<div class="block-space block-space--layout--divider-nl"></div>
-			<!-- POPULAR CATEGORY START -->
-			<div class="block block-categories">
-				<div class="container">
-					<div class="block-categories__header">
-						<div class="block-categories__title">Popular Categories<div
-								class="decor block-categories__title-decor decor--type--center">
-								<div class="decor__body">
-									<div class="decor__start"></div>
-									<div class="decor__end"></div>
-									<div class="decor__center"></div>
+			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
+			<!-- <div class="block-space block-space--layout--divider-nl"></div>
+						POPULAR CATEGORY START
+						<div class="block block-categories">
+							<div class="container">
+								<div class="block-categories__header">
+									<div class="block-categories__title">Popular Categories<div
+											class="decor block-categories__title-decor decor--type--center">
+											<div class="decor__body">
+												<div class="decor__start"></div>
+												<div class="decor__end"></div>
+												<div class="decor__center"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-				<div class="block-categories__body">
-					<div class="decor block-categories__body-decor decor--type--bottom">
-						<div class="decor__body">
-							<div class="decor__start"></div>
-							<div class="decor__end"></div>
-							<div class="decor__center"></div>
-						</div>
-					</div>
-					<div class="container">
-						<div class="block-categories__list">
-							<CardTwo />
-						</div>
-					</div>
-				</div>
-			</div>
+							<div class="block-categories__body">
+								<div class="decor block-categories__body-decor decor--type--bottom">
+									<div class="decor__body">
+										<div class="decor__start"></div>
+										<div class="decor__end"></div>
+										<div class="decor__center"></div>
+									</div>
+								</div>
+								<div class="container">
+									<div class="block-categories__list">
+										<CardTwo />
+									</div>
+								</div>
+							</div>
+						</div> -->
 			<!-- POPULAR CATEGORY END -->
 
-
-			<div class="block-space block-space--layout--divider-nl"></div>
+			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
 			<!-- Featured Products Products start -->
 			<div class="block block-products-carousel" data-layout="grid-5">
 				<div class="container">
@@ -115,12 +153,12 @@
 							<div class="section-header__divider"></div>
 						</div>
 					</div>
-					<Carousel transition="1500" :breakpoints="breakpointsFeat" ref="featured">
+					<Carousel transition="1500" :breakpoints="breakpoints" ref="featured">
 						<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 						<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
 							<!-- JSON.parse(response.data.productArray[0].p_media) -->
-							<Card class="product-card product-card--layout--grid pb-2" style="width:18rem;"
-								:name="featured.p_name" :id="featured.p_id" :image="featured.p_image" />
+							<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
+								:id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
 
 						</Slide>
 					</Carousel>
@@ -128,6 +166,305 @@
 			</div>
 			<!-- Featured Products Products end -->
 
+
+			<div class="block-space block-space--layout--divider-nl"></div>
+			<div class="block block-sale">
+				<div class="block-sale__content">
+					<div class="block-sale__header">
+						<div class="block-sale__title">Attention! Deal Zone</div>
+						<div class="block-sale__subtitle">Hurry up! Discounts up to 70%</div>
+						<div class="block-sale__controls">
+							<div class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev"><button
+									class="arrow__button" type="button"><svg width="7" height="11">
+										<path
+											d="M6.7,0.3L6.7,0.3c-0.4-0.4-0.9-0.4-1.3,0L0,5.5l5.4,5.2c0.4,0.4,0.9,0.3,1.3,0l0,0c0.4-0.4,0.4-1,0-1.3l-4-3.9l4-3.9C7.1,1.2,7.1,0.6,6.7,0.3z" />
+									</svg></button></div>
+							<div class="block-sale__link"><a href="#">View All Available Offers</a></div>
+							<div class="arrow block-sale__arrow block-sale__arrow--next arrow--next"><button
+									class="arrow__button" type="button"><svg width="7" height="11">
+										<path d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9
+	C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+									</svg></button></div>
+							<div class="decor block-sale__header-decor decor--type--center">
+								<div class="decor__body">
+									<div class="decor__start"></div>
+									<div class="decor__end"></div>
+									<div class="decor__center"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="block-sale__body">
+						<div class="decor block-sale__body-decor decor--type--bottom">
+							<div class="decor__body">
+								<div class="decor__start"></div>
+								<div class="decor__end"></div>
+								<div class="decor__center"></div>
+							</div>
+						</div>
+						<div class="block-sale__image"
+							style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+						</div>
+
+						<div class="container">
+							<div class="block-sale__carousel">
+								<!-- <div class="owl-carousel">
+									<div class="block-sale__item">
+										<div class="product-card">
+											<div class="product-card__image">
+												<div class="image image--type--product">
+													<a href="product-full.html" class="image__body"><img
+															class="image__tag"
+															src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+															alt="">
+													</a>
+												</div>
+											</div>
+											<div class="product-card__info">
+												<div class="product-card__meta"><span
+														class="product-card__meta-title">SKU:</span> 140-10440-B</div>
+												<div class="product-card__name">
+													<div>
+														<a href="product-full.html">Brandix Spark Plug Kit
+															ASR-400</a>
+													</div>
+												</div>
+											</div>
+											<div class="product-card__footer">
+												<div class="product-card__prices">
+													<div class="product-card__price product-card__price--current">$19.00
+													</div>
+												</div><button class="product-card__addtocart-icon" type="button"
+													aria-label="Add to cart"><i class="fa fa-home"></i></button>
+											</div>
+										</div>
+									</div>
+								</div> -->
+								<Carousel transition="1500" :breakpoints="breakpointsFeat" ref="featured">
+
+
+									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+										<!-- JSON.parse(response.data.productArray[0].p_media) -->
+										<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
+											:name="featured.p_name" :id="featured.p_id" :image="featured.p_image" />
+
+									</Slide>
+								</Carousel>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="block-space block-space--layout--divider-lg"></div>
+			<!-- Extra Featured Products Products one start -->
+			<div class="block block-zone">
+				<div class="container">
+					<div class="block-zone__body">
+						<div class="block-zone__card category-card category-card--layout--overlay">
+							<div class="category-card__body">
+								<div class="category-card__overlay-image"><img
+										src="https://images.unsplash.com/photo-1729830114379-4c3dfe391a74?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
+										src="https://images.unsplash.com/photo-1729830114379-4c3dfe391a74?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__content">
+									<div class="category-card__info">
+										<div class="category-card__name"><a href="#">Wheels &
+												Tires</a></div>
+										<ul class="category-card__children">
+											<li><a href="#">Wheel Covers</a></li>
+											<li><a href="#">Brake Kits</a></li>
+											<li><a href="#">Tire Chains</a></li>
+											<li><a href="#">Wheel disks</a></li>
+											<li><a href="#">Tires</a></li>
+											<li><a href="#">Sensors</a></li>
+											<li><a href="#">Accessories</a></li>
+										</ul>
+										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
+												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
+												All</a></div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block-zone__widget">
+							<div class="container">
+								<div class="section-header">
+									<div class="section-header__body">
+										<h2 class="section-header__title">Extra Featured Products 1</h2>
+										<div class="section-header__spring"></div>
+										<div class="section-header__arrows">
+											<div @click="exPrevSlide"
+												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-left"></i></button>
+											</div>
+											<div @click="exNextSlide"
+												class="arrow section-header__arrow section-header__arrow--next arrow--next">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-right"></i></button>
+											</div>
+										</div>
+										<div class="section-header__divider"></div>
+									</div>
+								</div>
+								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraProduct">
+									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
+									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+										<CardThree :name="featured.p_name" :id="featured.p_id"
+											:image="featured.p_image" />
+									</Slide>
+								</Carousel>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Extra Products Products onef end -->
+
+
+			<div class="block-space block-space--layout--divider-lg"></div>
+			<!-- Extra Featured Products Products two start -->
+			<div class="block block-zone">
+				<div class="container">
+					<div class="block-zone__body">
+						<div class="block-zone__card category-card category-card--layout--overlay">
+							<div class="category-card__body">
+								<div class="category-card__overlay-image"><img
+										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
+										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__content">
+									<div class="category-card__info">
+										<div class="category-card__name"><a href="#">Wheels &
+												Tires</a></div>
+										<ul class="category-card__children">
+											<li><a href="#">Wheel Covers</a></li>
+											<li><a href="#">Brake Kits</a></li>
+											<li><a href="#">Tire Chains</a></li>
+											<li><a href="#">Wheel disks</a></li>
+											<li><a href="#">Tires</a></li>
+											<li><a href="#">Sensors</a></li>
+											<li><a href="#">Accessories</a></li>
+										</ul>
+										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
+												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
+												All</a></div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block-zone__widget">
+							<div class="container">
+								<div class="section-header">
+									<div class="section-header__body">
+										<h2 class="section-header__title">Extra Featured Products 2</h2>
+										<div class="section-header__spring"></div>
+										<div class="section-header__arrows">
+											<div @click="exPrevSlide"
+												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-left"></i></button>
+											</div>
+											<div @click="exNextSlide"
+												class="arrow section-header__arrow section-header__arrow--next arrow--next">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-right"></i></button>
+											</div>
+										</div>
+										<div class="section-header__divider"></div>
+									</div>
+								</div>
+								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraProduct">
+									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
+									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+										<CardThree :name="featured.p_name" :id="featured.p_id"
+											:image="featured.p_image" />
+									</Slide>
+								</Carousel>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Extra Featured Products Products two end -->
+
+
+			<div class="block-space block-space--layout--divider-lg"></div>
+			<!-- Extra Featured Products Products three start -->
+			<div class="block block-zone">
+				<div class="container">
+					<div class="block-zone__body">
+						<div class="block-zone__card category-card category-card--layout--overlay">
+							<div class="category-card__body">
+								<div class="category-card__overlay-image"><img
+										src="https://images.unsplash.com/photo-1654633147734-19458b964f6d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
+										src="https://images.unsplash.com/photo-1654633147734-19458b964f6d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
+								<div class="category-card__content">
+									<div class="category-card__info">
+										<div class="category-card__name"><a href="#">Wheels &
+												Tires</a></div>
+										<ul class="category-card__children">
+											<li><a href="#">Wheel Covers</a></li>
+											<li><a href="#">Brake Kits</a></li>
+											<li><a href="#">Tire Chains</a></li>
+											<li><a href="#">Wheel disks</a></li>
+											<li><a href="#">Tires</a></li>
+											<li><a href="#">Sensors</a></li>
+											<li><a href="#">Accessories</a></li>
+										</ul>
+										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
+												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
+												All</a></div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block-zone__widget">
+							<div class="container">
+								<div class="section-header">
+									<div class="section-header__body">
+										<h2 class="section-header__title">Extra Featured Products 3</h2>
+										<div class="section-header__spring"></div>
+										<div class="section-header__arrows">
+											<div @click="exPrevSlide"
+												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-left"></i></button>
+											</div>
+											<div @click="exNextSlide"
+												class="arrow section-header__arrow section-header__arrow--next arrow--next">
+												<button class="arrow__button" type="button"><i
+														class="fa fa-chevron-right"></i></button>
+											</div>
+										</div>
+										<div class="section-header__divider"></div>
+									</div>
+								</div>
+								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraProduct">
+									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
+									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+										<CardThree :name="featured.p_name" :id="featured.p_id"
+											:image="featured.p_image" />
+									</Slide>
+								</Carousel>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Extra Featured Products Products three end -->
 
 			<div class="block-space block-space--layout--divider-nl"></div>
 			<!-- CATEGORY BENNER CARD START -->
@@ -160,217 +497,62 @@
 			</div>
 			<!-- CATEGORY BENNER CARD END -->
 
-
-			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products start -->
-			<div class="block block-zone">
+			<!-- New Arrivals Card Start -->
+			<div class="block-space block-space--layout--divider-nl"></div>
+			<div class="block block-products-carousel" data-layout="horizontal">
 				<div class="container">
-					<div class="block-zone__body">
-						<div class="block-zone__card category-card category-card--layout--overlay">
-							<div class="category-card__body">
-								<div class="category-card__overlay-image"><img
-										src="https://images.unsplash.com/photo-1729830114379-4c3dfe391a74?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
-										src="https://images.unsplash.com/photo-1729830114379-4c3dfe391a74?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__content">
-									<div class="category-card__info">
-										<div class="category-card__name"><a href="#">Wheels &
-												Tires</a></div>
-										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
-										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
-									</div>
+					<div class="section-header">
+						<div class="section-header__body">
+							<h2 class="section-header__title">New Arrivals</h2>
+							<div class="section-header__spring"></div>
+							<div class="section-header__arrows">
+								<div @click="exPrevSlide"
+									class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
+									<button class="arrow__button" type="button"><i
+											class="fa fa-chevron-left"></i></button>
+								</div>
+								<div @click="exNextSlide"
+									class="arrow section-header__arrow section-header__arrow--next arrow--next">
+									<button class="arrow__button" type="button"><i
+											class="fa fa-chevron-right"></i></button>
 								</div>
 							</div>
+							<div class="section-header__divider"></div>
 						</div>
-						<div class="block-zone__widget">
-							<div class="container">
-								<div class="section-header">
-									<div class="section-header__body">
-										<h2 class="section-header__title">Extra Featured Products</h2>
-										<div class="section-header__spring"></div>
-										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
-												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-left"></i></button>
-											</div>
-											<div @click="exNextSlide"
-												class="arrow section-header__arrow section-header__arrow--next arrow--next">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-right"></i></button>
+					</div>
+					<div class="block-products-carousel__carousel">
+						<div class="block-products-carousel__carousel-loader"></div>
+						<div class="owl-carousel">
+							<div class="block-products-carousel__column">
+								<div class="block-products-carousel__cell">
+									<div class="product-card product-card--layout--horizontal">
+										<div class="product-card__image">
+											<div class="image image--type--product">
+												<a href="" class="image__body">
+													<img class="image__tag"
+														src="https://api.advanceengineerings.com/public/assets/img/product/1731328658_6f417ece0915aea46dae.jpg"
+														alt="">
+												</a>
 											</div>
 										</div>
-										<div class="section-header__divider"></div>
+										<div class="product-card__info">
+											<div class="product-card__name">
+												<div><a href="">Brandix Spark Plug Kit ASR-400</a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide>
-										<CardThree />
-									</Slide>
-								</Carousel>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Extra Products Products end -->
-
-
-			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products start -->
-			<div class="block block-zone">
-				<div class="container">
-					<div class="block-zone__body">
-						<div class="block-zone__card category-card category-card--layout--overlay">
-							<div class="category-card__body">
-								<div class="category-card__overlay-image"><img
-										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
-										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__content">
-									<div class="category-card__info">
-										<div class="category-card__name"><a href="#">Wheels &
-												Tires</a></div>
-										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
-										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-zone__widget">
-							<div class="container">
-								<div class="section-header">
-									<div class="section-header__body">
-										<h2 class="section-header__title">Extra Featured Products</h2>
-										<div class="section-header__spring"></div>
-										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
-												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-left"></i></button>
-											</div>
-											<div @click="exNextSlide"
-												class="arrow section-header__arrow section-header__arrow--next arrow--next">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-right"></i></button>
-											</div>
-										</div>
-										<div class="section-header__divider"></div>
-									</div>
-								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide>
-										<CardThree />
-									</Slide>
-								</Carousel>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Extra Products Products end -->
-
-
-			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products start -->
-			<div class="block block-zone">
-				<div class="container">
-					<div class="block-zone__body">
-						<div class="block-zone__card category-card category-card--layout--overlay">
-							<div class="category-card__body">
-								<div class="category-card__overlay-image"><img
-										src="https://images.unsplash.com/photo-1654633147734-19458b964f6d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
-										src="https://images.unsplash.com/photo-1654633147734-19458b964f6d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
-								<div class="category-card__content">
-									<div class="category-card__info">
-										<div class="category-card__name"><a href="#">Wheels &
-												Tires</a></div>
-										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
-										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="block-zone__widget">
-							<div class="container">
-								<div class="section-header">
-									<div class="section-header__body">
-										<h2 class="section-header__title">Extra Featured Products</h2>
-										<div class="section-header__spring"></div>
-										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
-												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-left"></i></button>
-											</div>
-											<div @click="exNextSlide"
-												class="arrow section-header__arrow section-header__arrow--next arrow--next">
-												<button class="arrow__button" type="button"><i
-														class="fa fa-chevron-right"></i></button>
-											</div>
-										</div>
-										<div class="section-header__divider"></div>
-									</div>
-								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide>
-										<CardThree />
-									</Slide>
-								</Carousel>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Extra Products Products end -->
-
+			<!-- New Arrivals Card End -->
 
 			<div class="block-space block-space--layout--divider-nl d-xl-block d-none"></div>
 			<!-- TOP RATED CARD START -->
-			<div class="block block-products-columns my-4">
+			<!-- <div class="block block-products-columns my-4">
 				<div class="container">
 					<div class="row">
 						<div class="col-4">
@@ -450,58 +632,25 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- TOP RATED CARD END -->
 
+			<!-- NEW CATEGORY ICON SHOW START -->
+			<div class="block block-brands">
+				<div class="container lpx-0 px-4">
+					<ul class="block-brands__list row justify-content-start " style="border: none;">
+						<li class="card col-6 col-md-4 col-lg-2" v-for="(category, index) in categories"
+							:key="(category, index)">
+							<HomeCategory :id="category.cat_id" :name="category.cat_name" :image="category.cat_image" />
+						</li>
+						<li class="block-brands__divider" role="presentation"></li>
 
-			<div class="block-space block-space--layout--divider-nl my-lg-2 my-0"></div>
-
-			<div class="block-features block block-features--layout--bottom-strip">
-				<div class="container">
-					<ul class="block-features__list">
-						<li class="block-features__item">
-							<div class="block-features__item-icon"><img width="70"
-									src="https://png.pngtree.com/png-clipart/20230120/ourmid/pngtree-free-delivery-truck-icon-png-image_6565580.png"
-									alt=""></div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Free Shipping</div>
-								<div class="block-features__item-subtitle">For orders from 50</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon"><img width="70"
-									src="https://static.vecteezy.com/system/resources/previews/016/314/360/non_2x/transparent-24-hour-service-free-png.png"
-									alt=""></div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Support 24/7</div>
-								<div class="block-features__item-subtitle">Call us anytime</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon">
-								<img width="60"
-									src="https://png.pngtree.com/png-vector/20221009/ourmid/pngtree-original-guaranteed-stamp-and-badget-design-red-grunge-png-image_6293839.png"
-									alt="">
-							</div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">100% Safety</div>
-								<div class="block-features__item-subtitle">Only secure payments</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon">
-								<img width="70"
-									src="https://png.pngtree.com/png-vector/20240417/ourmid/pngtree-fire-icon-vector-design-png-image_12288010.png"
-									alt="">
-							</div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Hot Offers</div>
-								<div class="block-features__item-subtitle">Discounts up to 90%</div>
-							</div>
-						</li>
 					</ul>
 				</div>
 			</div>
+			<!-- NEW CATEGORY ICON SHOW END -->
+
+
 		</div>
 	</div>
 </template>
@@ -526,7 +675,7 @@ export default {
 				// 700px and up
 				700: { itemsToShow: 2, snapAlign: "center" },
 				// 1024 and up
-				1024: { itemsToShow: 3, snapAlign: "start" },
+				1024: { itemsToShow: 5, snapAlign: "start" },
 			},
 
 			breakpointsFeat: {
@@ -536,7 +685,7 @@ export default {
 				// 1024 and up
 				1024: { itemsToShow: 4, snapAlign: "start" },
 				// 1880 and up
-				1880: { itemsToShow: 4.3, snapAlign: "start" }
+				1880: { itemsToShow: 5, snapAlign: "start" }
 			},
 
 			breakpointsExtraProduct: {
@@ -546,7 +695,7 @@ export default {
 				// 1024 and up
 				1024: { itemsToShow: 4, snapAlign: "start" },
 				// 1880 and up
-				1880: { itemsToShow: 3.3, snapAlign: "start" }
+				1880: { itemsToShow: 3, snapAlign: "start" }
 			},
 
 			slides: [

@@ -20,9 +20,6 @@
                     <div class="category-card__actions"><span class="category-card__link" @click="showModal = true">Shop
                             All</span>
                     </div>
-                    <!-- <button type="button" class="btn btn-danger" @click="showModal = true">
-                        Glass Animals Info
-                    </button> -->
                 </div>
             </div>
         </div>

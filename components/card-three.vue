@@ -15,7 +15,7 @@
             <div class="product-card__image">
                 <div class="image image--type--product"><a :href="`/product/`" class="image__body"><img
                             class="image__tag"
-                            src="https://png.pngtree.com/png-vector/20230915/ourmid/pngtree-modern-white-chair-object-png-image_10076592.png"
+                            :src="image"
                             alt=""></a>
                 </div>
             </div>
@@ -40,18 +40,10 @@ export default {
         }
     },
     props: {
-        id: {
-            default: ''
-        },
-        image: {
-            default: ''
-        },
-        name: {
-            default: ""
-        },
-        rDescription: {
-            default: ""
-        },
+        id: { default: ''  },
+        image: { default: ''  },
+        name: { default: ""  },
+        rDescription: {  default: "" },
     }
 }
 </script>
