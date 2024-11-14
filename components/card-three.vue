@@ -13,8 +13,10 @@
         </div> -->
         <div class="product-card__image">
             <div class="product-card__image">
-                <div class="image image--type--product"><a :href="`/product/${id}/`" class="image__body"><img
-                            class="image__tag" :src="image" alt=""></a>
+                <div class="image image--type--product">
+                    <a :href="`/product/${id}/`" class="image__body">
+                        <img class="image__tag" :src="image" alt="">
+                    </a>
                 </div>
             </div>
 
@@ -22,7 +24,7 @@
         <div class="product-card__info">
             <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 573-23743-C</div>
             <div class="product-card__name">
-                <div><a href="`/product/${id}/`">{{ name }}</a>
+                <div><a :href="`/product/${id}/`">{{ name }}</a>
                 </div>
             </div>
 
