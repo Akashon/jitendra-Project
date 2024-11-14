@@ -17,7 +17,7 @@
                     <h1 class="text-xl mb-1 font-bold text-start lg:truncate truncate hover:text-[#357B93] duration-500 font-poppins">{{ rTitle
                         }}</h1>
                 </a> -->
-                    <a :href="`/product/ ${id}`" class="image__body">
+                    <a :href="`/product/${id}/`" class="image__body">
                         <!-- <img class="image__tag" src="https://png.pngtree.com/png-vector/20230915/ourmid/pngtree-modern-white-chair-object-png-image_10076592.png" alt=""> -->
                         <img class="image__tag" :src="image" alt="Hello">
                     </a>
@@ -28,7 +28,7 @@
         <div class="product-card__info">
             <div class="product-card__meta"><span class="product-card__meta-title">SKU:</span> 573-23743-C</div>
             <div class="product-card__name">
-                <div><a href="product-full.html">{{ name }}</a></div>
+                <div><a :href="`/product/${id}/`" >{{ name }}</a></div>
             </div>
         </div>
         <div class="product-card__footer" style="display: flex; justify-content: center">

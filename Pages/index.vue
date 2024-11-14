@@ -27,7 +27,6 @@
 						<div class="decor__center"></div>
 					</div>
 				</div>
-
 				<div class="block-finder__image"
 					style="background-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8');">
 					<carousel :autoplay="3000" :wrapAround="true" :loop="false" :itemsToShow="1" :transition="500"
@@ -96,39 +95,6 @@
 			</div>
 			<div class="block-space block-space--layout--divider-nl my-lg-2 my-0"></div>
 
-			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
-			<!-- <div class="block-space block-space--layout--divider-nl"></div>
-						POPULAR CATEGORY START
-						<div class="block block-categories">
-							<div class="container">
-								<div class="block-categories__header">
-									<div class="block-categories__title">Popular Categories<div
-											class="decor block-categories__title-decor decor--type--center">
-											<div class="decor__body">
-												<div class="decor__start"></div>
-												<div class="decor__end"></div>
-												<div class="decor__center"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="block-categories__body">
-								<div class="decor block-categories__body-decor decor--type--bottom">
-									<div class="decor__body">
-										<div class="decor__start"></div>
-										<div class="decor__end"></div>
-										<div class="decor__center"></div>
-									</div>
-								</div>
-								<div class="container">
-									<div class="block-categories__list">
-										<CardTwo />
-									</div>
-								</div>
-							</div>
-						</div> -->
-			<!-- POPULAR CATEGORY END -->
 
 			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
 			<!-- Featured Products Products start -->
@@ -497,21 +463,21 @@
 			</div>
 			<!-- CATEGORY BENNER CARD END -->
 
-			<!-- New Arrivals Card Start -->
-			<div class="block-space block-space--layout--divider-nl"></div>
-			<div class="block block-products-carousel" data-layout="horizontal">
+			<!-- Latest News Card Start -->
+			<!-- <div class="block-space block-space--layout--divider-nl"></div>
+			<div class="block block-posts-carousel block-posts-carousel--layout--grid" data-layout="grid">
 				<div class="container">
 					<div class="section-header">
 						<div class="section-header__body">
-							<h2 class="section-header__title">New Arrivals</h2>
+							<h2 class="section-header__title">Latest News</h2>
 							<div class="section-header__spring"></div>
 							<div class="section-header__arrows">
-								<div @click="exPrevSlide"
+								<div @click="lNPrevSlide"
 									class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
 									<button class="arrow__button" type="button"><i
 											class="fa fa-chevron-left"></i></button>
 								</div>
-								<div @click="exNextSlide"
+								<div @click="lNNextSlide"
 									class="arrow section-header__arrow section-header__arrow--next arrow--next">
 									<button class="arrow__button" type="button"><i
 											class="fa fa-chevron-right"></i></button>
@@ -520,26 +486,21 @@
 							<div class="section-header__divider"></div>
 						</div>
 					</div>
-					<div class="block-products-carousel__carousel">
-						<div class="block-products-carousel__carousel-loader"></div>
-						<div class="owl-carousel">
-							<div class="block-products-carousel__column">
-								<div class="block-products-carousel__cell">
-									<div class="product-card product-card--layout--horizontal">
-										<div class="product-card__image">
-											<div class="image image--type--product">
-												<a href="" class="image__body">
-													<img class="image__tag"
-														src="https://api.advanceengineerings.com/public/assets/img/product/1731328658_6f417ece0915aea46dae.jpg"
-														alt="">
-												</a>
-											</div>
-										</div>
-										<div class="product-card__info">
-											<div class="product-card__name">
-												<div><a href="">Brandix Spark Plug Kit ASR-400</a>
-												</div>
-											</div>
+					<div class="block-posts-carousel__carousel">
+						<div class="owl-carousel row">
+							<div class="block-posts-carousel__item card col-6 col-md-4 col-lg-3 ">
+								<div class="post-card" v-for="latest in latestNews">
+									<div class="post-card__image">
+										<a href="#">
+											<img src="https://images.unsplash.com/photo-1719937051230-8798ae2ebe86?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+												alt="">
+										</a>
+									</div>
+									<div class="post-card__content">
+										<div class="post-card__category"><a
+												href="blog-classic-right-sidebar.html">{{ latest.name }}</a></div>
+										<div class="post-card__title">
+											<h2><a href="#">Philosophy That Addresses Topics Such As Goodness</a></h2>
 										</div>
 									</div>
 								</div>
@@ -547,8 +508,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- New Arrivals Card End -->
+			</div> -->
+			<!-- Latest News Card End -->
 
 			<div class="block-space block-space--layout--divider-nl d-xl-block d-none"></div>
 			<!-- TOP RATED CARD START -->
@@ -644,12 +605,10 @@
 							<HomeCategory :id="category.cat_id" :name="category.cat_name" :image="category.cat_image" />
 						</li>
 						<li class="block-brands__divider" role="presentation"></li>
-
 					</ul>
 				</div>
 			</div>
 			<!-- NEW CATEGORY ICON SHOW END -->
-
 
 		</div>
 	</div>
@@ -715,7 +674,8 @@ export default {
 					details: "Installation of parts in the services of our partners.",
 				},
 			],
-			brands: [
+
+			latestNews: [
 				{ image: "/images/brands/brand-1.png", name: "AimParts", link: "/category/" },
 				{ image: "/images/brands/brand-2.png", name: "WindEngine", link: "#" },
 				{ image: "/images/brands/brand-3.png", name: "TurboElectric", link: "#" },
@@ -792,6 +752,13 @@ export default {
 			this.$refs.extraProduct.next();
 		},
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END
+
+		lNPrevSlide() {
+			this.$refs.extraProduct.prev();
+		},
+		lNNextSlide() {
+			this.$refs.extraProduct.next();
+		},
 	},
 	beforeDestroy() {
 		this.stopAutoplay(); // Stop autoplay when the component is destroyed

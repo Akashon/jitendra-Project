@@ -68,25 +68,6 @@
                                             </svg></button></td>
                                 </tr>
                             </tbody>
-                            <tfoot class="cart-table__foot">
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="cart-table__actions">
-                                            <form class="cart-table__coupon-form form-row">
-                                                <div class="form-group mb-0 col flex-grow-1"><input type="text"
-                                                        class="form-control form-control-sm" placeholder="Coupon Code">
-                                                </div>
-                                                <div class="form-group mb-0 col-auto">
-                                                    <button type="button"
-                                                        class="btn btn-sm btn-primary" style="background-color: #E52727; border-color: #E52727;">Apply Coupon</button>
-                                                    </div>
-                                            </form>
-                                            <div class="cart-table__update-button"><a class="btn btn-sm btn-primary" style="background-color: #E52727; border-color: #E52727;"
-                                                    href="#">Update Cart</a></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <div class="cart__totals">
@@ -117,7 +98,7 @@
                                             <td>15,902.00</td>
                                         </tr>
                                     </tfoot>
-                                </table><a class="btn btn-primary btn-xl btn-block" href="#" style="background-color: #E52727; border-color: #E52727;">Proceed to checkout</a>
+                                </table><a class="btn btn-primary btn-xl btn-block" href="#" style="background-color: #E52727; border-color: #E52727;">Get Inquiry</a>
                             </div>
                         </div>
                     </div>

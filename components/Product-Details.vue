@@ -1,9 +1,14 @@
 <template>
+
+
     <div class="block-split__item block-split__item-content col-auto">
         <div class="product product--layout--full">
+
             <div class="product__body">
+                <div class="product__card product__card--one"></div>
+                <div class="product__card product__card--two"></div>
                 <!-- IMAGE SECTION START -->
-                <div class="product-gallery product-gallery--layout--product-full product__gallery"
+                <!-- <div class="product-gallery product-gallery--layout--product-full product__gallery"
                     data-layout="product-full">
                     <div class="product-gallery__featured">
                         <button type="button" class="product-gallery__zoom">
@@ -17,8 +22,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row"
-                        style="display: flex; justify-content: space-between; align-items: center; ">
+                    <div class="row" style="display: flex; justify-content: space-between; align-items: center; ">
                         <i @click="prev" :disabled="isFirstPage" class="fa fa-chevron-left"
                             style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
 
@@ -31,48 +35,87 @@
                         <i @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
                             style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
                     </div>
+                </div> -->
+
+                <div class="product-gallery product-gallery--layout--product-full product__gallery"
+                    data-layout="product-full">
+                    <div class="product-gallery__featured"><button type="button" class="product-gallery__zoom">
+                            <svg width="24" height="24">
+                                <path
+                                    d="M15,18c-2,0-3.8-0.6-5.2-1.7c-1,1.3-2.1,2.8-3.5,4.6c-2.2,2.8-3.4,1.9-3.4,1.9s-0.6-0.3-1.1-0.7 c-0.4-0.4-0.7-1-0.7-1s-0.9-1.2,1.9-3.3c1.8-1.4,3.3-2.5,4.6-3.5C6.6,12.8,6,11,6,9c0-5,4-9,9-9s9,4,9,9S20,18,15,18z M15,2 c-3.9,0-7,3.1-7,7s3.1,7,7,7s7-3.1,7-7S18.9,2,15,2z M16,13h-2v-3h-3V8h3V5h2v3h3v2h-3V13z" />
+                            </svg>
+                        </button>
+                        <div class="owl-carousel">
+                            <a class="image image--type--product"
+                                href="https://images.unsplash.com/photo-1723511577246-03455db5636b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4OXx8fGVufDB8fHx8fA%3D%3D"
+                                target="_blank" data-width="700" data-height="700">
+                                <div class="image__body">
+                                    <img class="image__tag" :src="activeImage.small" :alt="activeImage.alt">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-gallery__thumbnails">
+                        <div class="row" style="display: flex; justify-content: space-between; align-items: center; ">
+                            <button @click="prev" :disabled="isFirstPage" class="fa fa-chevron-left"
+                                style="color: red; background-color: red; padding: 4px; font-size: 20px; color: white; border-radius: 4px;"></button>
+
+                            <div v-for="(image, index) in visibleImages" :key="index" class="col-2">
+                                <img width="55" height="60" :src="image.small" :alt="image.alt" class=""
+                                    :class="{ 'active-thumbnail': activeIndex === index + startIndex }"
+                                    @click="changeImage(index + startIndex)" />
+                            </div>
+
+                            <button @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
+                                style="color: red; background-color: red; padding: 4px; font-size: 20px; color: white; border-radius: 4px;"></button>
+                        </div>
+
+                        <!-- <div class="row" style="display: flex; justify-content: space-between; align-items: center; ">
+                        <i @click="prev" :disabled="isFirstPage" class="fa fa-chevron-left"
+                            style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
+                        <Carousel >
+                            <Slide v-for="(image, index) in visibleImages" :key="index" class="col-2">
+                            <img width="55" height="60" :src="image.small" :alt="image.alt" class=""
+                                :class="{ 'active-thumbnail': activeIndex === index + startIndex }"
+                                @click="changeImage(index + startIndex)" />
+                        </Slide>
+                        </Carousel>
+                        <i @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
+                            style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
+                    </div> -->
+                    </div>
                 </div>
                 <!-- IMAGE SECTION END -->
 
+
                 <div class="product__header">
-                    <h1 class="product__title" style="font-size: 30px;">{{ name }}</h1>
+                    <h1 class="product__title">{{ name }}</h1>
                     <div class="product__subtitle">
-                        <h6 style="background-color: #E2F2DA; font-weight: lighter; font-size: 14px; border-radius: 12px; align-items: center; font-weight: 400;"
-                            class="px-2 py-1 mt-1"><i class="fa fa-check pr-1"></i>Drow No. AEG2013
-                        </h6>
-                        <div class="product__rating mt-1">
-                            <div class="product__rating-stars">
-                                <div class="rating">
-                                    <div class="rating__body">
-                                        <div class="rating__star rating__star--active"></div>
-                                        <div class="rating__star rating__star--active"></div>
-                                        <div class="rating__star rating__star--active"></div>
-                                        <div class="rating__star rating__star--active"></div>
-                                        <div class="rating__star"></div>
-                                    </div>
+                        <div
+                            class="status-badge status-badge--style--success product__fit status-badge--has-icon status-badge--has-text">
+                            <div class="status-badge__body">
+                                <div class="status-badge__icon">
+                                    <svg width="13" height="13">
+                                        <path d="M12,4.4L5.5,11L1,6.5l1.4-1.4l3.1,3.1L10.6,3L12,4.4z" />
+                                    </svg>
                                 </div>
+                                <div class="status-badge__text">Part Fit for 2011 Ford Focus S</div>
                             </div>
-                            <div class="product__rating-label"><a href="#">3.5 on 7 reviews</a></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="product__main">
-                    <div class="product__excerpt" style="font-weight: 400; font-size: 17px;">SS Cabinet, or stainless
-                        steel cabinet, is a durable
-                        and rust-resistant storage solution commonly used in kitchens, laboratories, and
-                        industrial spaces. Its sleek, modern design offers both functionality and
-                        aesthetic appeal.
+                    <div class="product__excerpt">{{ discription }}
                     </div>
                     <div class="product__features">
-                        <div class="product__features-title" style="font-weight: 600; font-size: 18px;">Key Features:
-                        </div>
-                        <ul class="" style="align-items: center;">
-                            <li style="font-size: 17px; ">Brand: <span>Advance...</span></li>
-                            <li style="font-size: 17px;">Material: <span>550304</span></li>
-                            <li style="font-size: 17px;">product dimensions: <span>L-300mm, W-500mm, H-600mm</span></li>
-                            <li style="font-size: 17px;">Finish Type: <span>Mi.... Matt</span></li>
-                            <!-- <li>Battery Capacity: <span>2 Ah</span></li> -->
+                        <div class="product__features-title">Key Features:</div>
+                        <ul>
+                            <li>Brand: <span>{{ brand }}</span></li>
+                            <li>Material: <span>{{ material }}</span></li>
+                            <li>product dimensions: <span>{{ weight }}</span></li>
+                            <li>Finish Type: <span>{{ finishType }}</span></li>
+                            <li>Color: <span>{{ color }}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -81,9 +124,6 @@
                     <div class="product__info-card">
                         <div class="product__info-body">
                             <div class="product__prices-stock">
-                                <div class="product__prices">
-                                    <div class="product__price product__price--current">1,499.00</div>
-                                </div>
                                 <div
                                     class="status-badge status-badge--style--success product__stock status-badge--has-text">
                                     <div class="status-badge__body">
@@ -97,15 +137,15 @@
                                 <table>
                                     <tr>
                                         <th style="font-size: 16px;">Brand </th>
-                                        <td style="font-size: 16px;">Bosch</td>
+                                        <td style="font-size: 16px;">{{ brand }}</td>
                                     </tr>
                                     <tr>
                                         <th style="font-size: 16px;">Material</th>
-                                        <td style="font-size: 16px;"><a href="#">550304</a></td>
+                                        <td style="font-size: 16px;"><a href="#">{{ material }}</a></td>
                                     </tr>
                                     <tr>
                                         <th style="font-size: 16px;">Product Dimensions</th>
-                                        <td style="font-size: 16px;">31L, 12W, 9.2H Centimeters</td>
+                                        <td style="font-size: 16px;">{{ dimension }}</td>
                                     </tr>
                                     <tr>
                                         <th style="font-size: 16px;">Style</th>
@@ -117,47 +157,33 @@
                                     </tr>
                                     <tr>
                                         <th style="font-size: 16px;">Color</th>
-                                        <td style="font-size: 16px;">Silver</td>
+                                        <td style="font-size: 16px;">{{ color }}</td>
                                     </tr>
                                     <tr>
                                         <th style="font-size: 16px;">Item Width</th>
-                                        <td style="font-size: 16px;">1905 Grams</td>
+                                        <td style="font-size: 16px;">{{ weight }}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <div class="product-form product__form">
-                            <div class="product-form__body">
-                                <div class="product-form__row">
-                                    <div class="product-form__title">Material</div>
-                                    <div class="product-form__control">
-                                        <div class="input-radio-label">
-                                            <div class="input-radio-label__list"><label class="input-radio-label__item">
-                                                    <input type="radio" name="material"
-                                                        class="input-radio-label__input"> <span
-                                                        class="input-radio-label__title">Steel</span></label>
-                                                <label class="input-radio-label__item"><input type="radio"
-                                                        name="material" class="input-radio-label__input"> <span
-                                                        class="input-radio-label__title">Aluminium</span></label>
-                                                <label class="input-radio-label__item"><input type="radio"
-                                                        name="material" class="input-radio-label__input"> <span
-                                                        class="input-radio-label__title">Thorium</span></label>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="product__actions">
+                            <div class="product__actions-item product__actions-item--quantity">
+                                <div class="input-number"><input
+                                        class="input-number__input form-control form-control-lg" type="number" min="1"
+                                        value="1">
+                                    <div class="input-number__add"></div>
+                                    <div class="input-number__sub"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="product__actions">
-                            <div class="product__actions-divider"></div><button
-                                class="product__actions-item product__actions-item--wishlist" type="button"><i
-                                    class="fa fa-heart mr-2" style="color: #BFBFBF;"></i>
-                                <span>Add to wishlist</span></button> <button
-                                class="product__actions-item product__actions-item--compare" type="button"><i
-                                    class="fa fa-bar-chart mr-2" style="color: #BFBFBF;"></i> <span>Add to
-                                    compare</span></button>
+                            <div class="product__actions-item product__actions-item--addtocart">
+                                <a href="/shopping_cart" class="btn btn-primary btn-lg btn-block">Add to cart</a>
+                            </div>
+                            <div class="product__actions-divider"></div>
+                            <button class="product__actions-item product__actions-item--wishlist" type="button"><i
+                                    class="fa fa-heart mr-2"></i><span>Add to wishlist</span></button>
                         </div>
                     </div>
+
                     <div class="product__shop-features shop-features">
                         <ul class="shop-features__list">
                             <li class="shop-features__item" v-for="cont in conts">
@@ -175,99 +201,31 @@
 
                 <div class="product__tabs product-tabs product-tabs--layout--full">
                     <ul class="nav nav-tabs product-tabs__list" role="tablist">
-                        <li class="product-tabs__item"
-                            :class="{ 'product-tabs__item--active': activeTab === 'tabs-1' }">
-                            <a style="font-size: 18px;" class="nav-link" @click.prevent="setActiveTab('tabs-1')"
-                                href="#tabs-1" role="tab">
-                                Description
-                            </a>
+                        <li class="product-tabs__item "
+                            :class="{ 'product-tabs__item--active': activeTab === 'tabs-1' }"><a
+                                @click.prevent="setActiveTab('tabs-1')" href="#tabs-1" role="tab">Description</a>
                         </li>
-                        <li class="product-tabs__item"
-                            :class="{ 'product-tabs__item--active': activeTab === 'tabs-2' }">
-                            <a style="font-size: 18px;" class="nav-link" @click.prevent="setActiveTab('tabs-2')"
-                                href="#tabs-2" role="tab">
-                                Specification
-                            </a>
-                        </li>
-                        <li class="product-tabs__item"
-                            :class="{ 'product-tabs__item--active': activeTab === 'tabs-3' }">
-                            <a style="font-size: 18px;" class="nav-link" @click.prevent="setActiveTab('tabs-3')"
-                                href="#tabs-3" role="tab">
-                                Reviews
-                            </a>
-                        </li>
-                        <li class="product-tabs__item"
-                            :class="{ 'product-tabs__item--active': activeTab === 'tabs-4' }">
-                            <a style="font-size: 18px;" class="nav-link" @click.prevent="setActiveTab('tabs-4')"
-                                href="#tabs-4" role="tab">
-                                Analogs
-                            </a>
-                        </li>
+                        <!-- <li class="product-tabs__item " :class="{ 'product-tabs__item--active': activeTab === 'tabs-2' }"><a
+                            @click.prevent="setActiveTab('tabs-2')" href="#tabs-2" role="tab">Specification</a>
+                        </li> -->
                     </ul>
                     <!-- Tabs Content -->
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane p-3" :class="{ active: activeTab === 'tabs-1' }" id="tabs-1"
                             role="tabpanel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                fermentum, diam non iaculis finibus, ipsum arcu sollicitudin dolor, ut
-                                cursus sapien sem sed purus. Donec vitae fringilla tortor, sed fermentum
-                                nunc. Suspendisse sodales turpis dolor, at rutrum dolor tristique id.
-                                Quisque pellentesque ullamcorper felis, eget gravida mi elementum a.
-                                Maecenas consectetur volutpat ante, sit amet molestie urna luctus in.
-                                Nulla eget dolor semper urna malesuada dictum. Duis eleifend
-                                pellentesque dui et finibus. Pellentesque dapibus dignissim augue. Etiam
-                                odio est, sodales ac aliquam id, iaculis eget lacus. Aenean porta, ante
-                                vitae suscipit pulvinar, purus dui interdum tellus, sed dapibus mi
-                                mauris vitae tellus.</p>
+                            <p>{{ discription }}</p>
                         </div>
                         <div class="tab-pane p-3" :class="{ active: activeTab === 'tabs-2' }" id="tabs-2"
                             role="tabpanel">
                             <p>Second Panel</p>
                         </div>
-                        <div class="tab-pane p-3" :class="{ active: activeTab === 'tabs-3' }" id="tabs-3"
-                            role="tabpanel">
-                            <p>Third Panel</p>
-                        </div>
-                        <div class="tab-pane p-3" :class="{ active: activeTab === 'tabs-4' }" id="tabs-4"
-                            role="tabpanel">
-                            <p>Third Panel</p>
-                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="block-space block-space--layout--divider-nl"></div>
-        <!-- Related Products start -->
-        <div class="block block-products-carousel" data-layout="grid-5">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-header__body">
-                        <h2 class="section-header__title">Related Products</h2>
-                        <div class="section-header__spring"></div>
-                        <div class="section-header__arrows">
-                            <div @click="prevSlide"
-                                class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-                                <button class="arrow__button" type="button"><i class="fa fa-chevron-left"></i></button>
-                            </div>
-                            <div @click="nextSlide"
-                                class="arrow section-header__arrow section-header__arrow--next arrow--next">
-                                <button class="arrow__button" type="button"><i class="fa fa-chevron-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="section-header__divider"></div>
-                    </div>
-                </div>
-                <Carousel transition="1500" :breakpoints="breakpoints" :wrap-around="true" :touchDrag="true"
-                    ref="related">
-                    <Slide>
-                        <Card />
-                    </Slide>
-                </Carousel>
-            </div>
-        </div>
-        <!-- Related Products end -->
+
     </div>
 </template>
 <script>
@@ -322,11 +280,57 @@ export default {
     },
     props: {
         id: {
-      default: "",
-    },
-    name: {
-      default: "",
-    },
+            default: "",
+        },
+        name: {
+            default: "",
+        },
+        image: {
+            default: "",
+        },
+        discription: {
+            default: "",
+        },
+        brand: {
+            default: "",
+        },
+        material: {
+            default: "",
+        },
+        moc: {
+            default: "",
+        },
+        dimension: {
+            default: "",
+        },
+        name: {
+            default: "",
+        },
+        discription: {
+            default: "",
+        },
+        color: {
+            default: "",
+        },
+        weight: {
+            default: "",
+        },
+        manufacturer: {
+            default: "",
+        },
+        country: {
+            default: "",
+        },
+        drawingNo: {
+            default: "",
+        },
+        Status: {
+            default: "",
+        },
+        finishType: {
+            default: "",
+        }
+
     },
     methods: {
         changeImage(index) {

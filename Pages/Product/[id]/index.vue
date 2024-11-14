@@ -1,5 +1,5 @@
 <template>
-    <div class="site__body py-lg-5" style="background-color: #FAFAFA;">
+    <div class="site__body py-lg-2" style="background-color: #FAFAFA;">
         <div class="block-header block-header--has-breadcrumb mt-lg-3 mb-lg-0 mb-4 mt-4">
             <div class="container">
                 <div class="block-header__body">
@@ -15,17 +15,53 @@
                 </div>
             </div>
         </div>
-        <div class="block-split ">
+        <div class="block-split mt-4">
             <div class="container">
                 <div class="block-split__row row no-gutters">
-                    <!-- <ProductDetails :id="p_id" :name="p_name" /> -->
-                    <ProductDetails/>
+                    <ProductDetails v-if="product != null" :id="product.p_id" :image="product.p_media" :name="product.p_name"
+                        :discription="product.p_description" :brand="product.p_brand" :material="product.p_material"
+                        :moc="product.p_moc" :dimension="product.p_dimension" :color="product.p_color"
+                        :weight="product.p_weight" :manufacturer="product.p_manufacturer" :country="product.p_country"
+                        :drawingNo="product.p_drawing_no" :finishType="product.p_finish_type"
+                        :Status="product.p_status" />
+                    <!-- <ProductDetails /> -->
                 </div>
             </div>
         </div>
         <div class="block-space block-space--layout--before-footer"></div>
     </div>
 
+    <!-- Realted Products Products start -->
+    <div class="block block-products-carousel" data-layout="grid-5">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-header__body">
+                    <h2 class="section-header__title">Related Products</h2>
+                    <div class="section-header__spring"></div>
+                    <div class="section-header__arrows">
+                        <div @click="prevSlide"
+                            class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
+                            <button class="arrow__button" type="button"><i class="fa fa-chevron-left"></i></button>
+                        </div>
+                        <div @click="nextSlide"
+                            class="arrow section-header__arrow section-header__arrow--next arrow--next">
+                            <button class="arrow__button" type="button"><i class="fa fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="section-header__divider"></div>
+                </div>
+            </div>
+            <Carousel transition="1500" :breakpoints="relatedBrealPoints" ref="featured">
+                <!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
+                <Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+                    <!-- JSON.parse(response.data.productArray[0].p_media) -->
+                    <Card class="product-card product-card--layout--grid pb-2" style="width:16rem;" :id="featured.p_id"
+                        :name="featured.p_name" :image="featured.p_image" />
+                </Slide>
+            </Carousel>
+        </div>
+    </div>
+    <!-- Realted Products Products end -->
 </template>
 
 <script>
@@ -34,16 +70,8 @@ import { Url } from "~/config/url";
 export default {
     data() {
         return {
+            featureds: [],
             product: null,
-
-
-            breakpoints: {
-                375: { itemsToShow: 1, snapAlign: "center" },
-                // 700px and up
-                700: { itemsToShow: 2, snapAlign: "center" },
-                // 1024 and up
-                1024: { itemsToShow: 1, snapAlign: "start" },
-            },
             activeIndex: 0, // First image is active by default
             startIndex: 0,   // Index to keep track of the current visible set of images
             images: [
@@ -72,33 +100,43 @@ export default {
                     alt: "Product Image 6",
                 },
             ],
-            activeTab: 'description' // Default active tab
+            activeTab: 'description', // Default active tab
+
+            relatedBrealPoints: {
+				375: { itemsToShow: 1, snapAlign: "center" },
+				// 700px and up
+				700: { itemsToShow: 2, snapAlign: "center" },
+				// 1024 and up
+				1024: { itemsToShow: 5, snapAlign: "start" },
+			},
         };
     },
     methods: {
 
-        // async getDetails() {
-        //     // console.log(this.$route.params);
-        //     var id = this.$route.params.id;
-        //     const response = await axios.get(
-        //         `${Url.fetchProductDetails}?product_id=${id}`,
-        //         {
-        //             headers: {
-        //                 Authorization: "Bearer " + localStorage.getItem("authToken"),
-        //             },
-        //         }
-        //     );
-        //     // console.log("single-product", response);
-        //     this.product = response.data.product;
-        // },
+        async getDetails() {
+            var id = this.$route.params.id;
+            const response = await axios.get(`${Url.fetchSingleProductDetails}?id=${id}`);
+            console.log(99, response.data);
+            this.product = response.data.data;
+            // console.log("single-product", response);
+            // this.product = response.data.product;
+        },
 
+        async fetchCategory() {
+			const response = await axios.get(Url.fetchHomeCategory);
+			console.log(48, response.data.categoryArray);
+			this.categories = response.data.categoryArray;
 
+			console.log(458, response.data.productArray);
+			if (response.data.productArray) {
 
+				// console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
+				this.featureds = response.data.productArray;
 
+				console.log(this.featureds[0].p_image);
 
-
-
-
+			}
+		},
 
         changeImage(index) {
             // Update the active image when a thumbnail is clicked
@@ -154,6 +192,11 @@ export default {
             return this.startIndex + 4 >= this.images.length;
         },
     },
+    mounted() {
+        this.getDetails();
+        this.fetchCategory();
+
+    }
 };
 </script>
 
