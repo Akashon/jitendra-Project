@@ -13,12 +13,7 @@
         <div class="product-card__image">
             <div class="product-card__image">
                 <div class="image image--type--product">
-                    <!-- <a :href="`/property/${id}/${slug}/`">
-                    <h1 class="text-xl mb-1 font-bold text-start lg:truncate truncate hover:text-[#357B93] duration-500 font-poppins">{{ rTitle
-                        }}</h1>
-                </a> -->
                     <a :href="`/product/${id}/`" class="image__body">
-                        <!-- <img class="image__tag" src="https://png.pngtree.com/png-vector/20230915/ourmid/pngtree-modern-white-chair-object-png-image_10076592.png" alt=""> -->
                         <img class="image__tag" :src="image" alt="Hello">
                     </a>
                 </div>

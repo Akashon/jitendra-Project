@@ -23,15 +23,13 @@
                             <ul class="block-brands__list row justify-content-start " style="border: none;">
                                 <li class="card col-6 col-md-4 col-lg-2" v-for="(category, index) in categories"
                                     :key="(category, index)">
-                                    <HomeCategory :id="category.cat_id" :name="category.cat_name"
-                                        :image="category.cat_image" />
+                                    <HomeCategory :id="category.cat_id" :name="category.cat_name" :image="category.cat_image" />
                                 </li>
                                 <li class="block-brands__divider" role="presentation"></li>
-
                             </ul>
                         </div>
                     </div>
-                    <h1 class="block-header__title">Categories (Name)</h1>
+                    <h1 class="block-header__title">Product List</h1>
                 </div>
             </div>
         </div>
@@ -40,7 +38,7 @@
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-4">
-                        <CategoryCard />
+                        <CategoryCard v-if="categoryList != null" :id="categoryList.cat_id" :image="categoryList.cat_name" :name="categoryList.cat_image" />
                     </div>
                 </div>
             </div>
@@ -57,41 +55,101 @@ import CategoryCard from '~/components/category-card.vue';
 export default {
     data() {
         return {
-
             categories: [],
-            featureds: [],
-
+            categoryList: null,
         };
     },
     methods: {
 
+        // async fetchCategory() {
+        //     const response = await axios.get(Url.fetchHomeCategory);
+        //     console.log(48, response);
+        //     this.categories = response.data.categoryArray;
+        // },
+
+        // async getCategoryDetails() {
+        //     var id = this.$route.params.id;
+        //     const response = await axios.get(`${Url.fetchCategoryList}?id=${id}`);
+        //     console.log(99, response.data);
+        // },
+
         async fetchCategory() {
-            const response = await axios.get(Url.fetchHomeCategory);
-            console.log(48, response);
-            this.categories = response.data.categoryArray;
-
-            // this.categories = response.data.categoryArray;
-
-            // console.log(458, response.data.productArray);
-            // if (response.data.productArray) {
-
-            // 	// console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
-            // 	this.featureds = response.data.productArray;
-
-            // 	console.log(this.featureds[0].p_image);
-
-            // }
+            try {
+                const response = await axios.get(Url.fetchHomeCategory);
+                console.log('Categories fetched:', response);
+                this.categories = response.data.categoryArray;
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
         },
 
-
-
-
+        async getCategoryDetails() {
+            const id = this.$route.params.id;
+            console.log('Route ID:', id); // Debug log
+            if (!id) {
+                console.error('ID is undefined. Aborting API call.');
+                return;
+            }
+            try {
+                console.log('Category details:', id);
+                const response = await axios.get(`${Url.fetchSingleCategory}?id=${id}`);
+                this.categoryList = response.data;
+            } catch (error) {
+                console.error('Error fetching category details:', error);
+            }
+        },
     },
     mounted() {
         this.fetchCategory();
+        this.getCategoryDetails();
     },
 
 }
-
-
 </script>
+
+
+<!-- <script>
+import { Url } from '~/config/url';
+import axios from 'axios';
+import CategoryCard from '~/components/category-card.vue';
+
+export default {
+    data() {
+        return {
+            categories: [],
+            categoryList: null,
+        };
+    },
+    methods: {
+        async fetchCategory() {
+            try {
+                const response = await axios.get(Url.fetchHomeCategory);
+                console.log('Categories fetched:', response);
+                this.categories = response.data.categoryArray;
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        },
+
+        async getCategoryDetails() {
+            const id = this.$route.params.id;
+            console.log('Route ID:', id); // Debug log
+            if (!id) {
+                console.error('ID is undefined. Aborting API call.');
+                return;
+            }
+            try {
+                const response = await axios.get(`${Url.fetchCategoryList}?id=${id}`);
+                console.log('Category details:', response.data);
+                this.categoryList = response.data;
+            } catch (error) {
+                console.error('Error fetching category details:', error);
+            }
+        },
+    },
+    mounted() {
+        this.fetchCategory();
+        this.getCategoryDetails();
+    },
+};
+</script> -->

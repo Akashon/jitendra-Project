@@ -1,9 +1,7 @@
-<template>
+<!-- <template>
+    
     <div class="site__body my-5">
-
-        <div class="container-fluid full-background">
-        </div>
-
+        <div class="container-fluid full-background"></div>
         <div class="block-header block-header--has-breadcrumb block-header--has-title">
             <div class="container">
                 <div class="block-header__body">
@@ -13,6 +11,27 @@
         </div>
         <div class="block">
             <div class="container container--max--lg">
+                Alert Messages
+                <transition name="slide-fade">
+                    <div v-if="error.has || success.has" class="px-4 py-2 z-50">
+                        <div :class="{
+                            'alert alert-danger': error.has,
+                            'alert alert-success': success.has,
+                        }"
+                            class="max-w-screen-md mx-auto shadow-lg rounded-lg py-3 px-6 d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i :class="{
+                                    'fa fa-times-circle text-white': error.has,
+                                    'fa fa-check-circle text-white': success.has,
+                                }" aria-hidden="true"></i>
+                                <span class="ml-3 text-white">
+                                    {{ error.has ? error.message : success.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+
                 <div class="card" style="padding: 0px 24px;">
                     <div class="card-body card-body--padding--2">
                         <div class="row">
@@ -21,24 +40,22 @@
                                     <h4 class="contact-us__header card-title my-3" style="font-size: 28px;">Our Address
                                     </h4>
                                     <div class="contact-us__address my-4">
-                                        <p class="" style="font-size: 18px;">
+                                        <p style="font-size: 18px;">
                                             N.H. 47 Choudhary Market Tejaji Nagar Khandwa Road Indore (M.P)<br />
                                             Email: red info@example.com<br />
                                             Phone Number: +91 94253, 11328
                                         </p>
-                                        <p class="" style="font-size: 18px;">
-                                            <strong class="" style="font-size: 18px;">Opening Hours</strong><br />
+                                        <p style="font-size: 18px;">
+                                            <strong style="font-size: 18px;">Opening Hours</strong><br />
                                             Monday to Friday: 8am-8pm<br />
                                             Saturday: 8am-6pm<br />
                                             Sunday: 10am-4pm
                                         </p>
-                                        <p class="" style="font-size: 18px;">
-                                            <strong class="" style="font-size: 18px;">Comment</strong><br />
+                                        <p style="font-size: 18px;">
+                                            <strong style="font-size: 18px;">Comment</strong><br />
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit
-                                            suscipit
-                                            mi, non tempor nulla finibus eget. Lorem ipsum dolor sit amet, consectetur
-                                            adipiscing
-                                            elit.
+                                            suscipit mi, non tempor nulla finibus eget. Lorem ipsum dolor sit amet,
+                                            consectetur adipiscing elit.
                                         </p>
                                     </div>
                                 </div>
@@ -47,30 +64,25 @@
                                 <div class="ml-1">
                                     <h4 class="contact-us__header card-title my-3" style="font-size: 28px;">Leave us a
                                         Message</h4>
-                                    <form>
-                                        <div class="form-row ">
+                                    <form @submit.prevent="doInquiry">
+                                        <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="form-name" style="font-size: 18px;">Your Name</label>
-                                                <input type="text" id="form-name"
+                                                <input type="text" id="form-name" v-model="userName"
                                                     style="background-color: #EBEBEB; font-size: 18px;"
                                                     class="form-control" placeholder="Your Name" required />
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="form-email" style="font-size: 18px;">Email</label>
-                                                <input type="email" id="form-email"
+                                                <label for="form-phone" style="font-size: 18px;">Your Phone
+                                                    Number</label>
+                                                <input type="tel" id="form-phone" maxlength="10" v-model="mobileNumber"
                                                     style="background-color: #EBEBEB; font-size: 18px;"
-                                                    class="form-control" placeholder="Email Address" required />
+                                                    class="form-control" placeholder="Phone Number" required />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="form-subject" style="font-size: 18px;">Subject</label>
-                                            <input type="text" id="form-subject"
-                                                style="background-color: #EBEBEB; font-size: 18px;" class="form-control"
-                                                placeholder="Subject" required />
-                                        </div>
-                                        <div class="form-group">
                                             <label for="form-message" style="font-size: 18px;">Message</label>
-                                            <textarea id="form-message"
+                                            <textarea id="form-message" v-model="message"
                                                 style="background-color: #EBEBEB; font-size: 18px;" class="form-control"
                                                 rows="4" required></textarea>
                                         </div>
@@ -78,6 +90,8 @@
                                             style="font-weight: 600; font-size: 18px; background-color: #E52727; border-color: #E52727;">Send
                                             Message</button>
                                     </form>
+
+
                                 </div>
                             </div>
                         </div>
@@ -88,6 +102,328 @@
         <div class="block-space block-space--layout--before-footer"></div>
     </div>
 </template>
+
+<script>
+import axios from 'axios';
+import { Url } from '~/config/url';
+
+export default {
+    data() {
+        return {
+            userName: "",
+            mobileNumber: "",
+            message: "",
+            success: {
+                has: false,
+                message: "",
+            },
+            error: {
+                has: false,
+                message: "",
+            }
+        };
+    },
+    methods: {
+        async doInquiry() {
+            if (this.userName && this.mobileNumber && this.message) {
+                const token = localStorage.getItem("authToken");
+                const formData = new FormData();
+                formData.append("inq_name", this.userName);
+                formData.append("inq_contact", this.mobileNumber);
+                formData.append("inq_message", this.message);
+                try {
+                    const response = await axios.post(Url.fetchInquiryData, formData, {
+                        headers: { Authorization: `Bearer ${token}` },
+                    });
+                    if (response.status === 200 && response.data.status) {
+                        this.success.has = true;
+                        this.success.message = "Message sent successfully!";
+                        this.resetForm();
+                    } else {
+                        this.error.has = true;
+                        this.error.message = response.data.message || "Submission failed.";
+                    }
+                } catch (error) {
+                    this.error.has = true;
+                    this.error.message = "An error occurred. Please try again.";
+                }
+                setTimeout(() => {
+                    this.clearAlerts();
+                }, 3000); // Clear alerts after 3 seconds
+            }
+        },
+        resetForm() {
+            this.userName = "";
+            this.mobileNumber = "";
+            this.message = "";
+        },
+        clearAlerts() {
+            this.success.has = false;
+            this.error.has = false;
+        },
+    }
+};
+</script>
+
+<style scoped>
+.container {
+    max-width: 1000px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.alert-danger {
+    background-color: rgb(255, 56, 56);
+}
+
+.alert-success {
+    background-color: rgb(23, 124, 23);
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+</style> -->
+
+
+<template>
+    <div class="site__body">
+        <div class="container-fluid full-background"></div>
+        <div class="block-header block-header--has-breadcrumb block-header--has-title">
+            <div class="container">
+                <div class="block-header__body">
+                    <h1 class="block-header__title">Contact Us</h1>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container container--max--lg">
+
+                <div class="card" style="padding: 0px 24px;">
+                    <!-- Alert Messages -->
+                    <div class="card-body card-body--padding--2">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 pb-4 pb-lg-0">
+                                <div class="mr-1">
+                                    <h4 class="contact-us__header card-title my-3" style="font-size: 28px;">Our Address
+                                    </h4>
+                                    <div class="contact-us__address my-4">
+                                        <p style="font-size: 18px;">
+                                            N.H. 47 Choudhary Market Tejaji Nagar Khandwa Road Indore (M.P)<br />
+                                            Email: info@example.com<br />
+                                            Phone Number: +91 94253 11328
+                                        </p>
+                                        <p style="font-size: 18px;">
+                                            <strong>Opening Hours</strong><br />
+                                            Monday to Friday: 8am-8pm<br />
+                                            Saturday: 8am-6pm<br />
+                                            Sunday: 10am-4pm
+                                        </p>
+                                        <p style="font-size: 18px;">
+                                            <strong>Comment</strong><br />
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur suscipit
+                                            mi, non tempor nulla finibus eget. Lorem ipsum dolor sit amet, consectetur
+                                            adipiscing elit.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="ml-1">
+                                    <h4 class="contact-us__header card-title my-3" style="font-size: 28px;">Leave us a
+                                        Message</h4>
+                                    <form @submit.prevent="doInquiry">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="form-name" style="font-size: 18px;">Your Name</label>
+                                                <input type="text" id="form-name" v-model="userName"
+                                                    class="form-control"
+                                                    style="background-color: #EBEBEB; font-size: 18px;"
+                                                    placeholder="Your Name" required />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="form-phone" style="font-size: 18px;">Your Phone
+                                                    Number</label>
+                                                <input type="tel" id="form-phone" v-model="mobileNumber" maxlength="10"
+                                                    class="form-control"
+                                                    style="background-color: #EBEBEB; font-size: 18px;"
+                                                    placeholder="Phone Number" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="form-message" style="font-size: 18px;">Message</label>
+                                            <textarea id="form-message" v-model="message" rows="4" class="form-control"
+                                                style="background-color: #EBEBEB; font-size: 18px;" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-3 px-3"
+                                            style="font-weight: 600; font-size: 18px; background-color: #E52727; border-color: #E52727;">
+                                            Send Message
+                                        </button>
+                                    </form>
+                                    <transition name="slide-fade">
+                                        <div v-if="error.has || success.has" class="px-4 py-2 z-50">
+                                            <div :class="{
+                                                'alert alert-danger': error.has,
+                                                'alert alert-success': success.has,
+                                            }" class="max-w-screen-md mx-auto shadow-lg rounded-lg py-3 px-6 d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center">
+                                                    <i :class="{
+                                                        'fa fa-times-circle text-black': error.has,
+                                                        'fa fa-check-circle text-black': success.has,
+                                                    }" aria-hidden="true"></i>
+                                                    <span class="ml-3 text-black">
+                                                        {{ error.has ? error.message : success.message }}
+                                                    </span>
+                                                </div>
+                                                <button @click="closeAlert" class="text-danger btn-close">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </transition>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-space block-space--layout--before-footer"></div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+import { Url } from '~/config/url';
+
+export default {
+    data() {
+        return {
+            userName: "",
+            mobileNumber: "",
+            message: "",
+            success: {
+                has: false,
+                message: "",
+            },
+            error: {
+                has: false,
+                message: "",
+            }
+        };
+    },
+    methods: {
+        async doInquiry() {
+            if (this.userName && this.mobileNumber && this.message) {
+                const token = localStorage.getItem("authToken");
+                const formData = new FormData();
+                formData.append("inq_name", this.userName);
+                formData.append("inq_contact", this.mobileNumber);
+                formData.append("inq_message", this.message);
+                try {
+                    const response = await axios.post(Url.fetchInquiryData, formData, {
+                        headers: { Authorization: `Bearer ${token}` },
+                    });
+                    if (response.status === 200 && response.data.status) {
+                        this.success.has = true;
+                        this.success.message = "Message sent successfully!";
+                        this.resetForm();
+                    } else {
+                        this.error.has = true;
+                        this.error.message = response.data.message || "Submission failed.";
+                    }
+                } catch (error) {
+                    this.error.has = true;
+                    this.error.message = "An error occurred. Please try again.";
+                }
+                setTimeout(() => {
+                    this.clearAlerts();
+                }, 3000); // Clear alerts after 3 seconds
+            }
+        },
+        resetForm() {
+            this.userName = "";
+            this.mobileNumber = "";
+            this.message = "";
+        },
+        clearAlerts() {
+            this.success.has = false;
+            this.error.has = false;
+        },
+    }
+};
+</script>
+
+<style>
+.full-background {
+    background-image: url('/images/contact-image.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.alert-danger {
+    background-color: rgb(255, 56, 56);
+}
+
+.alert-success {
+    background-color: rgb(23, 124, 23);
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>
+
 
 <style>
 .full-background {
@@ -106,8 +442,6 @@
     position: relative;
     /* Maintain positioning */
 }
-
-
 
 .site__body {
     background-color: #f8f9fa;

@@ -215,7 +215,7 @@
                                     style="list-style: none;">
                                     <a href="/category/" class="d-flex btn btn-light d-flex"
                                         style="align-items: center; color: black; font-weight: 500; font-size: 14px;">Services
-                                        <i class="fa-solid fa-chevron-down ml-1" style="font-size: 10px;"></i></a>
+                                    </a>
                                 </li>
 
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
@@ -223,7 +223,7 @@
                                     <a href="/about" class="d-flex btn btn-light d-flex"
                                         style="align-items: center; color: black; font-weight: 500; font-size: 14px;">About
                                         Us
-                                        <i class="fa-solid fa-chevron-down ml-1" style="font-size: 10px;"></i></a>
+                                    </a>
                                 </li>
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                                     style="list-style: none;">

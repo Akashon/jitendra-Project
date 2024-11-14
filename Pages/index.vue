@@ -141,7 +141,8 @@
 						<div class="block-sale__subtitle">Hurry up! Discounts up to 70%</div>
 						<div class="block-sale__controls">
 							<div class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev"><button
-									class="arrow__button" type="button"><svg width="7" height="11">
+									class="arrow__button" type="button">
+									<svg width="7" height="11">
 										<path
 											d="M6.7,0.3L6.7,0.3c-0.4-0.4-0.9-0.4-1.3,0L0,5.5l5.4,5.2c0.4,0.4,0.9,0.3,1.3,0l0,0c0.4-0.4,0.4-1,0-1.3l-4-3.9l4-3.9C7.1,1.2,7.1,0.6,6.7,0.3z" />
 									</svg></button></div>
@@ -169,7 +170,7 @@
 							</div>
 						</div>
 						<div class="block-sale__image"
-							style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+							style="background-image: url('https://images.unsplash.com/photo-1642010654727-56755234ae72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
 						</div>
 
 						<div class="container">
@@ -509,6 +510,9 @@
 					</div>
 				</div>
 			</div> -->
+
+			<!-- <LatestCard /> -->
+			
 			<!-- Latest News Card End -->
 
 			<div class="block-space block-space--layout--divider-nl d-xl-block d-none"></div>
@@ -609,7 +613,6 @@
 				</div>
 			</div>
 			<!-- NEW CATEGORY ICON SHOW END -->
-
 		</div>
 	</div>
 </template>
@@ -654,7 +657,7 @@ export default {
 				// 1024 and up
 				1024: { itemsToShow: 4, snapAlign: "start" },
 				// 1880 and up
-				1880: { itemsToShow: 3, snapAlign: "start" }
+				1880: { itemsToShow: 4, snapAlign: "start" }
 			},
 
 			slides: [
