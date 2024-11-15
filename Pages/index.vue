@@ -398,6 +398,8 @@
 			<!-- NEW CATEGORY ICON SHOW END -->
 			<div class="block-space block-space--layout--divider-nl"></div>
 
+			<!-- <CategoryCard /> -->
+
 		</div>
 	</div>
 </template>

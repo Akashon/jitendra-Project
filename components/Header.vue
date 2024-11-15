@@ -251,11 +251,11 @@
                                             <li><a href="/shopping_cart">Shopping Cart</a></li>
                                             <li><a href="/dashboard/address">Addresses</a></li>
                                             <li><a href="/order_success">Order Success Demo</a></li>
-
                                         </ul>
                                         <div class="account-menu__divider"></div>
                                         <ul class="account-menu__links">
-                                            <li><a href="#">Logout</a></li>
+                                            <li v-if="!token"><a href="#">Login</a></li>
+                                            <li @click="doLogout()" v-if="token"><a href="#">Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>

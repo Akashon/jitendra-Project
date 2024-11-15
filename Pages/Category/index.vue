@@ -29,12 +29,12 @@
                             </ul>
                         </div>
                     </div>
-                    <h1 class="block-header__title">Product List</h1>
+                    <h1 class="block-header__title">Product List (Soon)</h1>
                 </div>
             </div>
         </div>
 
-        <div class="block block-split">
+        <!-- <div class="block block-split">
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-4">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- site__body / end -->
 
@@ -51,7 +51,6 @@
 <script>
 import { Url } from '~/config/url';
 import axios from 'axios';
-import CategoryCard from '~/components/category-card.vue';
 export default {
     data() {
         return {
