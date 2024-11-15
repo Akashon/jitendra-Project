@@ -13,11 +13,17 @@ export default defineNuxtConfig({
           href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         },
 
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"
+        },
+
       ],
       script: [
         { src: "https://www.googletagmanager.com/gtag/js?id=UA-97489509-8" },
+        { src: "https://www.googletagmanager.com/gtag/js?id=UA-97489509-8" }
 
-      
+
       ]
     }
   },

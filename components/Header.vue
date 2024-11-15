@@ -4,95 +4,16 @@
         <header class="site__mobile-header d-block d-lg-none " style="background-color: white">
             <div class="mobile-header py-2">
                 <div class="container">
-                    <div class="mobile-header__body">
-                        <!-- Menu Button -->
-                        <button class="mobile-header__menu-button" type="button" @click="toggleSidebar">
-                            <i class="fa fa-bars text-white " style="font-size: 20px"></i>
-                        </button>
-
+                    <div class="mobile-header__body" style="display: flex; justify-content: space-between;">
                         <!-- Mobile Logo -->
                         <a class="mobile-header__logo" href="#">
                             <img width="65" src="/images/logo/ad.jpg" alt="Logo" />
                         </a>
 
-                        <!-- Search Form -->
-                        <!-- <div class="mobile-header__search mobile-search">
-                                <form class="mobile-search__body"><input type="text" class="mobile-search__input"
-                                        placeholder="Enter keyword or part number"> <button type="button"
-                                        class="mobile-search__vehicle-picker" aria-label="Select Vehicle"> <span
-                                            class="mobile-search__vehicle-picker-label">Vehicle</span></button>
-                                    <button type="submit" class="mobile-search__button mobile-search__button--search">
-                                        <svg width="20" height="20">
-                                            <path d="M19.2,17.8c0,0-0.2,0.5-0.5,0.8c-0.4,0.4-0.9,0.6-0.9,0.6s-0.9,0.7-2.8-1.6c-1.1-1.4-2.2-2.8-3.1-3.9C10.9,14.5,9.5,15,8,15
-                                            c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7c0,1.5-0.5,2.9-1.3,4c1.1,0.8,2.5,2,4,3.1C20,16.8,19.2,17.8,19.2,17.8z M8,3C5.2,3,3,5.2,3,8
-                                            c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
-                                        </svg>
-                                    </button>
-                                    <div class="mobile-search__field"></div>
-                                </form>
-                            </div> -->
-                        <!-- <div class="mobile-header__search mobile-search">
-                                <form class="mobile-search__body"><input type="text" class="mobile-search__input"
-                                        placeholder="Enter keyword or part number"> <button type="button"
-                                        class="mobile-search__vehicle-picker" aria-label="Select Vehicle"> <span
-                                            class="mobile-search__vehicle-picker-label">Vehicle</span></button>
-                                    <button type="submit" class="mobile-search__button mobile-search__button--search">
-                                        <svg width="20" height="20">
-                                            <path d="M19.2,17.8c0,0-0.2,0.5-0.5,0.8c-0.4,0.4-0.9,0.6-0.9,0.6s-0.9,0.7-2.8-1.6c-1.1-1.4-2.2-2.8-3.1-3.9C10.9,14.5,9.5,15,8,15
-                                            c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7c0,1.5-0.5,2.9-1.3,4c1.1,0.8,2.5,2,4,3.1C20,16.8,19.2,17.8,19.2,17.8z M8,3C5.2,3,3,5.2,3,8
-                                            c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
-                                        </svg>
-                                    </button>
-                                    <button type="button"
-                                        class="mobile-search__button mobile-search__button--close"><svg width="20"
-                                            height="20">
-                                            <path d="M16.7,16.7L16.7,16.7c-0.4,0.4-1,0.4-1.4,0L10,11.4l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L8.6,10L3.3,4.7
-                                            c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L10,8.6l5.3-5.3c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L11.4,10l5.3,5.3
-                                            C17.1,15.7,17.1,16.3,16.7,16.7z" />
-                                        </svg></button>
-                                    <div class="mobile-search__field"></div>
-                                </form>
-                            </div> -->
-
-                        <!-- hidden search bar -->
-                        <div class="mobile-header__search mobile-search" v-if="isSearchBarVisible">
-                            <form class="mobile-search__body"><input type="text"
-                                    :class="{ 'hidden': isSearchBarVisible }" class="mobile-search__input"
-                                    placeholder="Enter keyword or part number"> <button type="button"
-                                    class="mobile-search__vehicle-picker" aria-label="Select Vehicle"> <span
-                                        class="mobile-search__vehicle-picker-label">Vehicle</span></button>
-                                <button type="submit" class="mobile-search__button mobile-search__button--search">
-                                    <svg width="20" height="20">
-                                        <path d="M19.2,17.8c0,0-0.2,0.5-0.5,0.8c-0.4,0.4-0.9,0.6-0.9,0.6s-0.9,0.7-2.8-1.6c-1.1-1.4-2.2-2.8-3.1-3.9C10.9,14.5,9.5,15,8,15
-                                            c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7c0,1.5-0.5,2.9-1.3,4c1.1,0.8,2.5,2,4,3.1C20,16.8,19.2,17.8,19.2,17.8z M8,3C5.2,3,3,5.2,3,8
-                                            c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
-                                    </svg>
-                                </button>
-                                <button type="button" @click="toggleSearchBar"
-                                    class="mobile-search__button mobile-search__button--close"><svg width="20"
-                                        height="20">
-                                        <path d="M16.7,16.7L16.7,16.7c-0.4,0.4-1,0.4-1.4,0L10,11.4l-5.3,5.3c-0.4,0.4-1,0.4-1.4,0l0,0c-0.4-0.4-0.4-1,0-1.4L8.6,10L3.3,4.7
-                                            c-0.4-0.4-0.4-1,0-1.4l0,0c0.4-0.4,1-0.4,1.4,0L10,8.6l5.3-5.3c0.4-0.4,1-0.4,1.4,0l0,0c0.4,0.4,0.4,1,0,1.4L11.4,10l5.3,5.3
-                                            C17.1,15.7,17.1,16.3,16.7,16.7z" />
-                                    </svg></button>
-                                <div class="mobile-search__field"></div>
-                            </form>
-                        </div>
-
-
-                        <div class="mobile-header__indicators">
-                            <div class="mobile-indicator mobile-indicator--search d-md-none">
-                                <button type="button" class="mobile-indicator__button" @click="toggleSearchBar"><span
-                                        class="mobile-indicator__icon">
-                                        <!-- <svg width="20" height="20">
-                                            <path d="M19.2,17.8c0,0-0.2,0.5-0.5,0.8c-0.4,0.4-0.9,0.6-0.9,0.6s-0.9,0.7-2.8-1.6c-1.1-1.4-2.2-2.8-3.1-3.9C10.9,14.5,9.5,15,8,15
-                                                c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7c0,1.5-0.5,2.9-1.3,4c1.1,0.8,2.5,2,4,3.1C20,16.8,19.2,17.8,19.2,17.8z M8,3C5.2,3,3,5.2,3,8
-                                                c0,2.8,2.2,5,5,5c2.8,0,5-2.2,5-5C13,5.2,10.8,3,8,3z" />
-                                        </svg> -->
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
+                        <!-- Menu Button -->
+                        <button class="mobile-header__menu-button" style="display: flex;" type="button" @click="toggleSidebar">
+                            <i class="fa fa-bars text-white " style="font-size: 20px"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -117,53 +38,98 @@
         </div>
         <!-- MOBILE SCREEN HEADER END -->
 
-        <!-- Sidebar -->
+        <!--Mobile Sidebar Start -->
         <div :class="['sidebar', sidebarOpen ? 'sidebar--open' : 'sidebar--closed']">
-            <div class="sidebar__content">
-                <!-- Close Button -->
-                <div class="">
-                    <div class="d-flex" style="align-items: center; justify-content: space-between;">
-                        <h4 style="justify-content: start;">menu</h4>
-                        <button style="justify-content: end;" class="sidebar__close-button"
-                            @click="toggleSidebar">&times;</button>
+            <div class="mobile-menu__panel">
+                <div class="mobile-menu__panel-header">
+                    <div class="mobile-menu__panel-title" style="font-size: 18px;">Menu</div>
+                    <div class="">
+                        <div class="d-flex pr-2" style="align-items: center; justify-content: space-between;">
+                            <button style="justify-content: end;" class="sidebar__close-button"
+                                @click="toggleSidebar">&times;</button>
+                        </div>
                     </div>
                 </div>
-                <hr>
+                <div class="mobile-menu__panel-body">
+                    <div class="mobile-menu__divider"></div>
+                    <div class="mobile-menu__indicators">
+                        <a href="#" class="account-menu__user" v-if="token">
+                            <div class="account-menu__user-avatar">
+                                <img src="https://images.unsplash.com/photo-1640960543409-dbe56ccc30e2?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="">
+                            </div>
+                            <div class="account-menu__user-info">
+                                <div class="account-menu__user-name">Mr.Rocky</div>
+                                <div class="account-menu__user-email">rocky@example.com</div>
+                            </div>
+                        </a>
+                    </div>
 
-                <ul class="list-unstyled" style="gap: 12px;">
-                    <li class="d-flex py-2 " style="align-items: center; justify-content: space-between;">
-                        <a href="#"
-                            style="justify-content: start; color: black; font-weight: 600; font-size: 16px;">Home
-                        </a>
-                        <i class="fa fa-chevron-right"
-                            style="justify-content: end; color: #B8B8B8; font-size: 12px;"></i>
-                    </li>
-                    <li class="d-flex py-2" style="align-items: center; justify-content: space-between;">
-                        <a href="#"
-                            style="justify-content: start; color: black; font-weight: 600; font-size: 16px;">Services
-                        </a>
-                        <i class="fa fa-chevron-right"
-                            style="justify-content: end; color: #B8B8B8; font-size: 12px;"></i>
-                    </li>
-                    <li class="d-flex py-2" style="align-items: center; justify-content: space-between;">
-                        <a href="#"
-                            style="justify-content: start; color: black; font-weight: 600; font-size: 16px;">About
-                        </a>
-                        <i class="fa fa-chevron-right"
-                            style="justify-content: end; color: #B8B8B8; font-size: 12px;"></i>
-                    </li>
-                    <li class="d-flex py-2" style="align-items: center; justify-content: space-between;">
-                        <a href="#"
-                            style="justify-content: start; color: black; font-weight: 600; font-size: 16px;">Contact
-                        </a>
-                        <i class="fa fa-chevron-right"
-                            style="justify-content: end; color: #B8B8B8; font-size: 12px;"></i>
-                    </li>
-                </ul>
+                    <div class="mobile-menu__divider"></div>
+                    <ul class="mobile-menu__links">
+                        <li data-mobile-menu-item>
+                            <a href="/" class="" data-mobile-menu-trigger style="font-size: 14px;">Home
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li data-mobile-menu-item>
+                            <a href="/about" class="" data-mobile-menu-trigger style="font-size: 14px;">About Us
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li data-mobile-menu-item>
+                            <a href="/category/" class="" data-mobile-menu-trigger style="font-size: 14px;">Services
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li data-mobile-menu-item>
+                            <a href="/contact" class="" data-mobile-menu-trigger style="font-size: 14px;">Contact Us
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <br />
+                        <div class="mobile-menu__divider"></div>
+                        <li data-mobile-menu-item v-if="!token">
+                            <a href="/login" class="" data-mobile-menu-trigger style="font-size: 14px; color: Green;">{{
+                                Login.LogButton }} <i class="fa-solid fa-lock pl-1"></i>
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li data-mobile-menu-item v-else>
+                            <button @click="doLogout()" v-if="token" class="" data-mobile-menu-trigger
+                                style="font-size: 14px; color: red;">Logout <i class="fa-solid fa-lock-open pl-1"></i>
+                                <svg width="7" height="11">
+                                    <path
+                                        d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9 C-0.1,9.8-0.1,10.4,0.3,10.7z" />
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="mobile-menu__spring"></div>
+                    <div class="mobile-menu__divider"></div>
+                    <a class="mobile-menu__contacts" href="#">
+                        <div class="mobile-menu__contacts-subtitle">Free call 24/7</div>
+                        <div class="mobile-menu__contacts-title" style="font-size: 15px;">+91 94253,11328</div>
+                    </a>
+                </div>
             </div>
         </div>
-        <!-- Sidebar Overlay -->
-
+        <!-- Mobile Sidebar End -->
         <!-- MOBILE SCREEN HEADER END -->
 
         <!-- WEB SCREEN HEADER START -->
@@ -242,36 +208,16 @@
                     <div v-if="!token" class="d-flex align-items-center col-lg-4 my-2">
                         <a href="/wishlist" class="mr-3 text-dark"><i class="fas fa-heart"
                                 style="font-size:30px "></i></a>
-                        <!-- <a href="#" class="mr-3 text-dark"><i class="fas fa-user pr-1"></i>Dashboard</a> -->
-
-                        <!-- <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
-                            style="list-style: none;">
-                            <a href="/dashboard/" class="indicator__button">
-                                <span class="indicator__icon">
-                                    <i class="fa fa-user" width="32" height="32"
-                                        style="color: black; font-size: 28px;"></i>
-                                </span>
-                                <span class="indicator__title">Hello, Log In</span>
-                                <span class="indicator__value">My Account</span>
-                            </a>
-                            <div class="main-menu__submenu">
-                                <ul class="menu">
-                                    <li class="menu__item"><a href="/" class="menu__link">Dashboard</a></li>
-                                </ul>
-                            </div>
-                        </li> -->
-
 
                         <a :href="Login.link" type="submit" class="btn btn-light mx-2"
-                            style="color: #E52727; border-color: #E52727; font-weight: 600;"> {{ Login.LogButton
-                            }}<i class="fa-solid fa-lock pl-1"></i></a>
+                            style="color: #E52727; border-color: #E52727; font-weight: 600;"> {{ Login.LogButton }}<i
+                                class="fa-solid fa-lock pl-1"></i></a>
                     </div>
 
                     <div v-else class="d-flex align-items-center col-lg-4 my-2">
                         <a href="/wishlist" class="mr-3 text-dark"><i class="fas fa-heart"
                                 style="font-size:30px "></i></a>
                         <!-- <a href="#" class="mr-3 text-dark"><i class="fas fa-user mr-1"></i>My Account</a> -->
-
 
                         <div class="header__indicators main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                             style="align-items: center;">
@@ -321,30 +267,9 @@
                             <i class="fa-solid fa-lock-open pl-1"></i></button>
                     </div>
                 </header>
-
-                <!-- Search Bar -->
-                <!-- <div class="d-flex justify-content-center container-xl w-50"
-                    style="position: absolute; top: 0; right: 0; left: 0; margin-top: 90px;">
-                    <div class="input-group w-50 bg-light px-3 py-2 shadow ">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary">
-                                <i class="fas fa-car"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Enter Keyword or Part Number" />
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </header>
         <!-- WEB SCREEN HEADER END -->
-
-
-
     </div>
 </template>
 
@@ -380,8 +305,6 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 .search-bar {
     position: fixed;
@@ -414,10 +337,6 @@ export default {
     border: none;
     cursor: pointer;
 }
-
-
-
-
 
 
 
@@ -19021,7 +18940,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -19041,7 +18960,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -20974,7 +20893,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -20994,7 +20913,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -22911,7 +22830,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -22931,7 +22850,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -24858,7 +24777,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -24878,7 +24797,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -26773,7 +26692,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -26793,7 +26712,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -28701,7 +28620,7 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
+/* .main-menu__item--submenu--menu {
     position: relative
 }
 
@@ -28721,7 +28640,7 @@ select.form-control-sm {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0)
-}
+} */
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -30649,28 +30568,6 @@ select.form-control-sm {
     position: absolute;
     fill: currentColor;
     right: 10px
-}
-
-.main-menu__item--submenu--menu {
-    position: relative
-}
-
-.main-menu__item--submenu--menu .main-menu__submenu {
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform-origin: top;
-    transform: rotateX(45deg);
-    transition: transform .2s, opacity .2s;
-    left: 0
-}
-
-.main-menu__item--submenu--menu:hover .main-menu__submenu {
-    visibility: visible;
-    opacity: 1;
-    transform: rotateX(0)
 }
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
@@ -32755,27 +32652,6 @@ select.form-control-sm {
     right: 10px
 }
 
-.main-menu__item--submenu--menu {
-    position: relative
-}
-
-.main-menu__item--submenu--menu .main-menu__submenu {
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform-origin: top;
-    transform: rotateX(45deg);
-    transition: transform .2s, opacity .2s;
-    left: 0
-}
-
-.main-menu__item--submenu--menu:hover .main-menu__submenu {
-    visibility: visible;
-    opacity: 1;
-    transform: rotateX(0)
-}
 
 .main-menu__item--submenu--megamenu .main-menu__submenu {
     position: absolute;
@@ -34879,7 +34755,7 @@ select.form-control-sm {
 
 .main-menu__item--submenu--menu .main-menu__submenu {
     position: absolute;
-    z-index: 1;
+    z-index: 4;
     top: 100%;
     opacity: 0;
     visibility: hidden;

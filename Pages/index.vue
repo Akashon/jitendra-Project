@@ -46,58 +46,12 @@
 			</div>
 			<!-- NEW HERO SECTION WITH OUT SLIDER START -->
 
+			<!-- HERO SECTION GOOD CARD START -->
+			<HeroGoodCard />
+			<!-- HERO SECTION GOOD CARD END -->
+			<div class="block-space block-space--layout--divider-nl my-0"></div>
 
-			<div class="block-features block block-features--layout--top-strip">
-				<div class="container">
-					<ul class="block-features__list">
-						<li class="block-features__item">
-							<div class="block-features__item-icon"><img width="70"
-									src="https://png.pngtree.com/png-clipart/20230120/ourmid/pngtree-free-delivery-truck-icon-png-image_6565580.png"
-									alt=""></div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Free Shipping</div>
-								<div class="block-features__item-subtitle">For orders from 50</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon"><img width="70"
-									src="https://static.vecteezy.com/system/resources/previews/016/314/360/non_2x/transparent-24-hour-service-free-png.png"
-									alt=""></div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Support 24/7</div>
-								<div class="block-features__item-subtitle">Call us anytime</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon">
-								<img width="60"
-									src="https://png.pngtree.com/png-vector/20221009/ourmid/pngtree-original-guaranteed-stamp-and-badget-design-red-grunge-png-image_6293839.png"
-									alt="">
-							</div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">100% Safety</div>
-								<div class="block-features__item-subtitle">Only secure payments</div>
-							</div>
-						</li>
-						<li class="block-features__item">
-							<div class="block-features__item-icon">
-								<img width="70"
-									src="https://png.pngtree.com/png-vector/20240417/ourmid/pngtree-fire-icon-vector-design-png-image_12288010.png"
-									alt="">
-							</div>
-							<div class="block-features__item-info">
-								<div class="block-features__item-title">Hot Offers</div>
-								<div class="block-features__item-subtitle">Discounts up to 90%</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="block-space block-space--layout--divider-nl my-lg-2 my-0"></div>
-
-
-			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
-			<!-- Featured Products Products start -->
+			<!-- FEATURED PRODUCT CARD SECTION START -->
 			<div class="block block-products-carousel" data-layout="grid-5">
 				<div class="container">
 					<div class="section-header">
@@ -119,20 +73,17 @@
 							<div class="section-header__divider"></div>
 						</div>
 					</div>
-					<Carousel transition="1500" :breakpoints="breakpoints" ref="featured">
-						<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
+					<Carousel transition="500" :breakpoints="breakpoints" ref="featured">
 						<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-							<!-- JSON.parse(response.data.productArray[0].p_media) -->
 							<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
 								:id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
-
 						</Slide>
 					</Carousel>
 				</div>
 			</div>
-			<!-- Featured Products Products end -->
+			<!-- FEATURED PRODUCT CARD SECTION END -->
 
-
+			<!-- DEAL ZONE CARD SECTION START -->
 			<div class="block-space block-space--layout--divider-nl"></div>
 			<div class="block block-sale">
 				<div class="block-sale__content">
@@ -207,7 +158,7 @@
 										</div>
 									</div>
 								</div> -->
-								<Carousel transition="1500" :breakpoints="breakpointsFeat" ref="featured">
+								<Carousel transition="500" :breakpoints="breakpointsFeat" ref="featured">
 
 
 									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
@@ -222,6 +173,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- DEAL ZONE CARD SECTION END -->
 
 
 			<div class="block-space block-space--layout--divider-lg"></div>
@@ -264,12 +216,12 @@
 										<h2 class="section-header__title">Extra Featured Products 1</h2>
 										<div class="section-header__spring"></div>
 										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
+											<div @click="exOnePrevSlide"
 												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-left"></i></button>
 											</div>
-											<div @click="exNextSlide"
+											<div @click="exOneNextSlide"
 												class="arrow section-header__arrow section-header__arrow--next arrow--next">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-right"></i></button>
@@ -278,8 +230,8 @@
 										<div class="section-header__divider"></div>
 									</div>
 								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
+								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraOneProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
 										<CardThree :name="featured.p_name" :id="featured.p_id"
@@ -334,12 +286,12 @@
 										<h2 class="section-header__title">Extra Featured Products 2</h2>
 										<div class="section-header__spring"></div>
 										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
+											<div @click="exTwoPrevSlide"
 												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-left"></i></button>
 											</div>
-											<div @click="exNextSlide"
+											<div @click="exTwoNextSlide"
 												class="arrow section-header__arrow section-header__arrow--next arrow--next">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-right"></i></button>
@@ -348,8 +300,8 @@
 										<div class="section-header__divider"></div>
 									</div>
 								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
+								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraTwoProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
 										<CardThree :name="featured.p_name" :id="featured.p_id"
@@ -404,12 +356,12 @@
 										<h2 class="section-header__title">Extra Featured Products 3</h2>
 										<div class="section-header__spring"></div>
 										<div class="section-header__arrows">
-											<div @click="exPrevSlide"
+											<div @click="exThreePrevSlide"
 												class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-left"></i></button>
 											</div>
-											<div @click="exNextSlide"
+											<div @click="exThreeNextSlide"
 												class="arrow section-header__arrow section-header__arrow--next arrow--next">
 												<button class="arrow__button" type="button"><i
 														class="fa fa-chevron-right"></i></button>
@@ -418,8 +370,8 @@
 										<div class="section-header__divider"></div>
 									</div>
 								</div>
-								<Carousel transition="1500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
-									ref="extraProduct">
+								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
+									ref="extraThreeProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
 										<CardThree :name="featured.p_name" :id="featured.p_id"
@@ -465,140 +417,9 @@
 			<!-- CATEGORY BENNER CARD END -->
 
 			<!-- Latest News Card Start -->
-			<!-- <div class="block-space block-space--layout--divider-nl"></div>
-			<div class="block block-posts-carousel block-posts-carousel--layout--grid" data-layout="grid">
-				<div class="container">
-					<div class="section-header">
-						<div class="section-header__body">
-							<h2 class="section-header__title">Latest News</h2>
-							<div class="section-header__spring"></div>
-							<div class="section-header__arrows">
-								<div @click="lNPrevSlide"
-									class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-									<button class="arrow__button" type="button"><i
-											class="fa fa-chevron-left"></i></button>
-								</div>
-								<div @click="lNNextSlide"
-									class="arrow section-header__arrow section-header__arrow--next arrow--next">
-									<button class="arrow__button" type="button"><i
-											class="fa fa-chevron-right"></i></button>
-								</div>
-							</div>
-							<div class="section-header__divider"></div>
-						</div>
-					</div>
-					<div class="block-posts-carousel__carousel">
-						<div class="owl-carousel row">
-							<div class="block-posts-carousel__item card col-6 col-md-4 col-lg-3 ">
-								<div class="post-card" v-for="latest in latestNews">
-									<div class="post-card__image">
-										<a href="#">
-											<img src="https://images.unsplash.com/photo-1719937051230-8798ae2ebe86?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-												alt="">
-										</a>
-									</div>
-									<div class="post-card__content">
-										<div class="post-card__category"><a
-												href="blog-classic-right-sidebar.html">{{ latest.name }}</a></div>
-										<div class="post-card__title">
-											<h2><a href="#">Philosophy That Addresses Topics Such As Goodness</a></h2>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
-
-			<!-- <LatestCard /> -->
-			
+			<div class="block-space block-space--layout--divider-nl"></div>
+			<LatestCard />
 			<!-- Latest News Card End -->
-
-			<div class="block-space block-space--layout--divider-nl d-xl-block d-none"></div>
-			<!-- TOP RATED CARD START -->
-			<!-- <div class="block block-products-columns my-4">
-				<div class="container">
-					<div class="row">
-						<div class="col-4">
-							<div class="block-products-columns__title">Top Rated Products</div>
-							<div class="block-products-columns__list">
-								<div class="block-products-columns__list-item">
-									<div class="product-card ">
-										<div class="product-card__actions-list"><button
-												class="product-card__action product-card__action--quickview"
-												type="button" aria-label="Quick view"><i
-													class="fa-solid fa-expand"></i></button></div>
-										<div class="product-card__image">
-											<div class="image image--type--product"><a href="/" class="image__body">
-													<img class="image__tag"
-														src="https://png.pngtree.com/png-vector/20240619/ourmid/pngtree-hardware-tool-transparent-background-free-png-image_12801133.png"
-														alt=""></a></div>
-										</div>
-										<div class="product-card__info">
-											<div class="product-card__name">
-												<div><a href="/">HARDWARE ITEMS </a></div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="block-products-columns__title">Special Offers</div>
-							<div class="block-products-columns__list">
-								<div class="block-products-columns__list-item">
-									<div class="product-card">
-										<div class="product-card__actions-list"><button
-												class="product-card__action product-card__action--quickview"
-												type="button" aria-label="Quick view"><i
-													class="fa-solid fa-expand"></i></button></div>
-										<div class="product-card__image">
-											<div class="image image--type--product"><a href="/" class="image__body"><img
-														class="image__tag"
-														src="https://anandplastics.com/wp-content/uploads/2020/08/Acrylic-Sheets-4.png"
-														alt=""></a></div>
-										</div>
-										<div class="product-card__info">
-											<div class="product-card__name">
-												<div><a href="/">ACRYLIC & POLYCARBONATE</a></div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-4">
-							<div class="block-products-columns__title">Bestsellers</div>
-							<div class="block-products-columns__list">
-								<div class="block-products-columns__list-item">
-									<div class="product-card">
-										<div class="product-card__actions-list"><button
-												class="product-card__action product-card__action--quickview"
-												type="button" aria-label="Quick view"><i
-													class="fa-solid fa-expand"></i></button></div>
-										<div class="product-card__image">
-											<div class="image image--type--product"><a href="/" class="image__body"><img
-														class="image__tag"
-														src="https://www.changeparts.parts/img/filler-change-parts-star-wheels-10.jpg"
-														alt=""></a></div>
-										</div>
-										<div class="product-card__info">
-											<div class="product-card__name">
-												<div><a href="/">BOTTLE LINE CHANGE PARTS</a></div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
-			<!-- TOP RATED CARD END -->
 
 			<!-- NEW CATEGORY ICON SHOW START -->
 			<div class="block block-brands">
@@ -613,6 +434,8 @@
 				</div>
 			</div>
 			<!-- NEW CATEGORY ICON SHOW END -->
+			<div class="block-space block-space--layout--divider-nl"></div>
+
 		</div>
 	</div>
 </template>
@@ -748,11 +571,23 @@ export default {
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END 
 
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON START 
-		exPrevSlide() {
-			this.$refs.extraProduct.prev();
+		exOnePrevSlide() {
+			this.$refs.extraOneProduct.prev();
 		},
-		exNextSlide() {
-			this.$refs.extraProduct.next();
+		exOneNextSlide() {
+			this.$refs.extraOneProduct.next();
+		},
+		exTwoPrevSlide() {
+			this.$refs.extraTwoProduct.prev();
+		},
+		exTwoNextSlide() {
+			this.$refs.extraTwoProduct.next();
+		},
+		exThreePrevSlide() {
+			this.$refs.extraThreeProduct.prev();
+		},
+		exThreeNextSlide() {
+			this.$refs.extraThreeProduct.next();
 		},
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END
 
@@ -920,6 +755,7 @@ body {
 	text-align: left;
 	direction: ltr
 }
+
 
 a,
 a:hover {

@@ -40,21 +40,12 @@
                   <input v-model="email" id="signin-email" style="background-color: #ebebeb; font-size: 18px"
                     type="email" class="form-control py-3" placeholder="customer@example.com" />
                 </div>
-
-
                 <div class="form-group">
                   <label for="signin-password" style="font-size: 18px">Password</label>
                   <input v-model="password" id="signin-password" style="background-color: #ebebeb; font-size: 18px"
                     type="password" class="form-control" placeholder="Secret word" />
-                  <small class="form-text text-muted" style="font-size: medium">
-                    <a href="#" style="color: #e52727">Forgot password?</a>
-                  </small>
                 </div>
 
-                <div class="form-group form-check mt-4">
-                  <input type="checkbox" class="form-check-input" id="signin-remember" />
-                  <label class="form-check-label" for="signin-remember">Remember Me</label>
-                </div>
                 <button type="submit" class="btn btn-danger mt-3 px-4">Login</button>
               </form>
             </div>
@@ -87,33 +78,18 @@ export default {
   methods: {
     async doLogin() {
       try {
-        // Check if user is already logged in
-        // if (localStorage.getItem('isLoggedIn')) {
-        //   this.error = { has: true, message: 'You are already logged in.' };
-        //   this.success.has = false; // Clear success message
-        //   return; // Prevent further login attempts
-        // }
         const formData = new FormData();
         formData.append('username', this.email);
         formData.append('password', this.password);
-
-        // const response = await axios.post(Url.userLogin, formData);
         const response = await axios.post(Url.userLogin, formData);
         console.log(458, response)
         if (response.data.status) {
 
-          // await localStorage.setItem('isLoggedIn', false);
-          // await localStorage.setItem('authToken', response?.data?.token);
           this.success = { has: true, message: response.data.message };
           this.error.has = false; // Clear error message
           localStorage.setItem("authToken", response.data.token);
           localStorage.setItem("isLoggedIn", true);
 
-          // Store login status in localStorage
-          // localStorage.setItem('isLoggedIn', true);
-
-          // Redirect to home page after successful login
-          // Redirect to home page
           window.location.href = "/";
         } else {
           this.showError(response.data.message || 'Login failed. Please check your credentials.');
@@ -121,29 +97,18 @@ export default {
 
       } catch (error) {
         this.showError(error.response?.data?.message || 'An error occurred during login. Please try again.');
-        // console.error("Login failed:", err);
         this.error = true;
       }
     },
     showError(message) {
       this.error = { has: true, message };
       this.success.has = false; // Clear success message
-      // this.autoCloseAlert();
     },
     showSuccess(message) {
       this.success = { has: true, message };
       this.error.has = false; // Clear error message
       this.autoCloseAlert();
     },
-    // autoCloseAlert() {
-    //   setTimeout(() => {
-    //     this.closeAlert();
-    //   }, 3000); // Auto close after 3 seconds
-    // },
-    // closeAlert() {
-    //   this.error.has = false;
-    //   this.success.has = false;
-    // },
   },
   mounted() {
     // this.doLogin();
