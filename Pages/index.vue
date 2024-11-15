@@ -91,23 +91,21 @@
 						<div class="block-sale__title">Attention! Deal Zone</div>
 						<div class="block-sale__subtitle">Hurry up! Discounts up to 70%</div>
 						<div class="block-sale__controls">
-							<div class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev"><button
-									class="arrow__button" type="button">
-									<svg width="7" height="11">
-										<path
-											d="M6.7,0.3L6.7,0.3c-0.4-0.4-0.9-0.4-1.3,0L0,5.5l5.4,5.2c0.4,0.4,0.9,0.3,1.3,0l0,0c0.4-0.4,0.4-1,0-1.3l-4-3.9l4-3.9C7.1,1.2,7.1,0.6,6.7,0.3z" />
-									</svg></button></div>
+							<div @click="dZPrevSlide" class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev">
+								<button	class="arrow__button" type="button">
+									<i class="fa fa-chevron-left"></i>
+								</button>
+								</div>
 							<div class="block-sale__link"><a href="#">View All Available Offers</a></div>
-							<div class="arrow block-sale__arrow block-sale__arrow--next arrow--next"><button
-									class="arrow__button" type="button"><svg width="7" height="11">
-										<path d="M0.3,10.7L0.3,10.7c0.4,0.4,0.9,0.4,1.3,0L7,5.5L1.6,0.3C1.2-0.1,0.7,0,0.3,0.3l0,0c-0.4,0.4-0.4,1,0,1.3l4,3.9l-4,3.9
-	C-0.1,9.8-0.1,10.4,0.3,10.7z" />
-									</svg></button></div>
+							<div @click="dZNextSlide" class="arrow block-sale__arrow block-sale__arrow--next arrow--next">
+								<button
+									class="arrow__button" type="button">
+									<i class="fa fa-chevron-right"></i>
+								</button>
+							</div>
 							<div class="decor block-sale__header-decor decor--type--center">
 								<div class="decor__body">
-									<div class="decor__start"></div>
-									<div class="decor__end"></div>
-									<div class="decor__center"></div>
+									<div class="decor__start"></div><div class="decor__end"></div><div class="decor__center"></div>
 								</div>
 							</div>
 						</div>
@@ -115,9 +113,7 @@
 					<div class="block-sale__body">
 						<div class="decor block-sale__body-decor decor--type--bottom">
 							<div class="decor__body">
-								<div class="decor__start"></div>
-								<div class="decor__end"></div>
-								<div class="decor__center"></div>
+								<div class="decor__start"></div><div class="decor__end"></div><div class="decor__center"></div>
 							</div>
 						</div>
 						<div class="block-sale__image"
@@ -126,41 +122,7 @@
 
 						<div class="container">
 							<div class="block-sale__carousel">
-								<!-- <div class="owl-carousel">
-									<div class="block-sale__item">
-										<div class="product-card">
-											<div class="product-card__image">
-												<div class="image image--type--product">
-													<a href="product-full.html" class="image__body"><img
-															class="image__tag"
-															src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-															alt="">
-													</a>
-												</div>
-											</div>
-											<div class="product-card__info">
-												<div class="product-card__meta"><span
-														class="product-card__meta-title">SKU:</span> 140-10440-B</div>
-												<div class="product-card__name">
-													<div>
-														<a href="product-full.html">Brandix Spark Plug Kit
-															ASR-400</a>
-													</div>
-												</div>
-											</div>
-											<div class="product-card__footer">
-												<div class="product-card__prices">
-													<div class="product-card__price product-card__price--current">$19.00
-													</div>
-												</div><button class="product-card__addtocart-icon" type="button"
-													aria-label="Add to cart"><i class="fa fa-home"></i></button>
-											</div>
-										</div>
-									</div>
-								</div> -->
-								<Carousel transition="500" :breakpoints="breakpointsFeat" ref="featured">
-
-
+								<Carousel transition="500" :breakpoints="breakpointsFeat" ref="dealZoneProduct">
 									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
 										<!-- JSON.parse(response.data.productArray[0].p_media) -->
 										<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
@@ -533,7 +495,6 @@ export default {
 
 				// console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
 				this.featureds = response.data.productArray;
-
 				console.log(this.featureds[0].p_image);
 
 			}
@@ -588,6 +549,13 @@ export default {
 		},
 		exThreeNextSlide() {
 			this.$refs.extraThreeProduct.next();
+		},
+
+		dZPrevSlide() {
+			this.$refs.dealZoneProduct.prev();
+		},
+		dZNextSlide() {
+			this.$refs.dealZoneProduct.next();
 		},
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END
 
