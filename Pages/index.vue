@@ -75,8 +75,11 @@
 					</div>
 					<Carousel transition="500" :breakpoints="breakpoints" ref="featured">
 						<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-							<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
-								:id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
+							<div @click="handleCardClick(featured.p_id)">
+								<Card class="product-card product-card--layout--grid pb-2 " style="width:16rem;"
+									:id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
+							</div>
+
 						</Slide>
 					</Carousel>
 				</div>
@@ -91,21 +94,24 @@
 						<div class="block-sale__title">Attention! Deal Zone</div>
 						<div class="block-sale__subtitle">Hurry up! Discounts up to 70%</div>
 						<div class="block-sale__controls">
-							<div @click="dZPrevSlide" class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev">
-								<button	class="arrow__button" type="button">
+							<div @click="dZPrevSlide"
+								class="arrow block-sale__arrow block-sale__arrow--prev arrow--prev">
+								<button class="arrow__button" type="button">
 									<i class="fa fa-chevron-left"></i>
 								</button>
-								</div>
+							</div>
 							<div class="block-sale__link"><a href="#">View All Available Offers</a></div>
-							<div @click="dZNextSlide" class="arrow block-sale__arrow block-sale__arrow--next arrow--next">
-								<button
-									class="arrow__button" type="button">
+							<div @click="dZNextSlide"
+								class="arrow block-sale__arrow block-sale__arrow--next arrow--next">
+								<button class="arrow__button" type="button">
 									<i class="fa fa-chevron-right"></i>
 								</button>
 							</div>
 							<div class="decor block-sale__header-decor decor--type--center">
 								<div class="decor__body">
-									<div class="decor__start"></div><div class="decor__end"></div><div class="decor__center"></div>
+									<div class="decor__start"></div>
+									<div class="decor__end"></div>
+									<div class="decor__center"></div>
 								</div>
 							</div>
 						</div>
@@ -113,7 +119,9 @@
 					<div class="block-sale__body">
 						<div class="decor block-sale__body-decor decor--type--bottom">
 							<div class="decor__body">
-								<div class="decor__start"></div><div class="decor__end"></div><div class="decor__center"></div>
+								<div class="decor__start"></div>
+								<div class="decor__end"></div>
+								<div class="decor__center"></div>
 							</div>
 						</div>
 						<div class="block-sale__image"
@@ -123,10 +131,14 @@
 						<div class="container">
 							<div class="block-sale__carousel">
 								<Carousel transition="500" :breakpoints="breakpointsFeat" ref="dealZoneProduct">
-									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
+									<Slide v-for="(deal, index) in dealZone" :key="(featured, index)">
 										<!-- JSON.parse(response.data.productArray[0].p_media) -->
-										<Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
-											:name="featured.p_name" :id="featured.p_id" :image="featured.p_image" />
+										<div @click="handleCardClick(deal.p_id)">
+											<Card class="product-card product-card--layout--grid pb-2"
+												style="width:16rem;" :name="deal.p_name" :id="deal.p_id"
+												:image="deal.p_image" />
+										</div>
+
 
 									</Slide>
 								</Carousel>
@@ -139,7 +151,7 @@
 
 
 			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products one start -->
+			<!-- EXTRA PRODUCT ONE START -->
 			<div class="block block-zone">
 				<div class="container">
 					<div class="block-zone__body">
@@ -156,17 +168,10 @@
 										<div class="category-card__name"><a href="#">Wheels &
 												Tires</a></div>
 										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
+											<li v-for="(ExtraOne, index) in extraFeatOne" :key="(ExtraOne, index)">
+												<a href="#">{{ ExtraOne.cat_name }}</a>
+											</li>
 										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
 									</div>
 								</div>
 							</div>
@@ -195,9 +200,14 @@
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraOneProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-										<CardThree :name="featured.p_name" :id="featured.p_id"
-											:image="featured.p_image" />
+									<Slide v-for="(ExtraOne, index) in extraFeatOne" :key="(ExtraOne, index)">
+										<!-- <CardThree :name="featured.p_name" :id="featured.p_id"
+											:image="featured.p_image" /> -->
+										<div @click="handleCardClick(ExtraOne.cat_id)">
+											<CardThree class="product-card product-card--layout--grid pb-2"
+												style="width:16rem;" :name="ExtraOne.cat_name" :id="ExtraOne.cat_id"
+												:image="ExtraOne.cat_image" />
+										</div>
 									</Slide>
 								</Carousel>
 							</div>
@@ -205,11 +215,11 @@
 					</div>
 				</div>
 			</div>
-			<!-- Extra Products Products onef end -->
+			<!-- EXTRA PRODUCT ONE END -->
 
 
 			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products two start -->
+			<!-- EXTRA PRODUCT TWO START -->
 			<div class="block block-zone">
 				<div class="container">
 					<div class="block-zone__body">
@@ -226,17 +236,10 @@
 										<div class="category-card__name"><a href="#">Wheels &
 												Tires</a></div>
 										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
+											<li v-for="(extraTwo, index) in extraFeatTwo" :key="(extraTwo, index)">
+												<a href="#">{{ extraTwo.cat_name }}</a>
+											</li>
 										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
 									</div>
 								</div>
 							</div>
@@ -265,9 +268,12 @@
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraTwoProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-										<CardThree :name="featured.p_name" :id="featured.p_id"
-											:image="featured.p_image" />
+									<Slide v-for="(extraTwo, index) in extraFeatTwo" :key="(extraTwo, index)">
+										<div @click="handleCardClick(extraTwo.cat_id)">
+											<CardThree class="product-card product-card--layout--grid pb-2"
+												style="width:16rem;" :name="extraTwo.cat_name" :id="extraTwo.cat_id"
+												:image="extraTwo.cat_image" />
+										</div>
 									</Slide>
 								</Carousel>
 							</div>
@@ -275,11 +281,11 @@
 					</div>
 				</div>
 			</div>
-			<!-- Extra Featured Products Products two end -->
+			<!-- EXTRA PRODUCT TWO START -->
 
 
 			<div class="block-space block-space--layout--divider-lg"></div>
-			<!-- Extra Featured Products Products three start -->
+			<!-- EXTRA PRODUCT THREE START -->
 			<div class="block block-zone">
 				<div class="container">
 					<div class="block-zone__body">
@@ -296,17 +302,10 @@
 										<div class="category-card__name"><a href="#">Wheels &
 												Tires</a></div>
 										<ul class="category-card__children">
-											<li><a href="#">Wheel Covers</a></li>
-											<li><a href="#">Brake Kits</a></li>
-											<li><a href="#">Tire Chains</a></li>
-											<li><a href="#">Wheel disks</a></li>
-											<li><a href="#">Tires</a></li>
-											<li><a href="#">Sensors</a></li>
-											<li><a href="#">Accessories</a></li>
+											<li v-for="(extraThree, index) in extraFeatThree" :key="(extraThree, index)">
+												<a href="#">{{ extraThree.cat_name }}</a>
+											</li>
 										</ul>
-										<!-- <div class="category-card__actions"><a href="shop-grid-4-columns-sidebar.html"
-												class="btn btn-primary btn-sm" style="background-color: #E52727">Shop
-												All</a></div> -->
 									</div>
 								</div>
 							</div>
@@ -335,9 +334,12 @@
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraThreeProduct">
 									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
-									<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-										<CardThree :name="featured.p_name" :id="featured.p_id"
-											:image="featured.p_image" />
+									<Slide v-for="(extraThree, index) in extraFeatThree" :key="(extraThree, index)">
+										<div @click="handleCardClick(extraThree.cat_id)">
+											<CardThree class="product-card product-card--layout--grid pb-2"
+												style="width:16rem;" :name="extraThree.p_name" :id="extraThree.p_id"
+												:image="extraThree.p_image" />
+										</div>
 									</Slide>
 								</Carousel>
 							</div>
@@ -345,7 +347,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- Extra Featured Products Products three end -->
+			<!-- EXTRA PRODUCT THREE START -->
+
 
 			<div class="block-space block-space--layout--divider-nl"></div>
 			<!-- CATEGORY BENNER CARD START -->
@@ -378,12 +381,15 @@
 			</div>
 			<!-- CATEGORY BENNER CARD END -->
 
-			<!-- Latest News Card Start -->
-			<div class="block-space block-space--layout--divider-nl"></div>
-			<LatestCard />
-			<!-- Latest News Card End -->
 
-			<!-- NEW CATEGORY ICON SHOW START -->
+			<div class="block-space block-space--layout--divider-nl"></div>
+			<!-- LATEST NEWS CARD START -->
+			<LatestCard />
+			<!-- LATEST NEWS CARD END -->
+
+
+			<!-- <div class="block-space block-space--layout--divider-nl"></div> -->
+			<!-- CATEGORY CARD LISTING START -->
 			<div class="block block-brands">
 				<div class="container lpx-0 px-4">
 					<ul class="block-brands__list row justify-content-start " style="border: none;">
@@ -395,10 +401,30 @@
 					</ul>
 				</div>
 			</div>
-			<!-- NEW CATEGORY ICON SHOW END -->
-			<div class="block-space block-space--layout--divider-nl"></div>
+			<!-- CATEGORY CARD LISTING END -->
 
-			<!-- <CategoryCard /> -->
+			<div class="block-space block-space--layout--divider-nl"></div>
+			<!-- (MODAL) IF THERE IS NO LOGIN AND NO TOKEN THIS MODAL WILL OPEN START-->
+			<div class="modal fade" tabindex="-1" role="dialog" :class="{ show: showModal }"
+				:style="showModal ? 'display: block; background-color: rgba(0,0,0,0.5)' : 'display: none'">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" @click="closeModal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Do you want to see more products? If yes, please go to the login page to view the details.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+							<a href="/login" type="button" class="btn btn-danger">Login</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- (MODAL) IF THERE IS NO LOGIN AND NO TOKEN THIS MODAL WILL OPEN END-->
 
 		</div>
 	</div>
@@ -410,19 +436,25 @@ import { Url } from '~/config/url';
 export default {
 	data() {
 		return {
-
+			showModal: false,
 			categories: [],
 			featureds: [],
+			dealZone: [],
+			extraFeatOne:[],
+			extraFeatTwo:[],
+			extraFeatThree:[],
+
 
 			card: {
 				title: "When Buying Parts With Installation",
 				description: "Installation of parts in the services of our partners.",
 				image: "https://via.placeholder.com/600x400", // Replace this with your image URL
 			},
+			
 			breakpoints: {
 				375: { itemsToShow: 1, snapAlign: "center" },
 				// 700px and up
-				700: { itemsToShow: 2, snapAlign: "center" },
+				700: { itemsToShow: 2.5, snapAlign: "center" },
 				// 1024 and up
 				1024: { itemsToShow: 5, snapAlign: "start" },
 			},
@@ -430,7 +462,7 @@ export default {
 			breakpointsFeat: {
 				375: { itemsToShow: 1, snapAlign: "center" },
 				// 700px and up
-				700: { itemsToShow: 2, snapAlign: "center" },
+				700: { itemsToShow: 2.2, snapAlign: "center" },
 				// 1024 and up
 				1024: { itemsToShow: 4, snapAlign: "start" },
 				// 1880 and up
@@ -440,11 +472,11 @@ export default {
 			breakpointsExtraProduct: {
 				375: { itemsToShow: 1, snapAlign: "center" },
 				// 700px and up
-				700: { itemsToShow: 2, snapAlign: "center" },
+				700: { itemsToShow: 1.5, snapAlign: "center" },
 				// 1024 and up
-				1024: { itemsToShow: 4, snapAlign: "start" },
+				1024: { itemsToShow: 3.6, snapAlign: "start" },
 				// 1880 and up
-				1880: { itemsToShow: 4, snapAlign: "start" }
+				1880: { itemsToShow: 3.8, snapAlign: "start" }
 			},
 
 			slides: [
@@ -464,38 +496,28 @@ export default {
 					details: "Installation of parts in the services of our partners.",
 				},
 			],
-
-			latestNews: [
-				{ image: "/images/brands/brand-1.png", name: "AimParts", link: "/category/" },
-				{ image: "/images/brands/brand-2.png", name: "WindEngine", link: "#" },
-				{ image: "/images/brands/brand-3.png", name: "TurboElectric", link: "#" },
-				{ image: "/images/brands/brand-4.png", name: "StartOne", link: "#" },
-				{ image: "/images/brands/brand-5.png", name: "Brandix", link: "#" },
-				{ image: "/images/brands/brand-6.png", name: "ABS-Brand", link: "#" },
-				{ image: "/images/brands/brand-7.png", name: "GreatCircle", link: "#" },
-				{ image: "/images/brands/brand-8.png", name: "JustRomb", link: "#" },
-				{ image: "/images/brands/brand-9.png", name: "FastWheels", link: "#" },
-				{ image: "/images/brands/brand-10.png", name: "Stroyka-X", link: "#" },
-				{ image: "/images/brands/brand-11.png", name: "Mission-51", link: "#" },
-				{ image: "/images/brands/brand-12.png", name: "FuelCorp", link: "#" },
-				{ image: "/images/brands/brand-13.png", name: "RedGate", link: "#" },
-				{ image: "/images/brands/brand-14.png", name: "Blocks", link: "#" },
-				{ image: "/images/brands/brand-15.png", name: "BlackBox", link: "#" },
-				{ image: "/images/brands/brand-16.png", name: "SquareGarage", link: "#" },
-			],
 		};
 	},
 	methods: {
-
 		async fetchCategory() {
 			const response = await axios.get(Url.fetchHomeCategory);
-			console.log(48, response.data.categoryArray);
 			this.categories = response.data.categoryArray;
+			console.log(40,'Category', response.data.categoryArray);
 
-			console.log(458, response.data.productArray);
+			this.dealZone = response.data.dealZone;
+			console.log(41, 'dealZone', response.data.dealZone);
+
+			this.extraFeatOne = response.data.extraFeatureOne;
+			console.log(42, 'ExtraFeatOne', response.data.extraFeatureOne);
+
+			this.extraFeatTwo = response.data.extraFeatureTwo;
+			console.log(43, 'ExtraFeatTwo', response.data.extraFeatureTwo);
+
+			this.extraFeatThree = response.data.extraFeatureThree;
+			console.log(44, 'ExtraFeatThree', response.data.extraFeatureThree);
+
+			console.log(42, response.data.productArray);
 			if (response.data.productArray) {
-
-				// console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
 				this.featureds = response.data.productArray;
 				console.log(this.featureds[0].p_image);
 
@@ -567,6 +589,22 @@ export default {
 		lNNextSlide() {
 			this.$refs.extraProduct.next();
 		},
+
+
+
+		handleCardClick(id) {
+			const token = localStorage.getItem('authToken');
+			if (token) {
+				// Redirect to the product detail page if token exists
+				window.location.href = `/product/${id}/`;
+			} else {
+				// Show modal if token does not exist
+				this.showModal = true;
+			}
+		},
+		closeModal() {
+			this.showModal = false;
+		}
 	},
 	beforeDestroy() {
 		this.stopAutoplay(); // Stop autoplay when the component is destroyed
@@ -2466,7 +2504,7 @@ select.form-control-sm {
 }
 
 .input-number__input {
-	-moz-appearance: textfield;
+	/* -moz-appearance: textfield; */
 	display: block;
 	width: 100%;
 	min-width: 88px;

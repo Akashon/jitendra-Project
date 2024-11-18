@@ -1,5 +1,5 @@
 <template>
-    <div class="site__body py-5">
+    <div class="site__body py-5 ">
         <div class="block-header block-header--has-breadcrumb block-header--has-title">
             <div class="container">
                 <div class="block-header__body">
@@ -20,13 +20,24 @@
 
                     <div class="block block-brands">
                         <div class="container lpx-0 px-4">
-                            <ul class="block-brands__list row justify-content-start " style="border: none;">
+                            <!-- <ul class="block-brands__list row justify-content-start " style="border: none;">
                                 <li class="card col-6 col-md-4 col-lg-2" v-for="(category, index) in categories"
                                     :key="(category, index)">
-                                    <HomeCategory :id="category.cat_id" :name="category.cat_name" :image="category.cat_image" />
+                                    <HomeCategory :id="category.cat_id" :name="category.cat_name"
+                                        :image="category.cat_image" />
                                 </li>
                                 <li class="block-brands__divider" role="presentation"></li>
-                            </ul>
+                            </ul> -->
+
+                            <nav class=""style="background-color: transparent;" aria-label="breadcrumb">
+                                <ol class="breadcrumb__list">
+                                    <li class="breadcrumb__spaceship-safe-area " role="presentation"></li>
+                                    <li v-for="(category, index) in categories"
+                                    :key="(category, index)" class="breadcrumb__item breadcrumb__item--current breadcrumb__item--last p-1" >
+                                        <a href="/" class="breadcrumb__item-link ">{{ category.cat_name }}</a>
+                                    </li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                     <h1 class="block-header__title">Product List (Soon)</h1>
@@ -38,12 +49,12 @@
             <div class="container mt-5">
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-sm-12 mb-4">
-                        <CategoryCard v-if="categoryList != null" :id="categoryList.cat_id" :image="categoryList.cat_name" :name="categoryList.cat_image" />
+                        <Card v-if="categoryList != null" :id="categoryList.cat_id" :image="categoryList.cat_name" :name="categoryList.cat_image" />
                     </div>
                 </div>
             </div>
         </div> -->
-        
+
     </div>
     <!-- site__body / end -->
 
@@ -153,3 +164,4 @@ export default {
     },
 };
 </script> -->
+

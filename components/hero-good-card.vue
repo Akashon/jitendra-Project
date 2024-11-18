@@ -89,7 +89,7 @@
                         </svg></div>
                     <div class="block-features__item-info">
                         <div class="block-features__item-title">Free Shipping</div>
-                        <div class="block-features__item-subtitle">For orders from $50</div>
+                        <div class="block-features__item-subtitle">For orders from 50000</div>
                     </div>
                 </li>
                 <li class="block-features__item">

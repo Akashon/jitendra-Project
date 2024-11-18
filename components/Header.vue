@@ -11,7 +11,8 @@
                         </a>
 
                         <!-- Menu Button -->
-                        <button class="mobile-header__menu-button" style="display: flex;" type="button" @click="toggleSidebar">
+                        <button class="mobile-header__menu-button" style="display: flex;" type="button"
+                            @click="toggleSidebar">
                             <i class="fa fa-bars text-white " style="font-size: 20px"></i>
                         </button>
                     </div>
@@ -59,7 +60,7 @@
                                     alt="">
                             </div>
                             <div class="account-menu__user-info">
-                                <div class="account-menu__user-name">Mr.Rocky</div>
+                                <div class="account-menu__user-name">{{ fullName }}</div>
                                 <div class="account-menu__user-email">rocky@example.com</div>
                             </div>
                         </a>
@@ -227,7 +228,7 @@
                                         <i class="fa fa-user" width="32" height="32"
                                             style="color: black; font-size: 28px;"></i>
                                     </span>
-                                    <span class="indicator__title" style="color: #E52727;">Hello, Log In</span>
+                                    <span class="indicator__title" style="color: #E52727;">Hello</span>
                                     <span class="indicator__value">My Account</span>
                                 </button>
                                 <div class="indicator__content main-menu__submenu">
@@ -238,14 +239,14 @@
                                                     alt="">
                                             </div>
                                             <div class="account-menu__user-info">
-                                                <div class="account-menu__user-name">Mr.Rocky</div>
-                                                <div class="account-menu__user-email">rocky@example.com</div>
+                                                <div class="account-menu__user-name">{{ fullName }}</div>
+                                                <div class="account-menu__user-email">{{ emailId }}</div>
                                             </div>
                                         </a>
                                         <div class="account-menu__divider"></div>
                                         <ul class="account-menu__links">
                                             <li><a href="/dashboard/">Dashboard</a></li>
-                                            <li><a href="#">Garage</a></li>
+                                            <!-- <li><a href="#">Garage</a></li> -->
                                             <li><a href="#">Edit Profile</a></li>
                                             <li><a href="/dashboard/order">Order History</a></li>
                                             <li><a href="/shopping_cart">Shopping Cart</a></li>
@@ -274,11 +275,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { Url } from '~/config/url';
 export default {
     data() {
         return {
             token: "",
-            // userName: "",
+            fullName: '',
+            emailId: '',
             isLogged: false,
             sidebarOpen: false,
             isSearchBarVisible: false,
@@ -287,6 +291,8 @@ export default {
         };
     },
     methods: {
+
+
         toggleSidebar() {
             this.sidebarOpen = !this.sidebarOpen;
         },
@@ -294,13 +300,34 @@ export default {
             this.isSearchBarVisible = !this.isSearchBarVisible;
         },
         async doLogout() {
-            localStorage.removeItem("authToken");
+            this.fullName = "",
+                localStorage.removeItem("authToken");
             this.token = null;
             window.location.href = "/login"; // Redirect to login page
+        },
+
+
+        async onUser() {
+            this.isLogged = await localStorage.getItem("isLoggedIn");
+            console.log(20, this.isLogged, this.token);
+            if (this.isLogged == 'true') {
+                console.log(25);
+                const response = await axios.get(Url.fetchCustomerDetails, {
+                    headers: {
+                        "Authorization": "Bearer " + this.token
+                    },
+                });
+                this.fullName = response?.data?.data?.c_fullname;
+                this.emailId = response?.data?.data?.c_email;
+
+            } else {
+                this.fullName = "No name";
+            }
         },
     },
     mounted() {
         this.token = localStorage.getItem("authToken");
+        this.onUser();
     }
 };
 </script>
@@ -37982,6 +38009,7 @@ progress {
 }
 
 ::-webkit-file-upload-button {
+
     font: inherit;
     -webkit-appearance: button
 }

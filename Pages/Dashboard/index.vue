@@ -9,12 +9,12 @@
                         <div class="dashboard">
                             <div class="dashboard__profile card profile-card">
                                 <div class="card-body profile-card__body">
-                                    <div class="profile-card__avatar"><img
-                                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                            alt="">
+                                    <div class="profile-card__avatar">
+                                        <!-- <img :src="ProfileImage" alt=""> -->
+                                        <img src="https://images.unsplash.com/photo-1640960543409-dbe56ccc30e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D" alt="">
                                     </div>
-                                    <div class="profile-card__name">Mr.Rocky</div>
-                                    <div class="profile-card__email">rocky@example.com</div>
+                                    <div class="profile-card__name">{{ fullName }}</div>
+                                    <div class="profile-card__email">{{ emailId }}</div>
                                     <div class="profile-card__edit"><a href="account-profile.html"
                                         class="btn btn-secondary btn-sm">Edit Profile</a>
                                     </div>
@@ -25,18 +25,20 @@
                                 </div>
                             </div>
                             <div class="dashboard__address card address-card address-card--featured">
-                                <div class="address-card__badge tag-badge tag-badge--theme">Default</div>
+                                <div class="address-card__badge tag-badge tag-badge--theme">{{ status }}</div>
                                 <div class="address-card__body">
-                                    <div class="address-card__name">Mr.Rocky</div>
-                                    <div class="address-card__row">Random Federation<br>115302, Moscow<br>ul.
-                                        Varshavskaya, 15-2-178</div>
+                                    <div class="address-card__name">{{ fullName }}</div>
+                                    <div class="address-card__row">
+                                        <div class="address-card__row-title">Address</div>
+                                        <div class="address-card__row-content">{{ address }}</div>
+                                    </div>
                                     <div class="address-card__row">
                                         <div class="address-card__row-title">Phone Number</div>
-                                        <div class="address-card__row-content">38 972 588-42-36</div>
+                                        <div class="address-card__row-content">{{ phoneNumber }}</div>
                                     </div>
                                     <div class="address-card__row">
                                         <div class="address-card__row-title">Email Address</div>
-                                        <div class="address-card__row-content">helena@example.com</div>
+                                        <div class="address-card__row-content">{{ emailId }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -77,3 +79,48 @@
         <div class="block-space block-space--layout--before-footer"></div>
     </div><!-- site__body / end --><!-- site__footer -->
 </template>
+
+<script>
+import axios from 'axios';
+import { Url } from '~/config/url';
+
+export default {
+  data() {
+    return {
+      fullName: '',
+      emailId: '',
+      phoneNumber:'',
+      status: '',
+      address: '',
+      ProfileImage: '',
+    };
+  },
+  methods: {
+    async fetchProfile() {
+      const token = localStorage.getItem("authToken");
+
+      const response = await axios.get(Url.fetchCustomerDetails, {
+        headers: {
+          "Authorization": "Bearer " + token
+        },
+      });
+      console.log(48, response.data);
+
+      this.profileType = response.data.data.c_verify;
+            this.fullName = response.data.data.c_fullname;
+            this.emailId = response.data.data.c_email;
+            this.phoneNumber = response.data.data.c_mobile;
+            this.status = response.data.data.c_status;
+            this.address = response.data.data.c_address;
+            this.ProfileImage = response.data.data.c_image;
+            // this.selectedState = response.data.data.c_state;
+            // this.selectedCountry = response.data.data.c_country;
+            // this.postalCode = response.data.data.c_zip_code;
+
+    },
+  },
+  mounted() {
+    this.fetchProfile();
+  }
+};
+</script>

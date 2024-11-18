@@ -18,21 +18,23 @@
         <div class="block-split mt-4">
             <div class="container">
                 <div class="block-split__row row no-gutters">
-                    <ProductDetails v-if="product != null" :id="product.p_id" :image="product.p_media" :name="product.p_name"
-                        :discription="product.p_description" :brand="product.p_brand" :material="product.p_material"
-                        :moc="product.p_moc" :dimension="product.p_dimension" :color="product.p_color"
-                        :weight="product.p_weight" :manufacturer="product.p_manufacturer" :country="product.p_country"
-                        :drawingNo="product.p_drawing_no" :finishType="product.p_finish_type"
-                        :Status="product.p_status" />
+                    <ProductDetails v-if="product != null" :id="product.p_id" :image="product.p_media"
+                        :name="product.p_name" :discription="product.p_description" :brand="product.p_brand"
+                        :material="product.p_material" :moc="product.p_moc" :dimension="product.p_dimension"
+                        :color="product.p_color" :weight="product.p_weight" :manufacturer="product.p_manufacturer"
+                        :country="product.p_country" :drawingNo="product.p_drawing_no"
+                        :finishType="product.p_finish_type" :Status="product.p_status" />
                     <!-- <ProductDetails /> -->
                 </div>
             </div>
         </div>
-        <div class="block-space block-space--layout--before-footer"></div>
     </div>
 
     <!-- Realted Products Products start -->
+    <div class="block-space block-space--layout--before-footer"></div>
+
     <div class="block block-products-carousel" data-layout="grid-5">
+        
         <div class="container">
             <div class="section-header">
                 <div class="section-header__body">
@@ -51,14 +53,37 @@
                     <div class="section-header__divider"></div>
                 </div>
             </div>
-            <Carousel transition="1500" :breakpoints="relatedBrealPoints" ref="featured">
+            <Carousel transition="1500" :breakpoints="relatedBrealPoints" ref="related">
                 <!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
                 <Slide v-for="(featured, index) in featureds" :key="(featured, index)">
                     <!-- JSON.parse(response.data.productArray[0].p_media) -->
-                    <Card class="product-card product-card--layout--grid pb-2" style="width:16rem;" :id="featured.p_id"
-                        :name="featured.p_name" :image="featured.p_image" />
+                    <div @click="handleCardClick(featured.p_id)">
+                        <Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
+                            :id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
+                    </div>
                 </Slide>
             </Carousel>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" :class="{ show: showModal }"
+        :style="showModal ? 'display: block; background-color: rgba(0,0,0,0.5)' : 'display: none'">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" @click="closeModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Do you want to see more products? If yes, please go to the login page to view the details.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
+                    <a href="/login" type="button" class="btn btn-danger">Login</a>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Realted Products Products end -->
@@ -70,6 +95,7 @@ import { Url } from "~/config/url";
 export default {
     data() {
         return {
+            showModal: false,
             featureds: [],
             product: null,
             activeIndex: 0, // First image is active by default
@@ -103,12 +129,12 @@ export default {
             activeTab: 'description', // Default active tab
 
             relatedBrealPoints: {
-				375: { itemsToShow: 1, snapAlign: "center" },
-				// 700px and up
-				700: { itemsToShow: 2, snapAlign: "center" },
-				// 1024 and up
-				1024: { itemsToShow: 5, snapAlign: "start" },
-			},
+                375: { itemsToShow: 1, snapAlign: "center" },
+                // 700px and up
+                700: { itemsToShow: 2, snapAlign: "center" },
+                // 1024 and up
+                1024: { itemsToShow: 5, snapAlign: "start" },
+            },
         };
     },
     methods: {
@@ -123,20 +149,18 @@ export default {
         },
 
         async fetchCategory() {
-			const response = await axios.get(Url.fetchHomeCategory);
-			console.log(48, response.data.categoryArray);
-			this.categories = response.data.categoryArray;
+            const response = await axios.get(Url.fetchHomeCategory);
+            console.log(48, response.data.categoryArray);
+            this.categories = response.data.categoryArray;
 
-			console.log(458, response.data.productArray);
-			if (response.data.productArray) {
+            console.log(458, response.data.productArray);
+            if (response.data.productArray) {
+                // console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
+                this.featureds = response.data.productArray;
+                console.log(this.featureds[0].p_image);
 
-				// console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
-				this.featureds = response.data.productArray;
-
-				console.log(this.featureds[0].p_image);
-
-			}
-		},
+            }
+        },
 
         changeImage(index) {
             // Update the active image when a thumbnail is clicked
@@ -173,6 +197,20 @@ export default {
             this.$refs.related.next();
         },
         // RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END 
+
+        handleCardClick(id) {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                // Redirect to the product detail page if token exists
+                window.location.href = `/product/${id}/`;
+            } else {
+                // Show modal if token does not exist
+                this.showModal = true;
+            }
+        },
+        closeModal() {
+            this.showModal = false;
+        }
 
     },
 
