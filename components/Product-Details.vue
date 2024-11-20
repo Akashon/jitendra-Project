@@ -119,7 +119,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="product__info">
                     <div class="product__info-card">
                         <div class="product__info-body">
@@ -168,15 +167,20 @@
                         </div>
                         <div class="product__actions">
                             <div class="product__actions-item product__actions-item--quantity">
-                                <div class="input-number"><input
-                                        class="input-number__input form-control form-control-lg" type="number" min="1"
-                                        value="1">
-                                    <div class="input-number__add"></div>
-                                    <div class="input-number__sub"></div>
+                                <div class="input-number">
+                                    <input type="number" v-model="quantity" min="1" readonly
+                                        class="input-number__input form-control form-control-lg">
+                                    <div @click="incrementQuantity" class="input-number__add"></div>
+                                    <div @click="decrementQuantity" :disabled="quantity <= 1" class="input-number__sub">
+                                    </div>
                                 </div>
                             </div>
                             <div class="product__actions-item product__actions-item--addtocart">
-                                <a href="/shopping_cart" class="btn btn-primary btn-lg btn-block">Add to cart</a>
+                                <!-- <a href="/shopping_cart" @click="getAddToCart()" class="btn btn-primary btn-lg btn-block">Add to cart</a> -->
+                                <!-- <a href="#" @click="getAddToCart" class="btn btn-primary btn-lg btn-block">Add to cart</a> -->
+                                <a href="#" @click.prevent="getAddToCart" class="btn btn-primary btn-lg btn-block">Add to cart</a>
+
+
                             </div>
                             <div class="product__actions-divider"></div>
                             <button class="product__actions-item product__actions-item--wishlist" type="button"><i
@@ -229,9 +233,12 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+import { Url } from '~/config/url';
 export default {
     data() {
         return {
+            quantity: 1,
             conts: [
                 { image: "https://png.pngtree.com/png-clipart/20230120/ourmid/pngtree-free-delivery-truck-icon-png-image_6565580.png", name: "Free Shipping", subName: "For orders from $50" },
                 { image: "https://static.vecteezy.com/system/resources/previews/016/314/360/non_2x/transparent-24-hour-service-free-png.png", name: "Support 24/7", subName: "Call us anytime" },
@@ -333,6 +340,56 @@ export default {
 
     },
     methods: {
+
+        incrementQuantity() {
+            this.quantity++;
+        },
+        decrementQuantity() {
+            if (this.quantity > 1) this.quantity--;
+        },
+
+        async getAddToCart() {
+            const token = localStorage.getItem("authToken");
+                var id = this.$route.params.id;
+            try {
+                const response = await axios.get(`${Url.fetchCustomerAddToCart}?proId=${id}`,{
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    },
+                });
+                console.log("Add to Cart Response:", response.data);
+                    this.$router.push("/shopping_cart");
+
+            } catch (error) {
+                console.error("Error adding to cart:", error.response?.data || error.message);
+            }
+        },
+
+
+
+        // async getAddToCart() {
+        //     // const token = localStorage.getItem("authToken");
+        //     // const id = this.$route.params.id;
+
+        //     const token = localStorage.getItem("authToken");
+        //     var id = this.$route.params.id;
+
+        //     try {
+        //         const response = await axios.get(`${Url.fetchCustomerAddToCart}?proId=${id}`,{ quantity: this.quantity, }, {
+        //             headers: {
+        //                 "Authorization": "Bearer " + token
+        //             },
+        //         });
+        //         console.log("Add to Cart Response:", response.data);
+        //         // this.$router.push("/shopping_cart");
+        //     } catch (error) {
+        //         // console.error("Error adding to cart:", error.response?.data || error.message);
+        //     }
+        // },
+
+
+
+
         changeImage(index) {
             // Update the active image when a thumbnail is clicked
             this.activeIndex = index;
@@ -387,6 +444,8 @@ export default {
             return this.startIndex + 3 >= this.images.length;
         },
     },
+    mounted() {
+    }
 };
 </script>
 

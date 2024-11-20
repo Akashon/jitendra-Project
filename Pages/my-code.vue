@@ -1,64 +1,85 @@
 <template>
-  <!-- FEATURED PRODUCT CARD SECTION START -->
-  <div class="block block-products-carousel" data-layout="grid-5">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-header__body">
-          <h2 class="section-header__title">Featured Products</h2>
-          <div class="section-header__spring"></div>
-          <div class="section-header__arrows">
-            <div @click="prevSlide" class="arrow section-header__arrow section-header__arrow--prev arrow--prev">
-              <button class="arrow__button" type="button"><i class="fa fa-chevron-left"></i></button>
-            </div>
-            <div @click="nextSlide" class="arrow section-header__arrow section-header__arrow--next arrow--next">
-              <button class="arrow__button" type="button"><i class="fa fa-chevron-right"></i></button>
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Product Images -->
+      <div class="col-md-6">
+        <div id="product-carousel" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div
+              v-for="(image, index) in images"
+              :key="index"
+              :class="['carousel-item', { active: index === 0 }]"
+            >
+              <img :src="image.small" class="d-block w-100" :alt="image.alt" />
             </div>
           </div>
-          <div class="section-header__divider"></div>
+          <a
+            class="carousel-control-prev"
+            href="#product-carousel"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#product-carousel"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-      <!-- <Carousel transition="500" :breakpoints="breakpoints" ref="featured">
-        <Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-          <div @click="handleCardClick(featured.p_id)">
-            <Card class="product-card product-card--layout--grid pb-2" style="width:16rem;"
-              :id="featured.p_id"
-              :name="featured.p_name"
-              :image="featured.p_image"
-            />
-          </div>
-        </Slide>
-      </Carousel> -->
 
-
-      <Carousel transition="500" :breakpoints="breakpoints" ref="featured">
-						<Slide v-for="(featured, index) in featureds" :key="(featured, index)">
-							<div @click="handleCardClick(featured.p_id)">
-								<Card class="product-card product-card--layout--grid pb-2 " style="width:16rem;"
-									:id="featured.p_id" :name="featured.p_name" :image="featured.p_image" />
-							</div>
-
-						</Slide>
-					</Carousel>
+      <!-- Product Details -->
+      <div class="col-md-6">
+        <h3>{{ name }}</h3>
+        <p>{{ description }}</p>
+        <div>
+          <button @click="decrementQuantity" class="btn btn-secondary">-</button>
+          <span class="mx-3">{{ quantity }}</span>
+          <button @click="incrementQuantity" class="btn btn-secondary">+</button>
+        </div>
+        <button @click="addToCart" class="btn btn-primary mt-3">Add to Cart</button>
+      </div>
     </div>
-  </div>
-  <!-- FEATURED PRODUCT CARD SECTION END -->
-
-  <!-- Modal -->
-  <div class="modal fade" tabindex="-1" role="dialog" :class="{ show: showModal }"
-    :style="showModal ? 'display: block; background-color: rgba(0,0,0,0.5)' : 'display: none'">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" @click="closeModal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Do you want to see more products? If yes, please go to the login page to view the details.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" @click="closeModal">Close</button>
-          <a href="/login" type="button" class="btn btn-danger">Login</a>
+    <!-- Additional Information -->
+    <div class="row mt-4">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              :class="{ active: activeTab === 'description' }"
+              @click="activeTab = 'description'"
+              href="#"
+              >Description</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              :class="{ active: activeTab === 'details' }"
+              @click="activeTab = 'details'"
+              href="#"
+              >Details</a
+            >
+          </li>
+        </ul>
+        <div class="tab-content mt-3">
+          <div v-if="activeTab === 'description'">
+            <p>{{ description }}</p>
+          </div>
+          <div v-else>
+            <ul>
+              <li>Brand: {{ brand }}</li>
+              <li>Material: {{ material }}</li>
+              <li>Country: {{ country }}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -66,41 +87,68 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { Url } from '~/config/url';
+import axios from "axios";
+import { Url } from "~/config/url";
 
 export default {
+  props: {
+    id: { default: "" },
+    name: { default: "" },
+    description: { default: "" },
+    brand: { default: "" },
+    material: { default: "" },
+    country: { default: "" },
+  },
   data() {
     return {
-      showModal: false,
-      featureds: [],
+      quantity: 1,
+      images: [
+        {
+          small:
+            "https://png.pngtree.com/png-vector/20240203/ourmid/pngtree-steel-cabinet-furniture-wooden-with-separate-storage-drawers-on-a-white-png-image_11593718.png",
+          alt: "Product Image 1",
+        },
+        {
+          small:
+            "https://png.pngtree.com/png-vector/20231006/ourmid/pngtree-versatile-steel-cabinet-ideal-for-factories-schools-gyms-png-image_10079349.png",
+          alt: "Product Image 2",
+        },
+      ],
+      activeTab: "description",
     };
   },
   methods: {
-    async fetchCategory() {
+    incrementQuantity() {
+      this.quantity++;
+    },
+    decrementQuantity() {
+      if (this.quantity > 1) this.quantity--;
+    },
+    async addToCart() {
+      const token = localStorage.getItem("authToken");
+      const productId = this.$route.params.id || this.id;
+
       try {
-        const response = await axios.get(Url.fetchHomeCategory);
-        if (response.data.productArray) {
-          this.featureds = response.data.productArray;
-        }
+        const response = await axios.get(
+          `${Url.fetchCustomerAddToCart}?id=${productId}&proId=${productId}`,
+          {
+            headers: {
+                    "Authorization": "Bearer " + token
+                    },
+          }
+        );
+        console.log("Add to Cart Response:", response);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error("Error adding to cart:", error.response?.data || error.message);
       }
     },
-    handleCardClick(id) {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        window.location.href = `/product/${id}/`;
-      } else {
-        this.showModal = true;
-      }
-    },
-    closeModal() {
-      this.showModal = false;
-    },
-  },
-  mounted() {
-    this.fetchCategory();
   },
 };
 </script>
+
+<style>
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+</style>

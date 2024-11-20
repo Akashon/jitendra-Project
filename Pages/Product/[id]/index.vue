@@ -17,7 +17,7 @@
         </div>
         <div class="block-split mt-4">
             <div class="container">
-                <div class="block-split__row row no-gutters">
+                <div class="block-split__row row no-gutters">               
                     <ProductDetails v-if="product != null" :id="product.p_id" :image="product.p_media"
                         :name="product.p_name" :discription="product.p_description" :brand="product.p_brand"
                         :material="product.p_material" :moc="product.p_moc" :dimension="product.p_dimension"
@@ -34,7 +34,6 @@
     <div class="block-space block-space--layout--before-footer"></div>
 
     <div class="block block-products-carousel" data-layout="grid-5">
-        
         <div class="container">
             <div class="section-header">
                 <div class="section-header__body">
@@ -142,7 +141,7 @@ export default {
         async getDetails() {
             var id = this.$route.params.id;
             const response = await axios.get(`${Url.fetchSingleProductDetails}?id=${id}`);
-            console.log(99, response.data);
+            console.log('Product full Details', response.data);
             this.product = response.data.data;
             // console.log("single-product", response);
             // this.product = response.data.product;
@@ -150,16 +149,10 @@ export default {
 
         async fetchCategory() {
             const response = await axios.get(Url.fetchHomeCategory);
-            console.log(48, response.data.categoryArray);
-            this.categories = response.data.categoryArray;
+            this.featureds = response.data.productArray;
+            console.log('Related Product', response.data.productArray);
 
-            console.log(458, response.data.productArray);
-            if (response.data.productArray) {
-                // console.log(485255, JSON.parse(response.data.productArray[0].p_media)[0]);
-                this.featureds = response.data.productArray;
-                console.log(this.featureds[0].p_image);
 
-            }
         },
 
         changeImage(index) {
@@ -233,7 +226,6 @@ export default {
     mounted() {
         this.getDetails();
         this.fetchCategory();
-
     }
 };
 </script>

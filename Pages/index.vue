@@ -226,10 +226,10 @@
 						<div class="block-zone__card category-card category-card--layout--overlay">
 							<div class="category-card__body">
 								<div class="category-card__overlay-image"><img
-										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										src="https://images.unsplash.com/photo-1672626922964-83f1bc86df22?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
 								<div class="category-card__overlay-image category-card__overlay-image--blur"><img
-										src="https://images.unsplash.com/photo-1659284652601-7ac13e5750d5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+										src="https://images.unsplash.com/photo-1672626922964-83f1bc86df22?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 										sizes="(max-width: 575px) 530px, 305px" alt=""></div>
 								<div class="category-card__content">
 									<div class="category-card__info">
@@ -337,8 +337,8 @@
 									<Slide v-for="(extraThree, index) in extraFeatThree" :key="(extraThree, index)">
 										<div @click="handleCardClick(extraThree.cat_id)">
 											<CardThree class="product-card product-card--layout--grid pb-2"
-												style="width:16rem;" :name="extraThree.p_name" :id="extraThree.p_id"
-												:image="extraThree.p_image" />
+												style="width:16rem;" :name="extraThree.cat_name" :id="extraThree.cat_id"
+												:image="extraThree.cat_image" />
 										</div>
 									</Slide>
 								</Carousel>
@@ -409,11 +409,11 @@
 				:style="showModal ? 'display: block; background-color: rgba(0,0,0,0.5)' : 'display: none'">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
-						<div class="modal-header">
+						<!-- <div class="modal-header">
 							<button type="button" class="close" @click="closeModal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-						</div>
+						</div> -->
 						<div class="modal-body">
 							Do you want to see more products? If yes, please go to the login page to view the details.
 						</div>
@@ -524,17 +524,6 @@ export default {
 			}
 		},
 
-		// async fetchFeaturedProducts (){
-		// 	const response = await axios.get(Url.fetchHomeFeaturedProducts);
-
-		// 	console.log(49, response.data.productArray);
-		// 	if(response.data.productArray){
-
-		// 		this.featureds = JSON.parse(response.data.productArray);		
-		// 		console.log(49, JSON.parse(response.data.productArray.[]));
-		// 	}
-		// },
-
 		startAutoplay() {
 			// Using native Bootstrap method to control carousel
 			// this.intervalId = setInterval(() => {
@@ -589,7 +578,6 @@ export default {
 		lNNextSlide() {
 			this.$refs.extraProduct.next();
 		},
-
 
 
 		handleCardClick(id) {

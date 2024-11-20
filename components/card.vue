@@ -1,5 +1,5 @@
 <template>
-    <div class="product-card product-card--layout--grid pb-2" >
+    <div class="product-card product-card--layout--grid pb-2 " style="box-shadow: 0 2px 8px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" >
         <div class="product-card__image">
             <div class="product-card__image">
                 <div class="image image--type--product">
@@ -35,10 +35,10 @@ export default {
         }
     },
     props: {
-        id: { default: ''  },
-        image: { default: ''  },
-        name: { default: ""  },
-        rDescription: {  default: "" },
+        id: { default: '' },
+        image: { default: '' },
+        name: { default: "" },
+        rDescription: { default: "" },
     }
 }
 </script>

@@ -7,9 +7,9 @@ export const Url =  {
     fetchSingleProductDetails: base_url + "/product/single-product",
     fetchHomeFeaturedProducts: base_url + "/home/fetch-all",
     fetchInquiryData: base_url + "/inquiry/insert-inquiry",
-    fetchCustomerDetails: base_url + "/customer/detail"
-        // fetchCustomerDetails: base_url + "/customer/detail"
-    // fetchProductDetails: base_url + "/web/customer/detail"
+    fetchCustomerDetails: base_url + "/customer/detail",
+    fetchCustomerAddToCart: base_url + "/customer/add-to-cart",
+    fetchCartList: base_url + "/customer/cart-list"
 
 
 }

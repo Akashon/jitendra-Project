@@ -1,5 +1,5 @@
 <template>
-    <div class="product-card product-card--layout--grid pb-2" style="width:18rem;">
+    <div class="product-card product-card--layout--grid pb-2" style="width:18rem; box-shadow: 0 2px 8px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);" >
         <div class="product-card__image">
             <div class="product-card__image">
                 <div class="image image--type--product">
@@ -20,6 +20,11 @@
                     <div>{{ name }}</div>
                 </div>
             </div>
+        </div>
+        <div class="product-card__footer" style="display: flex; justify-content: center">
+            <button class="product-card__addtocart-icon" type="button" aria-label="Add to cart">
+                <i class="fa-solid fa-cart-shopping" style="width: 20px; height: 20px;"></i>
+            </button>
         </div>
     </div>
 </template>
