@@ -4,6 +4,7 @@ export const Url =  {
     userLogin: base_url + "/customer/login",
     fetchHomeCategory: base_url + "/home/fetch-all",
     fetchSingleCategory: base_url + "/category/single-category",
+    fetchCategoryList: base_url + "/category/fetch-all",
     fetchSingleProductDetails: base_url + "/product/single-product",
     fetchHomeFeaturedProducts: base_url + "/home/fetch-all",
     fetchInquiryData: base_url + "/inquiry/insert-inquiry",
