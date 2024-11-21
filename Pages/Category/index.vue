@@ -54,6 +54,7 @@
                 </div>
             </div>
         </div> -->
+        <div class="block-space block-space--layout--divider-nl"></div>
 
         <!--  PRODUCT CARD LISTING SECTION START -->
         <div class="block block-products-carousel" data-layout="grid-5">
