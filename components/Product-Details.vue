@@ -1,9 +1,6 @@
 <template>
-
-
     <div class="block-split__item block-split__item-content col-auto">
         <div class="product product--layout--full">
-
             <div class="product__body">
                 <div class="product__card product__card--one"></div>
                 <div class="product__card product__card--two"></div>
@@ -69,25 +66,9 @@
                             <button @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
                                 style="color: red; background-color: red; padding: 4px; font-size: 20px; color: white; border-radius: 4px;"></button>
                         </div>
-
-                        <!-- <div class="row" style="display: flex; justify-content: space-between; align-items: center; ">
-                        <i @click="prev" :disabled="isFirstPage" class="fa fa-chevron-left"
-                            style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
-                        <Carousel >
-                            <Slide v-for="(image, index) in visibleImages" :key="index" class="col-2">
-                            <img width="55" height="60" :src="image.small" :alt="image.alt" class=""
-                                :class="{ 'active-thumbnail': activeIndex === index + startIndex }"
-                                @click="changeImage(index + startIndex)" />
-                        </Slide>
-                        </Carousel>
-                        <i @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
-                            style="color: red; background-color: red; padding: 6px; font-size: 20px; color: white; border-radius: 4px;"></i>
-                    </div> -->
                     </div>
                 </div>
                 <!-- IMAGE SECTION END -->
-
-
                 <div class="product__header">
                     <h1 class="product__title">{{ name }}</h1>
                     <div class="product__subtitle">
@@ -176,9 +157,8 @@
                                 </div>
                             </div>
                             <div class="product__actions-item product__actions-item--addtocart">
-                                <!-- <a href="/shopping_cart" @click="getAddToCart()" class="btn btn-primary btn-lg btn-block">Add to cart</a> -->
-                                <!-- <a href="#" @click="getAddToCart" class="btn btn-primary btn-lg btn-block">Add to cart</a> -->
-                                <a href="#" @click.prevent="getAddToCart" class="btn btn-primary btn-lg btn-block">Add to cart</a>
+                                <a href="#" @click.prevent="getAddToCart" class="btn btn-primary btn-lg btn-block">Add
+                                    to cart</a>
 
 
                             </div>
@@ -209,9 +189,6 @@
                             :class="{ 'product-tabs__item--active': activeTab === 'tabs-1' }"><a
                                 @click.prevent="setActiveTab('tabs-1')" href="#tabs-1" role="tab">Description</a>
                         </li>
-                        <!-- <li class="product-tabs__item " :class="{ 'product-tabs__item--active': activeTab === 'tabs-2' }"><a
-                            @click.prevent="setActiveTab('tabs-2')" href="#tabs-2" role="tab">Specification</a>
-                        </li> -->
                     </ul>
                     <!-- Tabs Content -->
                     <!-- Tab panes -->
@@ -350,15 +327,15 @@ export default {
 
         async getAddToCart() {
             const token = localStorage.getItem("authToken");
-                var id = this.$route.params.id;
+            var id = this.$route.params.id;
             try {
-                const response = await axios.get(`${Url.fetchCustomerAddToCart}?proId=${id}`,{
+                const response = await axios.get(`${Url.fetchCustomerAddToCart}?proId=${id}`, {
                     headers: {
                         "Authorization": "Bearer " + token
                     },
                 });
                 console.log("Add to Cart Response:", response.data);
-                    this.$router.push("/shopping_cart");
+                this.$router.push("/shopping_cart");
 
             } catch (error) {
                 console.error("Error adding to cart:", error.response?.data || error.message);

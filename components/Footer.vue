@@ -51,7 +51,6 @@
                     </li>
                     <li class="footer-links__item"><a href="/contact" class="footer-links__link">Contact
                         Us</a></li>
-                    <!-- <li class="footer-links__item"><a href="#" class="footer-links__link">Returns</a></li> -->
                     <li class="footer-links__item"><a href="#" class="footer-links__link">Site
                         Map</a></li>
                   </ul>
@@ -68,10 +67,6 @@
                     <li class="footer-links__item"><a href="/wishlist" class="footer-links__link">Wish
                         List</a></li>
                     <li class="footer-links__item"><a href="#" class="footer-links__link">Newsletter</a></li>
-                    <!-- <li class="footer-links__item"><a href="#" class="footer-links__link">Specials</a></li>
-                    <li class="footer-links__item"><a href="#" class="footer-links__link">Gift
-                        Certificates</a></li>
-                    <li class="footer-links__item"><a href="#" class="footer-links__link">Affiliate</a></li> -->
                   </ul>
                 </div>
               </div>
@@ -115,7 +110,6 @@
             <div class="site-footer__bottom-row" style="justify-content: center;">
               <div class="site-footer__copyright"><!-- copyright --> Powered by HTML — Designed by <a
                   href="#" target="_blank">sitent web & graphics design</a><!-- copyright / end --></div>
-              <!-- <div class="site-footer__payments"><img src="/images/payments.png" alt=""></div> -->
             </div>
           </div>
         </div>

@@ -219,8 +219,6 @@
     <div class="block-space block-space--layout--divider-xl"></div>
     <!-- TECHNICAL TEAM TEAM END -->
 
-
-
     <!-- PRODUCTION AND MANUFACTURING TEAM START -->
     <div class="block block-teammates">
       <div class="container container--max--xl">

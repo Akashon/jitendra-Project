@@ -18,10 +18,6 @@
                                     <div class="profile-card__edit"><a href="account-profile.html"
                                         class="btn btn-secondary btn-sm">Edit Profile</a>
                                     </div>
-
-                                    <!-- <button class="btn btn-light "
-                                        style="color: #E52727; border-color: #E52727; font-weight: 400;">Edit
-                                        Profile</button> -->
                                 </div>
                             </div>
                             <div class="dashboard__address card address-card address-card--featured">
@@ -113,9 +109,6 @@ export default {
             this.status = response.data.data.c_status;
             this.address = response.data.data.c_address;
             this.ProfileImage = response.data.data.c_image;
-            // this.selectedState = response.data.data.c_state;
-            // this.selectedCountry = response.data.data.c_country;
-            // this.postalCode = response.data.data.c_zip_code;
 
     },
   },

@@ -101,5 +101,5 @@
 		</div>
 		<div class="block-space block-space--layout--before-footer"></div>
 	</div>
-	<!-- site__body / end --><!-- site__footer -->
+	<!-- site__body / end -->
 </template>

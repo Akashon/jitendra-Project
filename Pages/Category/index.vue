@@ -78,11 +78,11 @@ export default {
         //     this.categories = response.data.categoryArray;
         // },
 
-        // async getCategoryDetails() {
-        //     var id = this.$route.params.id;
-        //     const response = await axios.get(`${Url.fetchCategoryList}?id=${id}`);
-        //     console.log(99, response.data);
-        // },
+        async getCategoryDetails() {
+            var id = this.$route.params.id;
+            const response = await axios.get(`${Url.fetchSingleCategory}?id=${id}`);
+            console.log(99, response.data);
+        },
 
         async fetchCategory() {
             try {
@@ -94,21 +94,22 @@ export default {
             }
         },
 
-        async getCategoryDetails() {
-            const id = this.$route.params.id;
-            console.log('Route ID:', id); // Debug log
-            if (!id) {
-                console.error('ID is undefined. Aborting API call.');
-                return;
-            }
-            try {
-                console.log('Category details:', id);
-                const response = await axios.get(`${Url.fetchSingleCategory}?id=${id}`);
-                this.categoryList = response.data;
-            } catch (error) {
-                console.error('Error fetching category details:', error);
-            }
-        },
+        // async getCategoryDetails() {
+        //     const id = this.$route.params.id;
+        //     console.log('Route ID:', id); // Debug log
+        //     if (!id) {
+        //         console.error('ID is undefined. Aborting API call.');
+        //         return;
+        //     }
+        //     try {
+        //         console.log('Category details:', id);
+        //         const response = await axios.get(`${Url.fetchSingleCategory}?id=${id}`);
+        //         console.log(4545, response);
+        //         this.categoryList = response.data;
+        //     } catch (error) {
+        //         console.error('Error fetching category details:', error);
+        //     }
+        // },
     },
     mounted() {
         this.fetchCategory();

@@ -1,23 +1,6 @@
 <template>
 	<div class="site lg-mt-5 lg-mb-0 mb-0 mt-0">
 		<div class="site__body">
-			<!-- <div class="block-space block-space--layout--divider-xs"></div> -->
-			<!-- HERO SECTION SLIDE SHOW IMAGE START -->
-			<!-- <div class="block block-slideshow" style="position: relative">
-				<div class="container ">
-					<carousel :autoplay="3000" :wrapAround="true" :loop="false" :itemsToShow="1" :transition="500"
-						class="block-slideshow__carousel">
-						<slide v-for="(slide, index) in slides" :key="index" :style="{
-							backgroundImage: 'url(' + slide.image + ')',
-							backgroundSize: 'cover',
-							backgroundPosition: 'center',
-						}" class="block-slideshow__item">
-						</slide>
-					</carousel>
-				</div>
-			</div> -->
-			<!-- HERO SECTION SLIDE SHOW IMAGE END  -->
-
 			<!-- NEW HERO SECTION WITH OUT SLIDER START -->
 			<div class="block-finder block">
 				<div class="decor block-finder__decor decor--type--bottom">
@@ -138,8 +121,6 @@
 												style="width:16rem;" :name="deal.p_name" :id="deal.p_id"
 												:image="deal.p_image" />
 										</div>
-
-
 									</Slide>
 								</Carousel>
 							</div>
@@ -199,10 +180,7 @@
 								</div>
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraOneProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(ExtraOne, index) in extraFeatOne" :key="(ExtraOne, index)">
-										<!-- <CardThree :name="featured.p_name" :id="featured.p_id"
-											:image="featured.p_image" /> -->
 										<div @click="handleCardClick(ExtraOne.cat_id)">
 											<CardThree class="product-card product-card--layout--grid pb-2"
 												style="width:16rem;" :name="ExtraOne.cat_name" :id="ExtraOne.cat_id"
@@ -267,7 +245,6 @@
 								</div>
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraTwoProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(extraTwo, index) in extraFeatTwo" :key="(extraTwo, index)">
 										<div @click="handleCardClick(extraTwo.cat_id)">
 											<CardThree class="product-card product-card--layout--grid pb-2"
@@ -333,7 +310,6 @@
 								</div>
 								<Carousel transition="500" :breakpoints="breakpointsExtraProduct" :touchDrag="true"
 									ref="extraThreeProduct">
-									<!-- <Slide v-for="(product, index) in productList" :key="(product, index)"> -->
 									<Slide v-for="(extraThree, index) in extraFeatThree" :key="(extraThree, index)">
 										<div @click="handleCardClick(extraThree.cat_id)">
 											<CardThree class="product-card product-card--layout--grid pb-2"
@@ -409,11 +385,6 @@
 				:style="showModal ? 'display: block; background-color: rgba(0,0,0,0.5)' : 'display: none'">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
-						<!-- <div class="modal-header">
-							<button type="button" class="close" @click="closeModal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div> -->
 						<div class="modal-body">
 							Do you want to see more products? If yes, please go to the login page to view the details.
 						</div>
@@ -425,7 +396,6 @@
 				</div>
 			</div>
 			<!-- (MODAL) IF THERE IS NO LOGIN AND NO TOKEN THIS MODAL WILL OPEN END-->
-
 		</div>
 	</div>
 </template>
@@ -524,14 +494,6 @@ export default {
 			}
 		},
 
-		startAutoplay() {
-			// Using native Bootstrap method to control carousel
-			// this.intervalId = setInterval(() => {
-			// 	this.$refs.carousel.carousel('next'); 
-			// 	// Move to the next slide
-			// }, 5000); 
-			// 5-second interval
-		},
 		stopAutoplay() {
 			clearInterval(this.intervalId); // Clear the autoplay interval
 		},
@@ -544,7 +506,7 @@ export default {
 		},
 		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END 
 
-		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON START 
+		// ALL NEXT AND PREVIEW SLIDE BUTTON START 
 		exOnePrevSlide() {
 			this.$refs.extraOneProduct.prev();
 		},
@@ -570,14 +532,14 @@ export default {
 		dZNextSlide() {
 			this.$refs.dealZoneProduct.next();
 		},
-		// RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END
-
+		
 		lNPrevSlide() {
 			this.$refs.extraProduct.prev();
 		},
 		lNNextSlide() {
 			this.$refs.extraProduct.next();
 		},
+		// ALL NEXT AND PREVIEW SLIDE BUTTON END
 
 
 		handleCardClick(id) {
@@ -598,11 +560,7 @@ export default {
 		this.stopAutoplay(); // Stop autoplay when the component is destroyed
 	},
 	mounted() {
-		this.startAutoplay();
-		// Start autoplay when the component is mounted
-		// this.fetchcard();
 		this.fetchCategory();
-		// this.fetchFeaturedProducts();
 	},
 
 }
