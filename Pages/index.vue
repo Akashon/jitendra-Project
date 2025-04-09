@@ -184,7 +184,7 @@
 										<div @click="handleCardClick(ExtraOne.cat_id)">
 											<CardThree class="product-card product-card--layout--grid pb-2"
 												style="width:16rem;" :name="ExtraOne.cat_name" :id="ExtraOne.cat_id"
-												:image="ExtraOne.cat_image" />
+												 :image="ExtraOne.cat_image" />
 										</div>
 									</Slide>
 								</Carousel>

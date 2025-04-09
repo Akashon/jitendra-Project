@@ -37,8 +37,8 @@ export default {
         }
     },
     props: {
-        id: { default: '' },
-        image: { default: '' },
+        id: { default: "" },
+        image: { default: "" },
         name: { default: "" },
         rDescription: { default: "" },
     }

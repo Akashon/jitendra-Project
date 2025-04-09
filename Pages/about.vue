@@ -258,43 +258,6 @@
     </div>
     <div class="block-space block-space--layout--divider-xl"></div>
 
-    <div class="block block-reviews">
-      <div class="container">
-        <div class="block-reviews__title">Testimonials</div>
-        <div class="block-reviews__subtitle">During our work we have accumulated<br>hundreds of positive
-          reviews.</div>
-        <div class="block-reviews__list">
-          <div class="owl-carousel">
-            <div class="block-reviews__item">
-              <div class="block-reviews__item-avatar"><img src="/images/testimonials/testimonial-1-190x190.jpg" alt="">
-              </div>
-              <div class="block-reviews__item-content">
-                <div class="block-reviews__item-text">This division is not obsolete but has changed.
-                  Natural philosophy has split into the various natural sciences, especially
-                  astronomy, and cosmology. Moral philosophy has birthed the social sciences, but
-                  still includes value theory.</div>
-                <div class="block-reviews__item-meta">
-                  <div class="block-reviews__item-rating">
-                    <div class="rating">
-                      <div class="rating__body">
-                        <div class="rating__star rating__star--active"></div>
-                        <div class="rating__star rating__star--active"></div>
-                        <div class="rating__star rating__star--active"></div>
-                        <div class="rating__star rating__star--active"></div>
-                        <div class="rating__star"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="block-reviews__item-author">Jessica Moore, CEO Meblya</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="block-space block-space--layout--before-footer"></div>
-
   </div>
 </template>
 

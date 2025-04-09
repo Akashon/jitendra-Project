@@ -46,12 +46,21 @@
                                         Message</h4>
                                     <form @submit.prevent="doInquiry">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-12">
                                                 <label for="form-name" style="font-size: 18px;">Your Name</label>
                                                 <input type="text" id="form-name" v-model="userName"
                                                     class="form-control"
                                                     style="background-color: #EBEBEB; font-size: 18px;"
                                                     placeholder="Your Name" required />
+                                            </div>
+
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="email" style="font-size: 18px;">Your Email</label>
+                                                <input type="email" id="email" v-model="email" class="form-control"
+                                                    style="background-color: #EBEBEB; font-size: 18px;"
+                                                    placeholder="Your Email" required />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="form-phone" style="font-size: 18px;">Your Phone
@@ -77,7 +86,8 @@
                                             <div :class="{
                                                 'alert alert-danger': error.has,
                                                 'alert alert-success': success.has,
-                                            }" class="max-w-screen-md mx-auto shadow-lg rounded-lg py-3 px-6 d-flex justify-content-between align-items-center">
+                                            }"
+                                                class="max-w-screen-md mx-auto shadow-lg rounded-lg py-3 px-6 d-flex justify-content-between align-items-center">
                                                 <div class="d-flex align-items-center">
                                                     <i :class="{
                                                         'fa fa-times-circle text-black': error.has,
@@ -113,6 +123,7 @@ export default {
         return {
             userName: "",
             mobileNumber: "",
+            // email: "",
             message: "",
             success: {
                 has: false,
@@ -131,6 +142,7 @@ export default {
                 const formData = new FormData();
                 formData.append("inq_name", this.userName);
                 formData.append("inq_contact", this.mobileNumber);
+                // formData.append("inq_email", this.email);
                 formData.append("inq_message", this.message);
                 try {
                     const response = await axios.post(Url.fetchInquiryData, formData, {
@@ -157,6 +169,7 @@ export default {
             this.userName = "";
             this.mobileNumber = "";
             this.message = "";
+            // this.email = "";
         },
         clearAlerts() {
             this.success.has = false;

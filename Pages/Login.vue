@@ -65,8 +65,8 @@ export default {
     return {
       email: '',
       password: '',
-      error: {has: false, message: '',},
-      success: {has: false, message: '',},
+      error: { has: false, message: '', },
+      success: { has: false, message: '', },
     };
   },
   methods: {
