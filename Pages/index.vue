@@ -193,11 +193,16 @@ export default {
 		handleCardClick(id) {
 			const token = localStorage.getItem('authToken');
 			if (token) {
-				this.$router.push(`/product/${id}`);
+				window.location.href = `/product/${id}/`;
+				// this.$router.push(`/product/${id}`);
 			} else {
 				this.showModal = true;
 			}
 		},
+
+		closeModal() {
+			this.showModal = false;
+		}
 
 	},
 	beforeUnmount() {

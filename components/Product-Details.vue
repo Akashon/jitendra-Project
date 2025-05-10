@@ -165,6 +165,10 @@
                             <div class="product__actions-divider"></div>
                             <button class="product__actions-item product__actions-item--wishlist" type="button"><i
                                     class="fa fa-heart mr-2"></i><span>Add to wishlist</span></button>
+
+                            <!-- <button class="btn btn-outline-danger" @click="toggleWishlist(card.id)">
+                                <i :class="['fa-heart', isWishlisted(card.id) ? 'fas' : 'far']"></i>
+                            </button> -->
                         </div>
                     </div>
 
@@ -342,50 +346,22 @@ export default {
             }
         },
 
-
-
-        // async getAddToCart() {
-        //     // const token = localStorage.getItem("authToken");
-        //     // const id = this.$route.params.id;
-
-        //     const token = localStorage.getItem("authToken");
-        //     var id = this.$route.params.id;
-
-        //     try {
-        //         const response = await axios.get(`${Url.fetchCustomerAddToCart}?proId=${id}`,{ quantity: this.quantity, }, {
-        //             headers: {
-        //                 "Authorization": "Bearer " + token
-        //             },
-        //         });
-        //         console.log("Add to Cart Response:", response.data);
-        //         // this.$router.push("/shopping_cart");
-        //     } catch (error) {
-        //         // console.error("Error adding to cart:", error.response?.data || error.message);
-        //     }
-        // },
-
-
-
-
         changeImage(index) {
-            // Update the active image when a thumbnail is clicked
             this.activeIndex = index;
         },
         next() {
-            // Go to the next set of images
             if (!this.isLastPage) {
                 this.startIndex += 1;
                 if (this.startIndex + 3 > this.images.length) {
-                    this.startIndex = this.images.length - 3; // Adjust to last set
+                    this.startIndex = this.images.length - 3;
                 }
             }
         },
         prev() {
-            // Go to the previous set of images
             if (!this.isFirstPage) {
                 this.startIndex -= 1;
                 if (this.startIndex < 0) {
-                    this.startIndex = 0; // Adjust to first set
+                    this.startIndex = 0;
                 }
             }
         },
@@ -393,25 +369,19 @@ export default {
         setActiveTab(tabName) {
             this.activeTab = tabName;
         },
-
-        // RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON START 
         prevSlide() {
             this.$refs.related.prev();
         },
         nextSlide() {
             this.$refs.related.next();
         },
-        // RELATED PROUDCT NEXT AND PREVIEW SLIDE BUTTON END 
-
     },
 
     computed: {
         activeImage() {
-            // Returns the currently active image based on activeIndex
             return this.images[this.activeIndex];
         },
         visibleImages() {
-            // Returns the currently visible set of images based on startIndex
             return this.images.slice(this.startIndex, this.startIndex + 3);
         },
         isFirstPage() {
