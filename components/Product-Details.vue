@@ -34,9 +34,10 @@
                     </div>
                 </div> -->
 
+
                 <div class="product-gallery product-gallery--layout--product-full product__gallery"
                     data-layout="product-full">
-                    <div class="product-gallery__featured"><button type="button" class="product-gallery__zoom">
+                    <!-- <div class="product-gallery__featured"><button type="button" class="product-gallery__zoom">
                             <svg width="24" height="24">
                                 <path
                                     d="M15,18c-2,0-3.8-0.6-5.2-1.7c-1,1.3-2.1,2.8-3.5,4.6c-2.2,2.8-3.4,1.9-3.4,1.9s-0.6-0.3-1.1-0.7 c-0.4-0.4-0.7-1-0.7-1s-0.9-1.2,1.9-3.3c1.8-1.4,3.3-2.5,4.6-3.5C6.6,12.8,6,11,6,9c0-5,4-9,9-9s9,4,9,9S20,18,15,18z M15,2 c-3.9,0-7,3.1-7,7s3.1,7,7,7s7-3.1,7-7S18.9,2,15,2z M16,13h-2v-3h-3V8h3V5h2v3h3v2h-3V13z" />
@@ -66,7 +67,45 @@
                             <button @click="next" :disabled="isLastPage" class="fa fa-chevron-right"
                                 style="color: red; background-color: red; padding: 4px; font-size: 20px; color: white; border-radius: 4px;"></button>
                         </div>
+                    </div> -->
+
+                    <!-- NEW IMAGE SECTION WITH KEEN SLIDER START -->
+                    <div class="product-gallery__featured">
+
+                        <div class="product-gallery" v-if="images.length">
+                            <div class="text-center mb-2 position-relative border-sm">
+                                <img :src="images[activeIndex].large" class="img-fluid" style="max-height: 400px;"
+                                    alt="Main Image" />
+                                <button class="btn btn-light position-absolute "
+                                    style="top: 10px; right: 2px; border-radius: 10%;" @click="zoomImage">
+                                    <i class="fa fa-search-plus"></i>
+                                </button>
+                            </div>
+
+                            <div class="d-flex justify-content-between mb-3">
+                                <button class=" btn-outline-danger rounded" @click="prevImage"
+                                    :disabled="activeIndex === 0"><i class="fa fa-chevron-left"></i></button>
+                                <button class=" btn-outline-danger rounded" @click="nextImage"
+                                    :disabled="activeIndex === images.length - 1"><i
+                                        class="fa fa-chevron-right"></i></button>
+                            </div>
+
+                            <div class="d-flex justify-content-center flex-wrap">
+                                <div v-for="(image, index) in images" :key="index" class="mx-1 "
+                                    :class="{ 'border border-danger': activeIndex === index }" style="cursor: pointer;"
+                                    @click="setImage(index)">
+                                    <img :src="image.thumb" class="img-thumbnail" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div v-else>
+                            <p>No images available</p>
+                        </div>
+
                     </div>
+                    <!-- NEW IMAGE SECTION WITH KEEN SLIDER END -->
+
                 </div>
                 <!-- IMAGE SECTION END -->
                 <div class="product__header">
@@ -396,31 +435,78 @@ export default {
 };
 </script>
 
+
+<script setup>
+import { ref } from 'vue'
+
+const images = ref([
+  {
+    thumb: 'https://picsum.photos/id/1/70/70',
+    large: 'https://picsum.photos/id/1/700/700',
+  },
+  {
+    thumb: 'https://picsum.photos/id/2/70/70',
+    large: 'https://picsum.photos/id/2/700/700',
+  },
+  {
+    thumb: 'https://picsum.photos/id/3/70/70',
+    large: 'https://picsum.photos/id/3/700/700',
+  },
+  {
+    thumb: 'https://picsum.photos/id/4/70/70',
+    large: 'https://picsum.photos/id/4/700/700',
+  },
+
+])
+
+const activeIndex = ref(0)
+
+const setImage = (index) => {
+  activeIndex.value = index
+}
+
+const prevImage = () => {
+  if (activeIndex.value > 0) {
+    activeIndex.value--
+  }
+}
+
+const nextImage = () => {
+  if (activeIndex.value < images.value.length - 1) {
+    activeIndex.value++
+  }
+}
+
+const zoomImage = () => {
+  const image = images.value[activeIndex.value]?.large
+  if (image) {
+    window.open(image, '_blank')
+  }
+}
+</script>
+
+
 <style scoped>
-/* Main image styling */
 .main-image img {
-    max-height: 400px;
-    object-fit: contain;
-    width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  width: 100%;
 }
-
-/* Thumbnail image styling */
 .img-thumbnail {
-    transition: border 0.3s ease-in-out;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
 }
-
-/* Highlight the active thumbnail */
+.img-thumbnail {
+  transition: border 0.3s ease-in-out;
+}
 .active-thumbnail {
-    border: 2px solid #007bff;
+  border: 2px solid #DB2C1D;
 }
-
-/* Button styling */
 .btn {
-    margin: 0 10px;
+  margin: 0 10px;
 }
-
 .product-tabs__item--active a {
-    font-weight: 700;
-    /* Example for active tab styling */
+  font-weight: 700;
 }
 </style>

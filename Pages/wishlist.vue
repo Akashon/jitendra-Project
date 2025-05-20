@@ -87,6 +87,7 @@
 </template> -->
 
 
+
 <template>
 
 
@@ -172,7 +173,6 @@
                                 <td><button class="btn btn-danger" @click="removeFromWishlist(card.id)">
                                         <i class="fas fa-heart"></i>
                                     </button></td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -181,15 +181,6 @@
         </div>
         <div class="block-space block-space--layout--before-footer"></div>
     </div>
-
-
-
-
-
-
-
-
-
 
 
     <div class="container py-4">
@@ -219,11 +210,11 @@
 import { ref, onMounted } from 'vue'
 
 const allCards = [
-    { id: 1, name: 'Villa Elite', description: 'Luxury villa in Goa', image: 'https://via.placeholder.com/400x250?text=Villa+1' },
-    { id: 2, name: 'Urban House', description: 'City view apartment', image: 'https://via.placeholder.com/400x250?text=Villa+2' },
-    { id: 3, name: 'Beachside Home', description: 'Beachfront property', image: 'https://via.placeholder.com/400x250?text=Villa+3' },
-    { id: 4, name: 'Mountain Cabin', description: 'Peaceful mountain retreat', image: 'https://via.placeholder.com/400x250?text=Villa+4' },
-    { id: 5, name: 'Lake House', description: 'Lakefront property', image: 'https://via.placeholder.com/400x250?text=Villa+5' },
+    { id: 1, name: 'Villa Elite', description: 'Luxury villa in Goa', image: 'https://picsum.photos/id/1/200/100' },
+    { id: 2, name: 'Urban House', description: 'City view apartment', image: 'https://picsum.photos/id/2/200/100' },
+    { id: 3, name: 'Beachside Home', description: 'Beachfront property', image: 'https://picsum.photos/id/3/200/100' },
+    { id: 4, name: 'Mountain Cabin', description: 'Peaceful mountain retreat', image: 'https://picsum.photos/id/4/200/100' },
+    { id: 5, name: 'Lake House', description: 'Lakefront property', image: 'https://picsum.photos/id/5/200/100' },
 ]
 
 const wishlistedCards = ref([])

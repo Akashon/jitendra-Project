@@ -156,7 +156,6 @@ export default {
 
 .cart-table__remove i:hover {
     color: #dc3545;
-    /* Bootstrap danger color */
 }
 </style>
 

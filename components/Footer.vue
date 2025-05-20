@@ -43,12 +43,14 @@
                   <ul class="footer-links__list">
                     <li class="footer-links__item"><a href="/about" class="footer-links__link">About
                         Us</a></li>
-                    <li class="footer-links__item"><a href="#" class="footer-links__link">Delivery
-                        Information</a></li>
-                    <li class="footer-links__item"><a href="#" class="footer-links__link">Privacy
-                        Policy</a></li>
-                    <li class="footer-links__item"><a href="#" class="footer-links__link">Brands</a>
-                    </li>
+                    <!-- <li class="footer-links__item"><a href="#" class="footer-links__link">Delivery
+                        Information</a></li> -->
+                    <!-- <li class="footer-links__item"><a href="#" class="footer-links__link">Privacy
+                        Policy</a></li> -->
+
+                    <li class="footer-links__item"><a href="/terms-condition">Terms And Conditions</a></li>
+                    <!-- <li class="footer-links__item"><a href="#" class="footer-links__link">Brands</a>
+                    </li> -->
                     <li class="footer-links__item"><a href="/contact" class="footer-links__link">Contact
                         Us</a></li>
                     <li class="footer-links__item"><a href="#" class="footer-links__link">Site
@@ -108,8 +110,8 @@
         <div class="site-footer__bottom">
           <div class="container">
             <div class="site-footer__bottom-row" style="justify-content: center;">
-              <div class="site-footer__copyright"><!-- copyright --> Powered by HTML — Designed by <a
-                  href="#" target="_blank">sitent web & graphics design</a><!-- copyright / end --></div>
+              <div class="site-footer__copyright"><!-- copyright --> Powered by HTML — Designed by <a href="#"
+                  target="_blank">sitent web & graphics design</a><!-- copyright / end --></div>
             </div>
           </div>
         </div>

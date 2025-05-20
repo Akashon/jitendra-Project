@@ -164,9 +164,9 @@
                 <header class="align-items-center py-0  border-bottom bg-white d-flex justify-content-between ">
                     <div class="d-flex align-items-center col-lg-4 my-2" style="justify-content: end;">
                         <nav class="d-none d-md-block align-items-center">
-                            <ul class="d-flex my-2 align-items-center" style="column-gap: 4px; ">
+                            <ul class="d-flex my-2 align-items-center" style="column-gap: 20px; ">
                                 <li class="btn btn-light d-flex align-items-center"
-                                    style="font-weight: 500; font-size: 14px; transition: background-color 0.3s;"
+                                    style="font-weight: 500; font-size: 16px; transition: background-color 0.3s;"
                                     onmouseover="this.style.backgroundColor='red'; this.style.color='white';"
                                     onmouseout="this.style.backgroundColor=''; this.style.color='';"><i
                                         class="fa fa-bars mr-2"></i>
@@ -174,28 +174,28 @@
                                 </li>
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                                     style="list-style: none;">
-                                    <a href="/" class="d-flex btn btn-light d-flex"
-                                        style="align-items: center; color: black; font-weight: 500; font-size: 14px;">Home
+                                    <a href="/" class="d-flex"
+                                        style="align-items: center; color: black; font-weight: 500; font-size: 16px;">Home
                                     </a>
                                 </li>
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                                     style="list-style: none;">
-                                    <a href="/category/" class="d-flex btn btn-light d-flex"
-                                        style="align-items: center; color: black; font-weight: 500; font-size: 14px;">Services
+                                    <a href="/category/" class="d-flex"
+                                        style="align-items: center; color: black; font-weight: 500; font-size: 16px;">Services
                                     </a>
                                 </li>
 
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                                     style="list-style: none;">
-                                    <a href="/about" class="d-flex btn btn-light d-flex"
-                                        style="align-items: center; color: black; font-weight: 500; font-size: 14px;">About
+                                    <a href="/about" class="d-flex"
+                                        style="align-items: center; color: black; font-weight: 500; font-size: 16px;">About
                                         Us
                                     </a>
                                 </li>
                                 <li class="main-menu__item main-menu__item--submenu--menu main-menu__item--has-submenu"
                                     style="list-style: none;">
-                                    <a href="/contact" class="d-flex btn btn-light d-flex"
-                                        style="align-items: center; color: black; font-weight: 500; font-size: 14px;">Contact
+                                    <a href="/contact" class="d-flex"
+                                        style="align-items: center; color: black; font-weight: 500; font-size: 16px;">Contact
                                         Us</a>
                                 </li>
                             </ul>
@@ -211,8 +211,12 @@
                                 style="font-size:30px "></i></a>
 
                         <a :href="Login.link" type="submit" class="btn btn-light mx-2"
-                            style="color: #E52727; border-color: #E52727; font-weight: 600;"> {{ Login.LogButton }}<i
+                            style="color: #E52727; border-color: #E52727; font-weight: 600;"> {{ Login.LogButton }} <i
                                 class="fa-solid fa-lock pl-1"></i></a>
+
+                        <a :href="Register.link" type="submit" class="btn btn-dark mx-2"
+                            style="background-color: #333333; border-color: #333333; color: #fafafa; font-weight: 600;"> {{ Register.RegiButton }} <i class="fa-solid fa-address-card pl-1"></i></a>
+                                
                     </div>
 
                     <div v-else class="d-flex align-items-center col-lg-4 my-2">
@@ -277,6 +281,7 @@
 <script>
 import axios from 'axios';
 import { Url } from '~/config/url';
+import Register from '~/Pages/register.vue';
 export default {
     data() {
         return {
@@ -287,6 +292,7 @@ export default {
             sidebarOpen: false,
             isSearchBarVisible: false,
             Login: { LogButton: "Login", link: "/login" },
+            Register: { RegiButton: "Register", link: "register"},
             Logout: { LogoutButton: "Logout", link: "/" },
         };
     },

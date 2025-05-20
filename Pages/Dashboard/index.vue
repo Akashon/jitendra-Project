@@ -4,7 +4,7 @@
         <div class="block">
             <div class="container container--max--xl">
                 <div class="row">
-                    <DashSideMenu />
+                    <DasSideMenu />
                     <div class="col-12 col-lg-9 mt-4 mt-lg-0">
                         <div class="dashboard">
                             <div class="dashboard__profile card profile-card">
@@ -15,7 +15,7 @@
                                     </div>
                                     <div class="profile-card__name">{{ fullName }}</div>
                                     <div class="profile-card__email">{{ emailId }}</div>
-                                    <div class="profile-card__edit"><a href="account-profile.html"
+                                    <div class="profile-card__edit"><a href="/dashboard/edit-profile"
                                         class="btn btn-secondary btn-sm">Edit Profile</a>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="block-space block-space--layout--before-footer"></div>
-    </div><!-- site__body / end --><!-- site__footer -->
+    </div>
 </template>
 
 <script>

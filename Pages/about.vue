@@ -45,18 +45,19 @@
       <div class="container container--max--xl">
         <div class="block-teammates__title">BOARD OF DIRECTORS'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
-
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in boardOfDirectors" :key="index">
-            <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
-              style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
-            <div class="card-body">
-              <h5 class="card-title">{{ profile.name }}</h5>
-              <p class="card-text">{{ profile.position }}</p>
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+            <div class="card text-center m-2" v-for="(profile, index) in boardOfDirectors" :key="index"
+              style="width: 200%; max-width: 240px;">
+              <img class="card-img-top mx-auto mt-3" :src="profile.imageSrc" alt="Profile image"
+                style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%;" />
+              <div class="card-body">
+                <h5 class="card-title">{{ profile.name }}</h5>
+                <p class="card-text">{{ profile.position }}</p>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="block-space block-space--layout--divider-xl"></div>
@@ -67,15 +68,16 @@
       <div class="container container--max--xl">
         <div class="block-teammates__title">ASSISTANT MANAGER'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
-
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in assistantManager" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in assistantManager" :key="index" style="width: 200%; max-width: 240px;" >
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -89,15 +91,16 @@
       <div class="container container--max--xl">
         <div class="block-teammates__title">ACCOUNTING AND FINANCE TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
-
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in accountingTeam" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in accountingTeam" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -112,14 +115,16 @@
         <div class="block-teammates__title">QUALITY CONTROL TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
 
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in qualityControl" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in qualityControl" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -135,13 +140,15 @@
         <div class="block-teammates__title">SALES HADE TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
 
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in salesHade" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in salesHade" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
+            </div>
             </div>
           </div>
         </div>
@@ -157,14 +164,16 @@
         <div class="block-teammates__title">SALES MANAGER TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
 
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in salesManager" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in salesManager" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -180,14 +189,16 @@
         <div class="block-teammates__title">MARKETING & RESEARCH AND DEVLOPMENT TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
 
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in mRDevelopment" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in mRDevelopment" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -202,15 +213,16 @@
       <div class="container container--max--xl">
         <div class="block-teammates__title">TECHNICAL TEAM TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
-
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in technicalTeam" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in technicalTeam" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 
@@ -224,14 +236,15 @@
       <div class="container container--max--xl">
         <div class="block-teammates__title">PRODUCTION AND MANUFACTURING TEAM'S</div>
         <div class="block-teammates__subtitle">Meet this is our professional team.</div>
-
-        <div class="row" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in pMTeam" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in pMTeam" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
+            </div>
             </div>
           </div>
         </div>
@@ -243,14 +256,16 @@
 
     <div class="block block-teammates">
       <div class="container container--max--xl">
-        <div class="d-flex" style="justify-content: center; gap: 12px;">
-          <div class="card text-center" v-for="(profile, index) in profiles" :key="index">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-12 d-flex flex-wrap justify-content-center" style="gap: 12px;">
+          <div class="card text-center m-2" v-for="(profile, index) in profiles" :key="index" style="width: 200%; max-width: 240px;">
             <img class="card-img-top mx-auto" :src="profile.imageSrc" alt="Profile image"
               style="width: 200px; height: 180px; object-fit: cover; border-radius: 50%; margin-top: 20px;" />
             <div class="card-body">
               <h5 class="card-title">{{ profile.name }}</h5>
               <p class="card-text">{{ profile.position }}</p>
             </div>
+          </div>
           </div>
         </div>
 

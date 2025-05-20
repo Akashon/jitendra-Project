@@ -183,7 +183,9 @@ export default {
             <div class="card-body">
               <h1 class="card-title mb-4">Login</h1>
 
-              <form class="py-3" @submit.prevent="doLogin">
+
+              <!-- MAIN OLD WITH API CODE WITH OUT SECRET CODE -->
+              <!-- <form class="py-3" @submit.prevent="doLogin">
                 <div class="form-group">
                   <label for="signin-email">Email address</label>
                   <input v-model="email" id="signin-email" type="email" style="background-color: #ebebeb;"
@@ -215,6 +217,79 @@ export default {
                   {{ loading ? 'Logging in...' : 'Login' }}
                 </button>
               </form>
+
+              <hr>
+              <div class="col-md-6">
+                <form class="py-3" @submit.prevent="doLogin">
+                  <div class="form-group">
+                    <label for="signin-email">Secret Key</label>
+                    <input v-model="secretKey" id="signin-email" type="text" style="background-color: #ebebeb;"
+                      class="form-control py-3" placeholder="Your Secret Key"
+                      :class="{ 'is-invalid': validationErrors.secretKey }" />
+                    <div v-if="validationErrors.secretKey" class="invalid-feedback">
+                      {{ validationErrors.secretKey }}
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-danger px-4" :disabled="loading">
+                    <span v-if="loading" class="spinner-border spinner-border-sm mr-2"></span>
+                    {{ loading ? 'Logging in...' : 'Submit' }}
+                  </button>
+                </form>
+
+
+              </div> -->
+              <!-- MAIN OLD WITH API CODE WITH OUT SECRET CODE -->
+
+              <form class="py-3" @submit.prevent="doLogin" v-if="!isLoginSuccess">
+                <div class="form-group">
+                  <label for="signin-email">Email address</label>
+                  <input v-model="email" id="signin-email" type="email" style="background-color: #ebebeb;"
+                    class="form-control py-3" placeholder="customer@example.com"
+                    :class="{ 'is-invalid': validationErrors.email }" />
+                  <div v-if="validationErrors.email" class="invalid-feedback">
+                    {{ validationErrors.email }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label style="font-size: 16px">Password</label>
+                  <div class="input-group">
+                    <input :type="showPassword ? 'text' : 'password'" style="background-color: #ebebeb; font-size: 16px"
+                      v-model="password" class="form-control py-3" placeholder="Password"
+                      :class="{ 'is-invalid': validationErrors.password }" />
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-outline-secondary" @click="showPassword = !showPassword"
+                        tabindex="-1">
+                        <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div style=" right: 2px; " v-if="validationErrors.password" class="invalid-feedback"> {{
+                    validationErrors.password }}</div>
+                </div>
+                <button type="submit" class="btn btn-danger mt-4 px-4">
+                  <!-- <span v-if="loading" class="spinner-border spinner-border-sm mr-2"></span> -->
+                  {{ loading ? 'Logging in...' : 'Login' }}
+                </button>
+              </form>
+
+              <div class="col-md-6">
+                <form class="py-3" @submit.prevent="verifySecretKey" v-if="isLoginSuccess">
+                  <div class="form-group">
+                    <label for="signin-secret-key">Secret Key</label>
+                    <input v-model="secretKey" id="signin-secret-key" type="text" style="background-color: #ebebeb;"
+                      class="form-control py-3" placeholder="Secret Word"
+                      :class="{ 'is-invalid': validationErrors.secretKey }" />
+                    <div v-if="validationErrors.secretKey" class="invalid-feedback">
+                      {{ validationErrors.secretKey }}
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-danger px-4">
+                    <!-- <span v-if="loading" class="spinner-border spinner-border-sm mr-2"></span> -->
+                    {{ loading ? 'Verifying...' : 'Submit' }}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -223,7 +298,9 @@ export default {
   </div>
 </template>
 
-<script>
+
+<!-- MAIN OLD WITH API CODE WITH OUT SECRET CODE -->
+<!-- <script>
 import axios from 'axios';
 import { Url } from '~/config/url';
 
@@ -232,18 +309,22 @@ export default {
     return {
       email: '',
       password: '',
+      secretKey: '',
       showPassword: false,
-      loading: false,
+      // loading: false,
+      isLoginSuccess: false,
       error: { has: false, message: '' },
       success: { has: false, message: '' },
       validationErrors: {
         email: '',
-        password: ''
+        password: '',
+        secretKey: ''
       }
 
     };
   },
   methods: {
+
     validateForm() {
       let isValid = true;
       this.validationErrors = { email: '', password: '' };
@@ -307,7 +388,129 @@ export default {
   }
 
 };
+</script> -->
+<!-- MAIN OLD WITH API CODE WITH OUT SECRET CODE -->
+
+
+
+
+
+<script>
+import axios from 'axios';
+import { Url } from '~/config/url';
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      showPassword: false,
+      secretKey: '',
+      loading: false,
+      error: { has: false, message: '' },
+      success: { has: false, message: '' },
+      validationErrors: {
+        email: '',
+        password: '',
+        secretKey: ''
+      },
+      isLoginSuccess: false,
+    };
+  },
+  methods: {
+    validateForm() {
+      let isValid = true;
+      this.validationErrors = { email: '', password: '', secretKey: '' };
+
+      if (!this.email) {
+        this.validationErrors.email = 'Email is required.';
+        isValid = false;
+      }
+
+      if (!this.password) {
+        this.validationErrors.password = 'Password is required.';
+        isValid = false;
+      }
+
+      return isValid;
+    },
+    async doLogin() {
+      if (!this.validateForm()) return;
+
+      this.loading = true;
+      this.error = { has: false, message: '' };
+      this.success = { has: false, message: '' };
+
+      try {
+        const formData = new FormData();
+        formData.append('username', this.email);
+        formData.append('password', this.password);
+
+        const response = await axios.post(Url.userLogin, formData);
+
+        if (response.data.status) {
+          this.success = { has: true, message: 'Login successful. Please enter your secret key.' };
+          localStorage.setItem("authToken", response.data.token);
+          this.isLoginSuccess = true;
+        } else {
+          this.showError(response.data.message || 'Login failed. Please check your credentials.');
+        }
+      } catch (error) {
+        this.showError(error.response?.data?.message || 'An error occurred during login.');
+      } finally {
+        this.loading = false;
+      }
+    },
+    async verifySecretKey() {
+      if (!this.secretKey) {
+        this.validationErrors.secretKey = 'Secret Key is required.';
+        return;
+      }
+
+      this.loading = true;
+      this.error = { has: false, message: '' };
+      this.success = { has: false, message: '' };
+
+      try {
+        const formData = new FormData();
+        formData.append('secret_key', this.secretKey);
+
+        const response = await axios.post(Url.verifySecretKey, formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+
+        if (response.data.status) {
+          this.success = { has: true, message: 'Secret key verified. Redirecting...' };
+          localStorage.setItem("isLoggedIn", true);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 1500);
+        } else {
+          this.showError(response.data.message || 'Invalid secret key.');
+        }
+      } catch (error) {
+        this.showError(error.response?.data?.message || 'Error verifying secret key.');
+      } finally {
+        this.loading = false;
+      }
+    },
+    showError(message) {
+      this.error = { has: true, message };
+      this.success = { has: false, message: '' };
+      setTimeout(this.closeAlert, 5000);
+    },
+    closeAlert() {
+      this.error.has = false;
+      this.success.has = false;
+    }
+  }
+};
 </script>
+
+
+
 
 <style scoped>
 .fade-enter-active,

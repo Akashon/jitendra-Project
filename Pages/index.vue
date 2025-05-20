@@ -134,6 +134,20 @@
 			<!-- (MODAL) IF THERE IS NO LOGIN AND NO TOKEN THIS MODAL WILL OPEN END-->
 		</div>
 	</div>
+
+
+	<!-- ONLY TESTING DEMO SECTION -->
+	<section>
+			<div class="site lg-mt-5 lg-mb-0 mb-0 mt-0">
+		<div class="site__body">
+		<div class="block-space block-space--layout--divider-nl my-0"></div>
+		<OnlyDemoCard />
+				</div>
+				</div>
+	</section>
+	<!-- ONLY TESTING DEMO SECTION -->
+
+
 </template>
 <script>
 import axios from 'axios';

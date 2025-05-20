@@ -4,7 +4,7 @@
 		<div class="block">
 			<div class="container container--max--xl">
 				<div class="row">
-					<DashSideMenu/>
+					<DasSideMenu />
 
 					<div class="col-12 col-lg-9 mt-4 mt-lg-0">
 						<div class="card">
